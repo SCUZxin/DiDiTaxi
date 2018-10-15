@@ -8,5 +8,3 @@ def listdir_nohidden(path):
             list.append(f)
     return list
 
-
-
