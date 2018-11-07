@@ -49,7 +49,7 @@ def new_flow_statistics(fileList, time_interval = 30, threshold = 0):
         df = pd.DataFrame(df)
         df.rename(columns={0: 'count'}, inplace=True)
 
-        destPath = 'E:\\data\\DiDiData\\data_csv\\order_count\\order_count_' + fileDate + '.csv'
+        destPath = 'E:\\data\\DiDiData\\data_csv\\order_count_15min\\order_count_' + fileDate + '.csv'
         # destPath = '/home/zx/data/DiDiData/data_csv/flow_statistics/flow_' + fileDate + '.csv'
 
         df.to_csv(destPath)
@@ -67,7 +67,7 @@ if __name__ == '__main__':
     fileList = ft.listdir_nohidden(dirPath)
     fileList.sort()
 
-    time_interval = timedelta(minutes=30)
+    time_interval = timedelta(minutes=15)
     threshold = 0
     # 调用方法获取满足时间间隔和阈值的 order_count , 并写入 csv文件
     new_flow_statistics(fileList, time_interval, threshold)
