@@ -91,6 +91,12 @@ if __name__ == '__main__':
     fileList.pop(len(fileList)-1)   # 只取.csv文件，移除dirPath下的order_count_removeDate目录
     readFile(fileList, dirPath)
 
+    dirPath = 'E:\\data\\DiDiData\\data_csv\\order_count_60min\\'
+    fileList = ft.listdir_nohidden(dirPath)
+    fileList.sort()
+    fileList.pop(len(fileList)-1)   # 只取.csv文件，移除dirPath下的order_count_removeDate目录
+    readFile(fileList, dirPath)
+
     time_Now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     print('current time:', time_Now)
 

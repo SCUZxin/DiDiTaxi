@@ -12,8 +12,8 @@ from datetime import timedelta
 
 
 def flow_statistics_totalCity(fileList, time_interval = 15, threshold = 0):
-    # for i in range(len(fileList)):
-    for i in range(1):
+    for i in range(len(fileList)):
+    # for i in range(1):
         filePath = os.path.join(dirPath, fileList[i])
 
         fileDate = fileList[i].split('_')[1].split('.')[0]  # 2016-02-23
@@ -61,10 +61,10 @@ def flow_statistics_totalCity(fileList, time_interval = 15, threshold = 0):
         print(fileDate)
 
         # 最后一天的数据加入后
-        # if i == len(fileList) - 1:
-        if i == 1:
+        if i == len(fileList) - 1:
+        # if i == 1:
             # df_out = df_out.unstack(0)
-            destPath = 'E:\\data\\DiDiData\\data_csv\\order_count_totalCity\\totalFlow_30min_exp.csv'
+            destPath = 'E:\\data\\DiDiData\\data_csv\\order_count_totalCity\\totalFlow_60min.csv'
             df_out.to_csv(destPath)
 
 
@@ -104,7 +104,7 @@ if __name__ == "__main__":
     fileList = ft.listdir_nohidden(dirPath)
     fileList.sort()
 
-    time_interval = timedelta(minutes=30)
+    time_interval = timedelta(minutes=60)
     threshold = 0
     # 调用方法获取满足时间间隔和阈值的 order_count_totalCity , 并写入 csv文件
     flow_statistics_totalCity(fileList, time_interval, threshold)

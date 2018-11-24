@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fdeaa80c-ec29-4c2d-ae7e-eee8d3d4ca9f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dataPreprocess/datetime2time_timeSlice.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dataPreprocess/order_count_totalCity.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/DiDiTaxi.iml" afterPath="$PROJECT_DIR$/.idea/DiDiTaxi.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dataPreprocess/order_count.py" afterPath="$PROJECT_DIR$/dataPreprocess/order_count.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dataPreprocess/time_lag_A_B.py" afterPath="$PROJECT_DIR$/dataPreprocess/time_lag_A_B.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dataPreprocess/datetime2time_timeSlice.py" afterPath="$PROJECT_DIR$/dataPreprocess/datetime2time_timeSlice.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dataPreprocess/order_count_totalCity.py" afterPath="$PROJECT_DIR$/dataPreprocess/order_count_totalCity.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../python_demo/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../python_demo/.idea/workspace.xml" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
@@ -21,9 +16,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/DiDiTaxi$order_count.coverage" NAME="order_count Coverage Results" MODIFIED="1542715554245" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess" />
-    <SUITE FILE_PATH="coverage/DiDiTaxi$datetime2time_timeSlice.coverage" NAME="datetime2time_timeSlice Coverage Results" MODIFIED="1543032830818" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess" />
-    <SUITE FILE_PATH="coverage/DiDiTaxi$order_count_totalCity.coverage" NAME="order_count_totalCity Coverage Results" MODIFIED="1542977688144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess" />
+    <SUITE FILE_PATH="coverage/DiDiTaxi$order_count.coverage" NAME="order_count Coverage Results" MODIFIED="1543054270815" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess" />
+    <SUITE FILE_PATH="coverage/DiDiTaxi$datetime2time_timeSlice.coverage" NAME="datetime2time_timeSlice Coverage Results" MODIFIED="1543054880964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess" />
+    <SUITE FILE_PATH="coverage/DiDiTaxi$order_count_totalCity.coverage" NAME="order_count_totalCity Coverage Results" MODIFIED="1543054592552" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$time_lag_A_B.coverage" NAME="time_lag_A_B Coverage Results" MODIFIED="1540793990066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$meanPrice.coverage" NAME="meanPrice Coverage Results" MODIFIED="1542720146963" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess" />
   </component>
@@ -62,8 +57,8 @@
       <file leaf-file-name="order_count.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dataPreprocess/order_count.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
-              <caret line="51" column="102" selection-start-line="51" selection-start-column="85" selection-end-line="51" selection-end-column="102" />
+            <state relative-caret-position="238">
+              <caret line="65" column="47" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
               <folding>
                 <element signature="e#73#92#0" expanded="true" />
               </folding>
@@ -74,9 +69,11 @@
       <file leaf-file-name="order_count_totalCity.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dataPreprocess/order_count_totalCity.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-              <folding />
+            <state relative-caret-position="199">
+              <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+              <folding>
+                <element signature="e#67#86#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -84,9 +81,11 @@
       <file leaf-file-name="datetime2time_timeSlice.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dataPreprocess/datetime2time_timeSlice.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
-              <folding />
+            <state relative-caret-position="163">
+              <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+              <folding>
+                <element signature="e#111#130#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -107,9 +106,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Tools/funcTools.py" />
-        <option value="$PROJECT_DIR$/dataPreprocess/order_count.py" />
         <option value="$PROJECT_DIR$/dataPreprocess/meanPrice.py" />
         <option value="$PROJECT_DIR$/dataPreprocess/time_lag_A_B.py" />
+        <option value="$PROJECT_DIR$/dataPreprocess/order_count.py" />
         <option value="$PROJECT_DIR$/dataPreprocess/order_count_totalCity.py" />
         <option value="$PROJECT_DIR$/dataPreprocess/datetime2time_timeSlice.py" />
       </list>
@@ -169,6 +168,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="DiDiTaxi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DiDiTaxi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DiDiTaxi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dataPreprocess" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -492,8 +505,8 @@
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.datetime2time_timeSlice" />
         <item index="1" class="java.lang.String" itemvalue="Python.order_count_totalCity" />
-        <item index="2" class="java.lang.String" itemvalue="Python.meanPrice" />
-        <item index="3" class="java.lang.String" itemvalue="Python.order_count" />
+        <item index="2" class="java.lang.String" itemvalue="Python.order_count" />
+        <item index="3" class="java.lang.String" itemvalue="Python.meanPrice" />
         <item index="4" class="java.lang.String" itemvalue="Python.time_lag_A_B" />
       </list>
     </recent_temporary>
@@ -523,14 +536,21 @@
       <option name="project" value="LOCAL" />
       <updated>1541553816566</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="from TimeBand remove date">
+      <created>1543041811162</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1543041811162</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="2" width="1378" height="733" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24155654" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24155654" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329582" sideWeight="0.50293684" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -564,7 +584,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test commit when starting the experience" />
     <MESSAGE value="change time of order_count" />
-    <option name="LAST_COMMIT_MESSAGE" value="change time of order_count" />
+    <MESSAGE value="from TimeBand remove date" />
+    <option name="LAST_COMMIT_MESSAGE" value="from TimeBand remove date" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -771,16 +792,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dataPreprocess/order_count.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="51" column="102" selection-start-line="51" selection-start-column="85" selection-end-line="51" selection-end-column="102" />
-          <folding>
-            <element signature="e#73#92#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../UAIContest-master/UAIContest.sln">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -805,14 +816,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dataPreprocess/order_count_totalCity.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/file2csv/traffic.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1125">
@@ -823,11 +826,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dataPreprocess/order_count.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="65" column="47" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
+          <folding>
+            <element signature="e#73#92#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataPreprocess/order_count_totalCity.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+          <folding>
+            <element signature="e#67#86#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dataPreprocess/datetime2time_timeSlice.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
-          <folding />
+        <state relative-caret-position="163">
+          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+          <folding>
+            <element signature="e#111#130#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
