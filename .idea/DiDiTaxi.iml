@@ -6,5 +6,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="python_demo" />
     <orderEntry type="module" module-name="test35" />
+    <orderEntry type="module" module-name="UAIContest-master" />
   </component>
 </module>

@@ -18,7 +18,7 @@ def new_flow_statistics(fileList, time_interval = 30, threshold = 0):
         fileDate = fileList[i].split('_')[1].split('.')[0]  # 2016-02-23
         dateList = fileDate.split('-')
         year = int(dateList[0])
-        month= int(dateList[1])
+        month = int(dateList[1])
         day = int(dateList[2])
 
         df = pd.read_csv(filePath)

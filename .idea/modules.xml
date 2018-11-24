@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/DiDiTaxi.iml" filepath="$PROJECT_DIR$/.idea/DiDiTaxi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../UAIContest-master/.idea/UAIContest-master.iml" filepath="$PROJECT_DIR$/../UAIContest-master/.idea/UAIContest-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/../python_demo/.idea/python_demo.iml" filepath="$PROJECT_DIR$/../python_demo/.idea/python_demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/../test35/.idea/test35.iml" filepath="$PROJECT_DIR$/../test35/.idea/test35.iml" />
     </modules>

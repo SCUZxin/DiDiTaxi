@@ -56,7 +56,7 @@ df_Ax1_Bx2 = df_Ax1_Bx2.sort_index()
 length = len(df_Ax1_Bx2)
 df_Ax1_Bx2 = df_Ax1_Bx2.iloc[length-1:, :].append(df_Ax1_Bx2.iloc[0:length-1])
 
-# 排序后 (2016-02-23, 2016-02-23 00:30:00] 到第一行了，切片，将最后一行移至第一行
+# 排序后 (2016-02-23, 2016-02-23 00:30:00] 到最后一行了，切片，将最后一行移至第一行
 df_Ax2_Bx1 = df_Ax2_Bx1.sort_index()
 length = len(df_Ax2_Bx1)
 df_Ax2_Bx1 = df_Ax2_Bx1.iloc[length-1:, :].append(df_Ax2_Bx1.iloc[0:length-1])
