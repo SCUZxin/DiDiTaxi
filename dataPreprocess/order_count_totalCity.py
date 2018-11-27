@@ -68,34 +68,6 @@ def flow_statistics_totalCity(fileList, time_interval = 15, threshold = 0):
             df_out.to_csv(destPath)
 
 
-#从TimeBand属性列获取时分秒信息，目的是为了移除日期信息
-def gethmsfDateTime(df):
-    # for i in range(len(df)):
-    # print(df['Time'])
-    for i in range(1000):
-        hour = df['Time'][i].hour
-        minute = df['Time'][i].minute
-        second = df['Time'][i].second
-        df['Band'][i] = time(hour, minute, second)
-        if(i%100==0):
-            print(i)
-    print(df['Band'])
-    return df
-
-
-def get_time(df, year, month, day):
-    start_day = datetime(year, month, day)
-    # for i in range(len(df)):
-    for i in range(1000):
-        sec = (df['Time'][i] - start_day).seconds
-        # print(sec)
-        df['Band'][i] = time(hour=sec // 3600, minute=(sec % 3600) // 60, second=(sec % 3600) % 60)
-        # print(df['Band'][i])
-        if(i%100==0):
-            print(i)
-    print(df['Band'])
-    return df
-
 if __name__ == "__main__":
 
     time_Now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
