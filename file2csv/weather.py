@@ -9,18 +9,31 @@ fileList.sort()     # 得到的文件列表按文件名排序
 for i in range(len(fileList)):
     fileName = fileList[i]
     filePath = os.path.join("%s%s" % (dirPath, fileList[i]))  # 某一文件的绝对路径
-    datalist = []
+    date = []
+    time = []
+    weather = []
+    temperature = []
+    pm25 = []
     # 读文件
     with open(filePath, 'r') as f:
-        for line in f.readlines():
-            str = line.strip().split('\t')
-            datalist.append(str)
+        for line in f:
+            contents = line.split()
+            if len(contents) == 5:
+                date.append(contents[0])
+                time.append(contents[1])
+                weather.append(contents[2])
+                temperature.append(contents[3])
+                pm25.append(contents[4])
 
-    print(datalist[0])
-    columns = ['Time', 'Weather', 'temperature', 'PM2.5']
+    weather_dict = {'date': date,
+                    'time': time,
+                    'weather': weather,
+                    'temperature': temperature,
+                    'pm2.5': pm25}
 
-    print('len(datalist): ', len(datalist))
-    df = pd.DataFrame(datalist, columns=columns)
-    df.set_index(keys=columns[0], inplace=True)
+    df = pd.DataFrame(weather_dict)
+    df = df[['date', 'time', 'weather', 'temperature', 'pm2.5']]
+
+    df.set_index(keys=['date', 'time'], inplace=True)
     df.to_csv('E:\\data\\DiDiData\\data_csv\\weather_data\\' + fileName + '.csv')
 
