@@ -2,19 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fdeaa80c-ec29-4c2d-ae7e-eee8d3d4ca9f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dataPreprocess/data_processing/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dataPreprocess/data_processing/district_hash_count.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dataPreprocess/data_processing/timaband2date&amp;hour_id2hash_.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/extract_feature/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/extract_feature/weather_analysis.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testCode/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testCode/bostonPrediction.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/visualization/pair_flow/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/visualization/total_flow/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/visualization/total_flow/distribution_time.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/extract_feature/weather_feature.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/file2csv/weather.py" afterPath="$PROJECT_DIR$/file2csv/weather.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/extract_feature/weather_analysis.py" afterPath="$PROJECT_DIR$/extract_feature/weather_analysis.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../python_demo/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../python_demo/.idea/workspace.xml" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
@@ -29,8 +19,9 @@
     <SUITE FILE_PATH="coverage/DiDiTaxi$UAIContest.coverage" NAME="UAIContest Coverage Results" MODIFIED="1543310618014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../UAIContest-master/UAIContest" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$order_count.coverage" NAME="order_count Coverage Results" MODIFIED="1543054270815" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$datetime2time_timeSlice.coverage" NAME="datetime2time_timeSlice Coverage Results" MODIFIED="1543065225186" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess" />
-    <SUITE FILE_PATH="coverage/DiDiTaxi$weather_analysis.coverage" NAME="weather_analysis Coverage Results" MODIFIED="1543500356054" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/extract_feature" />
+    <SUITE FILE_PATH="coverage/DiDiTaxi$weather_analysis.coverage" NAME="weather_analysis Coverage Results" MODIFIED="1543543647119" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/extract_feature" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1543294984508" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../UAIContest-master/UAIContest" />
+    <SUITE FILE_PATH="coverage/DiDiTaxi$weather_feature.coverage" NAME="weather_feature Coverage Results" MODIFIED="1543584346531" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/extract_feature" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$meanPrice.coverage" NAME="meanPrice Coverage Results" MODIFIED="1542720146963" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$global_rgr_count_delta.coverage" NAME="global_rgr_count_delta Coverage Results" MODIFIED="1543373216498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../UAIContest-master/UAIContest" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$district_hash_count.coverage" NAME="district_hash_count Coverage Results" MODIFIED="1543468305725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess/data_processing" />
@@ -55,7 +46,7 @@
       <file leaf-file-name="order_count.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dataPreprocess/order_count.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
+            <state relative-caret-position="260">
               <caret line="45" column="21" selection-start-line="45" selection-start-column="21" selection-end-line="45" selection-end-column="21" />
               <folding>
                 <element signature="e#73#92#0" expanded="true" />
@@ -64,13 +55,35 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="order_count_totalCity.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dataPreprocess/order_count_totalCity.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="335">
+              <caret line="59" column="18" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="weather_analysis.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/extract_feature/weather_analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
+            <state relative-caret-position="325">
+              <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
               <folding>
-                <element signature="e#26#45#0" expanded="true" />
+                <element signature="e#50#69#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="weather_feature.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/extract_feature/weather_feature.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="83">
+              <caret line="14" column="55" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
+              <folding>
+                <element signature="e#45#64#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -79,7 +92,7 @@
       <file leaf-file-name="DatasetGenerator.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../UAIContest-master/UAIContest/DatasetGenerator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2678">
+            <state relative-caret-position="-4500">
               <caret line="87" column="22" selection-start-line="87" selection-start-column="22" selection-end-line="87" selection-end-column="22" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
@@ -136,6 +149,7 @@
         <option value="$PROJECT_DIR$/dataPreprocess/data_processing/timaband2date&amp;hour_id2hash_.py" />
         <option value="$PROJECT_DIR$/file2csv/weather.py" />
         <option value="$PROJECT_DIR$/extract_feature/test.py" />
+        <option value="$PROJECT_DIR$/extract_feature/weather_feature.py" />
         <option value="$PROJECT_DIR$/extract_feature/weather_analysis.py" />
       </list>
     </option>
@@ -193,6 +207,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="UAIContest-master" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DiDiTaxi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UAIContest-master" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UAIContest" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -284,25 +312,7 @@
       <recent name="D:\PythonProject\UAIContest-master\UAIContest" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.weather_analysis">
-    <configuration default="false" name="id2hash_timaband2date&amp;hour" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dataPreprocess/data_processing" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="DiDiTaxi" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="D:\PythonProject\DiDiTaxi\dataPreprocess\data_processing\timaband2date&amp;hour_id2hash_.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python.weather_feature">
     <configuration default="false" name="timaband2date&amp;hour_id2hash_" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -371,6 +381,24 @@
       <module name="DiDiTaxi" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/extract_feature/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="weather_feature" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/extract_feature" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="DiDiTaxi" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/extract_feature/weather_feature.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -584,19 +612,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.id2hash_timaband2date&amp;hour" />
-      <item index="1" class="java.lang.String" itemvalue="Python.timaband2date&amp;hour_id2hash_" />
-      <item index="2" class="java.lang.String" itemvalue="Python.weather_analysis" />
-      <item index="3" class="java.lang.String" itemvalue="Python.weather" />
-      <item index="4" class="java.lang.String" itemvalue="Python.test" />
+      <item index="0" class="java.lang.String" itemvalue="Python.timaband2date&amp;hour_id2hash_" />
+      <item index="1" class="java.lang.String" itemvalue="Python.weather_analysis" />
+      <item index="2" class="java.lang.String" itemvalue="Python.weather" />
+      <item index="3" class="java.lang.String" itemvalue="Python.test" />
+      <item index="4" class="java.lang.String" itemvalue="Python.weather_feature" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.weather_analysis" />
-        <item index="1" class="java.lang.String" itemvalue="Python.test" />
-        <item index="2" class="java.lang.String" itemvalue="Python.weather" />
-        <item index="3" class="java.lang.String" itemvalue="Python.timaband2date&amp;hour_id2hash_" />
-        <item index="4" class="java.lang.String" itemvalue="Python.id2hash_timaband2date&amp;hour" />
+        <item index="0" class="java.lang.String" itemvalue="Python.weather_feature" />
+        <item index="1" class="java.lang.String" itemvalue="Python.weather_analysis" />
+        <item index="2" class="java.lang.String" itemvalue="Python.test" />
+        <item index="3" class="java.lang.String" itemvalue="Python.weather" />
+        <item index="4" class="java.lang.String" itemvalue="Python.timaband2date&amp;hour_id2hash_" />
       </list>
     </recent_temporary>
   </component>
@@ -653,7 +681,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543299918189</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="remove unuse method, which function is achieved in datetime2time_timeSlice.py">
+      <created>1543500406478</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1543500406478</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -706,27 +741,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dataPreprocess/meanPrice.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1675">
-          <caret line="67" column="27" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataPreprocess/time_lag_A_B.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataPreprocess/time_lag_A_B.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../新建文件夹/file2csv/order_data.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -991,14 +1005,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dataPreprocess/order_count_totalCity.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/visualization/total_flow/distribution_time.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
@@ -1053,20 +1059,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dataPreprocess/order_count.py">
+    <entry file="file://D:/python/Lib/site-packages/pandas/core/frame.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="45" column="21" selection-start-line="45" selection-start-column="21" selection-end-line="45" selection-end-column="21" />
-          <folding>
-            <element signature="e#73#92#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="133">
+          <caret line="6129" column="0" selection-start-line="6129" selection-start-column="0" selection-end-line="6129" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dataPreprocess/data_processing/timaband2date&amp;hour_id2hash_.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state relative-caret-position="258">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
           <folding>
             <element signature="e#352#361#0" expanded="true" />
           </folding>
@@ -1075,7 +1079,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../UAIContest-master/UAIContest/DatasetGenerator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2678">
+        <state relative-caret-position="-4500">
           <caret line="87" column="22" selection-start-line="87" selection-start-column="22" selection-end-line="87" selection-end-column="22" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
@@ -1083,12 +1087,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dataPreprocess/order_count_totalCity.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="59" column="18" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/python/Lib/site-packages/pandas/core/accessor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataPreprocess/order_count.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="45" column="21" selection-start-line="45" selection-start-column="21" selection-end-line="45" selection-end-column="21" />
+          <folding>
+            <element signature="e#73#92#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extract_feature/weather_feature.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="83">
+          <caret line="14" column="55" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
+          <folding>
+            <element signature="e#45#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/extract_feature/weather_analysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
+        <state relative-caret-position="325">
+          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
           <folding>
-            <element signature="e#26#45#0" expanded="true" />
+            <element signature="e#50#69#0" expanded="true" />
           </folding>
         </state>
       </provider>
