@@ -14,8 +14,7 @@ def weather_analysis(file_list, time_interval_para=30):
 
 if __name__ == '__main__':
 
-    start_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    print('start time:', start_time)
+    print('start time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
     # dirPath = '/home/zx/data/DiDiData/data_csv/order_lite/'
     dirPath = 'E:\\data\\DiDiData\\data_csv\\weather_data\\'
@@ -25,6 +24,5 @@ if __name__ == '__main__':
     # 以30min为时间间隔，将30min内的天气 weather, temperature, pm2.5 提取总结出来，并写入 weather.csv文件
     weather_analysis(fileList, 30)
 
-    end_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    print('end time:', end_time)
+    print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 

@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 from sklearn import ensemble
 from xgboost.sklearn import XGBRegressor
 from sklearn.metrics import mean_squared_error
+from sklearn.metrics import r2_score
+from sklearn.model_selection import GridSearchCV
 from datetime import datetime
 import pickle
 
@@ -36,35 +38,51 @@ def gen_total_set():
     df_time = pd.read_csv('E:\\data\\DiDiData\\data_csv\\features\\time_feature.csv')
     df_time = df_time[['week_day', 'day', 'is_weekend', 'is_vocation', 'lagging_3', 'lagging_2', 'lagging_1', 'count']]
     df = pd.concat([df_weather, df_time], axis=1)
-    x, y = df.iloc[:, 2:-1], df.loc[:, 'count']
+    x, y = df.iloc[:, 1:-1], df.loc[:, 'count']
     return x, y
 
 
-if __name__ == '__main__':
-
-    print('start time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-    X, Y = gen_total_set()
-    x_train, y_train = X.iloc[0:int(len(X)/24*17), :], Y[0:int(len(Y)/24*17)]
-    x_test, y_test = X.iloc[int(len(X)/24*17):len(X), :], Y[int(len(Y)/24*17):len(Y)]
-
+def gen_model():
     # Fit regression model
-    params = {'n_estimators': 500, 'max_depth': 10, 'min_samples_split': 2,
-              'learning_rate': 0.01, 'verbose': 1, 'loss': 'ls', 'random_state': 0}
+    n_estimators = [i for i in range(100, 1000, 100)]
+    max_depth = [i for i in range(3, 8, 1)]
+    min_samples_split = [i for i in range(2, 10, 1)]
+    learning_rate = [i for i in np.arange(0.25, 0.28, 0.01)]
+    fit_model()
+    # for i in range(len(n_estimators)):
+    #     for j in range(len(learning_rate)):
+    #         mse = fit_model(n_estimators[i], learning_rate[j])
+    #         print(n_estimators[i], '   %.2f'%(learning_rate[j]), '  mse:', mse)
+    # print(mse.values)
+
+
+def fit_model(n_estimators=500, learning_rate=0.26):
+    params = {'n_estimators': 500, 'max_depth': 5, 'min_samples_split': 7,
+              'learning_rate': 0.26, 'verbose': 0, 'loss': 'ls', 'random_state': 0}
+    # params = {'n_estimators': 500, 'max_depth': 10, 'min_samples_split': 2,
+    #           'learning_rate': 0.01, 'verbose': 1, 'loss': 'ls', 'random_state': 0}
     # params = {'n_estimators': 500, 'max_depth': 4, 'min_samples_split': 2,
     #           'learning_rate': 0.01, 'loss': 'ls'}
+    # n_estimators: 500, 'max_depth': 5, 'min_samples_split': 6,
+    # learning_rate: 0.26,
     gbrt = ensemble.GradientBoostingRegressor(**params)
     # gbrt = XGBRegressor(**params)
 
     # gbrt = ensemble.GradientBoostingRegressor(loss='ls',n_estimators = 300,max_depth = 300, learning_rate = 0.1, verbose = 2, min_samples_leaf = 256, min_samples_split = 256)
     fileName = 'E:\\data\\DiDiData\\data_csv\\result\\gbrt_result'
 
-    # gbrt.fit(X, Y)
+    global x_train, y_train
+    # gbrt.fit(x, y)
+    # gbrt.fit(x_test, y_test)
     gbrt.fit(x_train, y_train)
     save_model(fileName, gbrt)
     model_result = gbrt.predict(x_test)
     save_result(fileName, list(model_result))
     mse = mean_squared_error(y_test, gbrt.predict(x_test))
-    print("MSE: %.4f" % mse)
+    print("MSE: %.4f" % mse)  # 输出均方误差
+    r2 = r2_score(y_test, model_result)
+    print("r^2 on test data : %f" % r2)  # R^2 拟合优度=(预测值-均值)^2之和/(真实值-均值)^2之和,越接近1越好
+    # return mse
 
     # Plot training deviance
 
@@ -100,6 +118,22 @@ if __name__ == '__main__':
     plt.title('Variable Importance')
     plt.show()
 
+
+if __name__ == '__main__':
+
+    print('start time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+    x, y = gen_total_set()
+    x_train, y_train = x.iloc[0:int(len(x)/24*17), :], y[0:int(len(y)/24*17)]
+    x_test, y_test = x.iloc[int(len(x)/24*17):len(x), :], y[int(len(y)/24*17):len(y)]
+    # del x_train['pm2.5_change']
+    # del x_test['pm2.5_change']
+    del x_train['pm2.5_mean_day']
+    del x_test['pm2.5_mean_day']
+    gen_model()
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+
+
+
+
 
 

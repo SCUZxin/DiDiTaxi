@@ -53,7 +53,7 @@ def add_info_pair(file, time_interval_para='30', is_match=False):
     df = df[['start_district_id', 'dest_district_id', 'date', 'half_hour', 'count']]
 
     df.set_index(keys=['start_district_id', 'dest_district_id'], inplace=True)
-    dest_path = 'E:\\data\\DiDiData\\data_csv\\order_count_'+time_interval_para+'min\\order_count_1\\'+file_date+'.csv'
+    dest_path = 'E:\\data\\DiDiData\\data_csv\\order_count_'+time_interval_para+'min\\order_count_replaceTimeBand\\'+file_date+'.csv'
     df.to_csv(dest_path)
 
 
