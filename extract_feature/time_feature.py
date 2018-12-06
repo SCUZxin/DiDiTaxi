@@ -14,11 +14,8 @@ from datetime import timedelta
 
 
 # 添加时间的特征
-def add_time_features():
-    file_path = 'E:\\data\\DiDiData\\data_csv\\order_count_totalCity\\totalFlow_30min_replaceTimeBand.csv'
-    df = pd.read_csv(file_path)
+def add_time_features(df):
 
-    print(df.dtypes)
     df['week_day'] = pd.to_datetime(df['date']).map(lambda x: x.isoweekday())
     # df['day'] = pd['date'].map(lambda x: (x - datetime(2016, 2, 22)).days)
     df['day'] = pd.to_datetime(df['date']).map(lambda x: (x - datetime(2016, 2, 22)).days)
@@ -50,13 +47,18 @@ def add_time_features():
              'lagging_3', 'lagging_2', 'lagging_1', 'count']]
     df.set_index(keys=['date', 'time'], inplace=True)
 
-    dest_path = 'E:\\data\\DiDiData\\data_csv\\features\\time_feature.csv'
-    df.to_csv(dest_path)
+    return df
 
 
 if __name__ == '__main__':
     print('start time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-    add_time_features()
+
+    file_path = 'E:\\data\\DiDiData\\data_csv\\order_count_totalCity\\totalFlow_30min_replaceTimeBand.csv'
+    df = pd.read_csv(file_path)
+    df = add_time_features(df)
+    dest_path = 'E:\\data\\DiDiData\\data_csv\\features\\time_feature.csv'
+    df.to_csv(dest_path)
+
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 
