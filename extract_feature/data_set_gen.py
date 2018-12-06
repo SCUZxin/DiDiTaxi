@@ -124,7 +124,6 @@ def add_feature(df, s, d, i):
         df.loc[i, 'lagging_2'] = 0
         df.loc[i, 'lagging_1'] = 0
 
-
     half_hour = df.loc[i, 'time']
     days = (datetime.strptime(df.loc[i, 'date'], '%Y-%m-%d') - datetime(2017, 6, 30)).days
     r = sd_pair_dict.reshape((-1, 48))  # reshape成48列，行数不限
