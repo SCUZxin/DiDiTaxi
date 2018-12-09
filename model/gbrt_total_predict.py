@@ -57,6 +57,8 @@ def gen_model():
 
 
 def fit_model(n_estimators=500, learning_rate=0.26):
+    # MSE: 652009.6635                  default: MSE: 639654.8721
+    # r ^ 2 on test data: 0.969268      default: r^2 on test data : 0.969850
     params = {'n_estimators': 500, 'max_depth': 5, 'min_samples_split': 7,
               'learning_rate': 0.26, 'verbose': 0, 'loss': 'ls', 'random_state': 0}
     # params = {'n_estimators': 500, 'max_depth': 10, 'min_samples_split': 2,
@@ -66,10 +68,11 @@ def fit_model(n_estimators=500, learning_rate=0.26):
     # n_estimators: 500, 'max_depth': 5, 'min_samples_split': 6,
     # learning_rate: 0.26,
     gbrt = ensemble.GradientBoostingRegressor(**params)
+    # gbrt = ensemble.GradientBoostingRegressor(verbose=0)
     # gbrt = XGBRegressor(**params)
 
     # gbrt = ensemble.GradientBoostingRegressor(loss='ls',n_estimators = 300,max_depth = 300, learning_rate = 0.1, verbose = 2, min_samples_leaf = 256, min_samples_split = 256)
-    fileName = 'E:\\data\\DiDiData\\data_csv\\result\\gbrt_result'
+    fileName = 'E:\\data\\DiDiData\\data_csv\\result\\gbrt_toal_result'
 
     global x_train, y_train
     # gbrt.fit(x, y)

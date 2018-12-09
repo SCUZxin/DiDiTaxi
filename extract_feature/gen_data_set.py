@@ -80,7 +80,7 @@ def order_count_contact(target='all'):
 
 
 # 将时间、天气、交通、POI等特征信息集成在一起
-def gen_basic_feature(df):
+def gen_basic_feature(df, for_train=True):
     # df = df.loc[112728:112735]
 
     # df_time = pd.read_csv('E:\\data\\DiDiData\\data_csv\\features\\time_feature.csv')
@@ -140,17 +140,12 @@ def gen_basic_feature(df):
     columns_dest_poi = ['dest_poi_'+str(i)+'_count' for i in range(1, 26)]
     df_dest_poi = pd.DataFrame(np.array(poi_dest_feature), columns=columns_dest_poi)
 
-    # df_time = pd.DataFrame(np.array(time_feature),index=range(112728, 112728+len(df)),
-    #                        columns=['mean_his_day', 'mean_his_week', 'lagging_3', 'lagging_2', 'lagging_1'])
-    # df_weather = pd.DataFrame(np.array(weather_feature), columns=columns_weather, index=range(112728, 112728+len(df)))
-    # df_traffic = pd.DataFrame(np.array(traffic_feature), columns=columns_traffic, index=range(112728, 112728+len(df)))
-    # df_start_poi = pd.DataFrame(np.array(poi_start_feature), columns=columns_start_poi, index=range(112728, 112728+len(df)))
-    # df_dest_poi = pd.DataFrame(np.array(poi_dest_feature), columns=columns_dest_poi, index=range(112728, 112728+len(df)))
-
     # print(df.columns)
     Tset = pd.concat([df.iloc[:, 0:4], df_weather,df_traffic, df_start_poi, df_dest_poi,
                       df.iloc[:, 5:9], df_time, df['count']], axis=1)
-    Tset = Tset.sort_values(by=['start_district_id', 'dest_district_id', 'date', 'time'], axis=0, ascending=True)
+    # 训练集按照起止对id排序，测试集按照时间排序
+    if for_train:
+        Tset = Tset.sort_values(by=['start_district_id', 'dest_district_id', 'date', 'time'], axis=0, ascending=True)
     return Tset
 
 
@@ -168,7 +163,7 @@ def add_time_feature(df, s, d, date, time, i):
         # 分别对工作日和周末取平均
         if df.loc[i, 'is_weekend'] == 1:
             meanOnHurByDay = r[[5, 6, 12, 13], time].mean()
-            print('meanOnHurByDay  ', meanOnHurByDay)
+            # print('meanOnHurByDay  ', meanOnHurByDay)
         else:
             meanOnHurByDay = r[[1, 2, 3, 4, 7, 8, 9, 10, 11, 14, 15, 16, 17], time].mean()
 
@@ -193,12 +188,17 @@ if __name__ == '__main__':
     df_data_set = order_count_contact('all')
 
     sd_pair_dict = GetEveryPairData(df_data_set)
+    try:
+        df_train = pd.read_csv('E:\\data\\DiDiData\\data_csv\\dataset\\Train.csv')
+    except FileNotFoundError:
+        df_train = gen_basic_feature(df_train_set, True)
+        df_train.to_csv('E:\\data\\DiDiData\\data_csv\\dataset\\Train.csv', index=False)
 
-    df_train = gen_basic_feature(df_train_set)
-    df_test = gen_basic_feature(df_test_set)
-
-    df_train.to_csv('E:\\data\\DiDiData\\data_csv\\dataset\\Train.csv', index=False)
-    df_test.to_csv('E:\\data\\DiDiData\\data_csv\\dataset\\Test.csv', index=False)
+    try:
+        df_test = pd.read_csv('E:\\data\\DiDiData\\data_csv\\dataset\\Test.csv')
+    except FileNotFoundError:
+        df_test = gen_basic_feature(df_test_set, False)
+        df_test.to_csv('E:\\data\\DiDiData\\data_csv\\dataset\\Test.csv', index=False)
 
     # df_train_set.to_csv('E:\\data\\DiDiData\\data_csv\\dataset\\trainset.csv')
     # df_data_set.to_csv('E:\\data\\DiDiData\\data_csv\\dataset\\allset.csv')
