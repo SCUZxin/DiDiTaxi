@@ -9,7 +9,7 @@ import pandas as pd
 
 from Tools import funcTools as ft
 
-dirPath = '/home/zx/data/DiDiData/data_csv/order_data/'
+dirPath = 'E:\\data\\DiDiData\\data_csv\\order_data\\'
 fileList = ft.listdir_nohidden(dirPath)
 fileList.sort()
 dict_driver = {}
@@ -72,6 +72,6 @@ for i in range(1):
 
     print(len(df_out))
     print(df_out.head())
-    desPath = '/home/zx/data/DiDiData/data_csv/driver_order_count/'+fileDate
+    desPath = 'E:\\data\\DiDiData\\data_csv\\data_csv\\driver_order_count\\'+fileDate
     # df_out.to_csv(desPath)
 

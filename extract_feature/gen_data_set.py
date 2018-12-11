@@ -89,10 +89,31 @@ def gen_basic_feature(df, for_train=True):
     poi_count_dict = poi_count_file.poi_count()
 
     # 添加时间特征
+    # df['day'] = pd.to_datetime(df.loc[0:1000, 'date']).map(lambda x: (x - datetime(2016, 2, 22)).days)
+    # df['week_day'] = pd.to_datetime(df.loc[0:1000,'date']).map(lambda x: x.isoweekday())
+    # df['Monday'] = df.loc[0:1000,'week_day'].map(lambda x: 1 if x == 1 else 0)
+    # df['Tuesday'] = df.loc[0:1000,'week_day'].map(lambda x: 1 if x == 2 else 0)
+    # df['Wednesday'] = df.loc[0:1000,'week_day'].map(lambda x: 1 if x == 3 else 0)
+    # df['Thursday'] = df.loc[0:1000,'week_day'].map(lambda x: 1 if x == 4 else 0)
+    # df['Friday'] = df.loc[0:1000,'week_day'].map(lambda x: 1 if x == 5 else 0)
+    # df['Saturday'] = df.loc[0:1000,'week_day'].map(lambda x: 1 if x == 6 else 0)
+    # df['Sunday'] = df.loc[0:1000,'week_day'].map(lambda x: 1 if x == 7 else 0)
+    # df['is_weekend'] = df.loc[0:1000,'week_day'].map(lambda x: 1 if x == 6 or x == 7 else 0)
+    # df['is_vocation'] = df.loc[0:1000,'date'].map(lambda x: 1 if x in pd.date_range('2016/03/08', '2016/03/08') else 0)
+
     df['day'] = pd.to_datetime(df['date']).map(lambda x: (x - datetime(2016, 2, 22)).days)
     df['week_day'] = pd.to_datetime(df['date']).map(lambda x: x.isoweekday())
+    df['Monday'] = df.week_day.map(lambda x: 1 if x == 1 else 0)
+    df['Tuesday'] = df.week_day.map(lambda x: 1 if x == 2 else 0)
+    df['Wednesday'] = df.week_day.map(lambda x: 1 if x == 3 else 0)
+    df['Thursday'] = df.week_day.map(lambda x: 1 if x == 4 else 0)
+    df['Friday'] = df.week_day.map(lambda x: 1 if x == 5 else 0)
+    df['Saturday'] = df.week_day.map(lambda x: 1 if x == 6 else 0)
+    df['Sunday'] = df.week_day.map(lambda x: 1 if x == 7 else 0)
     df['is_weekend'] = df['week_day'].map(lambda x: 1 if x == 6 or x == 7 else 0)
     df['is_vocation'] = df['date'].map(lambda x: 1 if x in pd.date_range('2016/03/08', '2016/03/08') else 0)
+
+    del df['week_day']
 
     print('------------------------------')
 
@@ -102,6 +123,7 @@ def gen_basic_feature(df, for_train=True):
     poi_start_feature = []
     poi_dest_feature = []
     for i in range(len(df)):
+    # for i in range(1000):
         # i += 112728
         if i % 10000 == 0:
             print('iterator %d' % i)
@@ -141,8 +163,11 @@ def gen_basic_feature(df, for_train=True):
     df_dest_poi = pd.DataFrame(np.array(poi_dest_feature), columns=columns_dest_poi)
 
     # print(df.columns)
-    Tset = pd.concat([df.iloc[:, 0:4], df_weather,df_traffic, df_start_poi, df_dest_poi,
-                      df.iloc[:, 5:9], df_time, df['count']], axis=1)
+    Tset = pd.concat([df.iloc[:, 0:4], df_weather, df_traffic, df_start_poi, df_dest_poi,
+                      df.iloc[:, 5:15], df_time, df['count']], axis=1)
+    # Tset = pd.concat([df.iloc[:, 0:4], df_weather, df_traffic, df_start_poi, df_dest_poi,
+    #                   df.iloc[:, 5:9], df_time, df['count']], axis=1)
+
     # 训练集按照起止对id排序，测试集按照时间排序
     if for_train:
         Tset = Tset.sort_values(by=['start_district_id', 'dest_district_id', 'date', 'time'], axis=0, ascending=True)
@@ -172,7 +197,7 @@ def add_time_feature(df, s, d, date, time, i):
             # meanOnHurByWeek_1 = r[7:18:7, half_hour].sum() / 2
             meanOnHurByWeek = r[7:18:7, time].mean()
         else:
-            # meanOnHurByWeek = r[days % 7:18:7, half_hour].sum() / (5 + (days % 7 >= 1 and days % 7 <= 3))
+            # meanOnHurByWeek = r[days % 7:18:7, half_hour].sum() / (2 + (days % 7 >= 1 and days % 7 <= 3))
             meanOnHurByWeek = r[days % 7:18:7, time].mean()
         return [meanOnHurByDay, meanOnHurByWeek] + lagging_list
     else:
