@@ -43,34 +43,7 @@ if __name__ == '__main__':
     print(y_test_minmax[0:10])
     print(list(y_scaler.inverse_transform(y_test_minmax)[0:10]))
 
-
-    # print(y_test)
-    # print(y_test_minmax)
-    # print(y_scaler.inverse_transform(y_test_minmax))
-    # X_train_minmax = min_max_scaler.fit_transform(X_train)
-
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
-
-    # X_train = pd.DataFrame({'A': range(11),
-    #                         'B': [2,4,6,8,10,12,14,16,18,18,22]})
-    # X_test = pd.DataFrame({
-    #                         'B': [2,4,6,8,10,12,14,16,18,18,42]})
-    #
-    # # print(X_train)
-    # min_max_scaler = preprocessing.MinMaxScaler()
-    # X_train_minmax = min_max_scaler.fit_transform(X_train)
-    # # X_train_minmax = min_max_scaler.fit_transform(X_train)
-    # print(X_train_minmax)
-    #
-    # X_test_minmax = min_max_scaler.transform(X_test)
-    # print(X_test_minmax)
-    #
-    # Y = X_test_minmax
-    #
-    # Y = min_max_scaler.transform(Y.reshape(-1, 1))
-    # print(Y)
-    #
-    # print(min_max_scaler.inverse_transform(Y))
 
 

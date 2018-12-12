@@ -7,7 +7,9 @@ import matplotlib.pyplot as plt
 from sklearn import ensemble
 from xgboost.sklearn import XGBRegressor
 from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import r2_score
+import sklearn.preprocessing as preprocessing
 from sklearn.model_selection import GridSearchCV
 from datetime import datetime
 import pickle
@@ -36,7 +38,9 @@ def mae_average(y_pred, y_name):
 def gen_total_set():
     df_weather = pd.read_csv('E:\\data\\DiDiData\\data_csv\\features\\weather_feature.csv')
     df_time = pd.read_csv('E:\\data\\DiDiData\\data_csv\\features\\time_feature.csv')
-    df_time = df_time[['week_day', 'day', 'is_weekend', 'is_vocation', 'lagging_3', 'lagging_2', 'lagging_1', 'count']]
+    # df_time = df_time[['week_day', 'day', 'is_weekend', 'is_vocation', 'lagging_3', 'lagging_2', 'lagging_1', 'count']]
+    del df_time['date']
+    del df_time['time']
     df = pd.concat([df_weather, df_time], axis=1)
     x, y = df.iloc[:, 1:-1], df.loc[:, 'count']
     return x, y
@@ -75,17 +79,41 @@ def fit_model(n_estimators=500, learning_rate=0.26):
     fileName = 'E:\\data\\DiDiData\\data_csv\\result\\gbrt_toal_result'
 
     global x_train, y_train
-    # gbrt.fit(x, y)
-    # gbrt.fit(x_test, y_test)
-    gbrt.fit(x_train, y_train)
-    save_model(fileName, gbrt)
-    model_result = gbrt.predict(x_test)
-    save_result(fileName, list(model_result))
-    mse = mean_squared_error(y_test, gbrt.predict(x_test))
+
+    # 进行归一化之后的预测
+
+    x_scaler = preprocessing.MinMaxScaler()
+    y_scaler = preprocessing.MinMaxScaler()
+    x_train_minmax = x_scaler.fit_transform(x_train)
+    x_test_minmax = x_scaler.transform(x_test)
+    y_train_minmax = y_scaler.fit_transform(y_train.values.reshape(-1, 1))
+    gbrt.fit(x_train_minmax, y_train_minmax)
+    y_predict_minmax = gbrt.predict(x_test_minmax)
+    y_predict = y_scaler.inverse_transform(y_predict_minmax.reshape(-1, 1))
+
+    save_result(fileName, y_predict)
+    mse = mean_squared_error(y_test, y_predict)
     print("MSE: %.4f" % mse)  # 输出均方误差
-    r2 = r2_score(y_test, model_result)
+    mae = mean_absolute_error(y_test, y_predict)
+    print("MAE: %.4f" % mae)  # 输出平均绝对误差
+    r2 = r2_score(y_test, y_predict)
     print("r^2 on test data : %f" % r2)  # R^2 拟合优度=(预测值-均值)^2之和/(真实值-均值)^2之和,越接近1越好
-    # return mse
+
+
+    # 没有进行归一化之前的代码，也没有对weather, week_day进行one-hot
+
+    # # gbrt.fit(x, y)
+    # # gbrt.fit(x_test, y_test)
+    # gbrt.fit(x_train, y_train)
+    # save_model(fileName, gbrt)
+    # model_result = gbrt.predict(x_test)
+    # save_result(fileName, list(model_result))
+    # mse = mean_squared_error(y_test, gbrt.predict(x_test))
+    # print("MSE: %.4f" % mse)  # 输出均方误差
+    # mae = mean_absolute_error(y_test, model_result)
+    # print("MAE: %.4f" % mae)  # 输出平均绝对误差
+    # r2 = r2_score(y_test, model_result)
+    # print("r^2 on test data : %f" % r2)  # R^2 拟合优度=(预测值-均值)^2之和/(真实值-均值)^2之和,越接近1越好
 
     # Plot training deviance
 
@@ -131,13 +159,21 @@ if __name__ == '__main__':
 
     # del x_train['pm2.5_change']
     # del x_test['pm2.5_change']
-    del x_train['pm2.5_mean_day']
-    del x_test['pm2.5_mean_day']
+    # del x_train['pm2.5_mean_day']
+    # del x_test['pm2.5_mean_day']
     gen_model()
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 
 
+# 归一化前
+#     params = {'n_estimators': 500, 'max_depth': 5, 'min_samples_split': 7,
+#               'learning_rate': 0.26, 'verbose': 0, 'loss': 'ls', 'random_state': 0}
+# MSE: 652009.6635                  default: MSE: 639654.8721
+# r ^ 2 on test data: 0.969268      default: r^2 on test data : 0.969850
 
-
+# [0, 1] 归一化后,默认参数
+# MSE: 1006796.3809
+# MAE: 674.5548
+# r^2 on test data : 0.952545
 

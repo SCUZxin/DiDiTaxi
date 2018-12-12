@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fdeaa80c-ec29-4c2d-ae7e-eee8d3d4ca9f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dataPreprocess/total_normalized.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/extract_feature/cluster_poi_k-means.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/xgboost_pair_predict.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/ha_total_ha_prop.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dataPreprocess/driver_order_count.py" afterPath="$PROJECT_DIR$/dataPreprocess/driver_order_count.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/extract_feature/gen_data_set.py" afterPath="$PROJECT_DIR$/extract_feature/gen_data_set.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/extract_feature/time_feature.py" afterPath="$PROJECT_DIR$/extract_feature/time_feature.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/extract_feature/weather_feature.py" afterPath="$PROJECT_DIR$/extract_feature/weather_feature.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dataPreprocess/total_normalized.py" afterPath="$PROJECT_DIR$/dataPreprocess/total_normalized.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/gbrt_pair_predict.py" afterPath="$PROJECT_DIR$/model/gbrt_pair_predict.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/gbrt_total_predict.py" afterPath="$PROJECT_DIR$/model/gbrt_total_predict.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/ha_total_predict.py" afterPath="$PROJECT_DIR$/model/ha_total_predict.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testCode/test.py" afterPath="$PROJECT_DIR$/testCode/test.py" />
@@ -37,8 +33,8 @@
     <SUITE FILE_PATH="coverage/DiDiTaxi$time_lag_A_B.coverage" NAME="time_lag_A_B Coverage Results" MODIFIED="1540793990066" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$DatasetGenerator.coverage" NAME="DatasetGenerator Coverage Results" MODIFIED="1543309887312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../UAIContest-master/UAIContest" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$weather.coverage" NAME="weather Coverage Results" MODIFIED="1543494658243" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/file2csv" />
-    <SUITE FILE_PATH="coverage/DiDiTaxi$ha_pair_predict.coverage" NAME="ha_pair_predict Coverage Results" MODIFIED="1544353917035" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
-    <SUITE FILE_PATH="coverage/DiDiTaxi$ha_total_predict.coverage" NAME="ha_total_predict Coverage Results" MODIFIED="1544533405769" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
+    <SUITE FILE_PATH="coverage/DiDiTaxi$ha_pair_predict.coverage" NAME="ha_pair_predict Coverage Results" MODIFIED="1544606889041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
+    <SUITE FILE_PATH="coverage/DiDiTaxi$ha_total_predict.coverage" NAME="ha_total_predict Coverage Results" MODIFIED="1544606818112" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$UAIContest.coverage" NAME="UAIContest Coverage Results" MODIFIED="1543310618014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../UAIContest-master/UAIContest" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$order_count.coverage" NAME="order_count Coverage Results" MODIFIED="1543054270815" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$datetime2time_timeSlice.coverage" NAME="datetime2time_timeSlice Coverage Results" MODIFIED="1543065225186" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess" />
@@ -48,16 +44,17 @@
     <SUITE FILE_PATH="coverage/DiDiTaxi$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1543294984508" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../UAIContest-master/UAIContest" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$test_tuning_para.coverage" NAME="test_tuning_para Coverage Results" MODIFIED="1543973370430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/testCode" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$meanPrice.coverage" NAME="meanPrice Coverage Results" MODIFIED="1542720146963" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess" />
+    <SUITE FILE_PATH="coverage/DiDiTaxi$ha_total_ha_prop.coverage" NAME="ha_total_ha_prop Coverage Results" MODIFIED="1544618120341" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$total_normalized.coverage" NAME="total_normalized Coverage Results" MODIFIED="1544534294886" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$global_rgr_count_delta.coverage" NAME="global_rgr_count_delta Coverage Results" MODIFIED="1543373216498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../UAIContest-master/UAIContest" />
-    <SUITE FILE_PATH="coverage/DiDiTaxi$gbrt_total_predict.coverage" NAME="gbrt_total_predict Coverage Results" MODIFIED="1544515079967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
+    <SUITE FILE_PATH="coverage/DiDiTaxi$gbrt_total_predict.coverage" NAME="gbrt_total_predict Coverage Results" MODIFIED="1544578809770" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$line_chart.coverage" NAME="line_chart Coverage Results" MODIFIED="1543843359970" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../python_demo/matplotlib_learn" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$order_count_totalCity.coverage" NAME="order_count_totalCity Coverage Results" MODIFIED="1543054592552" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess" />
-    <SUITE FILE_PATH="coverage/DiDiTaxi$gbrt_pair_predict.coverage" NAME="gbrt_pair_predict Coverage Results" MODIFIED="1544353057219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
+    <SUITE FILE_PATH="coverage/DiDiTaxi$gbrt_pair_predict.coverage" NAME="gbrt_pair_predict Coverage Results" MODIFIED="1544606680753" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$id2hash_timaband2date_hour.coverage" NAME="id2hash_timaband2date&amp;hour Coverage Results" MODIFIED="1543482519887" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess/data_processing" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$traffic_feature.coverage" NAME="traffic_feature Coverage Results" MODIFIED="1544086706689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/extract_feature" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$timaband2date_hour_id2hash_.coverage" NAME="timaband2date&amp;hour_id2hash_ Coverage Results" MODIFIED="1543488437748" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess/data_processing" />
-    <SUITE FILE_PATH="coverage/DiDiTaxi$test.coverage" NAME="test Coverage Results" MODIFIED="1544340106780" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/testCode" />
+    <SUITE FILE_PATH="coverage/DiDiTaxi$test.coverage" NAME="test Coverage Results" MODIFIED="1544614355693" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/testCode" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$gen_data_set.coverage" NAME="gen_data_set Coverage Results" MODIFIED="1544536641259" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/extract_feature" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -69,23 +66,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testCode/test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-              <folding>
-                <element signature="e#1#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="gen_proportion.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/extract_feature/gen_proportion.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="150">
+              <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
               <folding>
                 <element signature="e#84#103#0" expanded="true" />
               </folding>
@@ -96,8 +81,8 @@
       <file leaf-file-name="gbrt_pair_predict.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/gbrt_pair_predict.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="131" column="25" selection-start-line="131" selection-start-column="25" selection-end-line="131" selection-end-column="25" />
+            <state relative-caret-position="172">
+              <caret line="189" column="14" selection-start-line="189" selection-start-column="14" selection-end-line="189" selection-end-column="14" />
               <folding>
                 <element signature="e#58#76#0" expanded="true" />
               </folding>
@@ -105,71 +90,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gbrt_total_predict.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/gbrt_total_predict.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="127" column="26" selection-start-line="127" selection-start-column="26" selection-end-line="127" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="weather_feature.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/extract_feature/weather_feature.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="79" column="66" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="66" />
-              <folding>
-                <element signature="e#45#64#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gen_data_set.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/extract_feature/gen_data_set.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="233" column="0" selection-start-line="233" selection-start-column="0" selection-end-line="233" selection-end-column="0" />
-              <folding>
-                <element signature="e#45#63#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="time_feature.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/extract_feature/time_feature.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="49">
-              <caret line="66" column="22" selection-start-line="66" selection-start-column="22" selection-end-line="66" selection-end-column="22" />
-              <folding>
-                <element signature="e#266#285#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="total_normalized.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="total_normalized.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dataPreprocess/total_normalized.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
+            <state relative-caret-position="174">
+              <caret line="41" column="23" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
               <folding>
                 <element signature="e#30#49#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ha_total_predict.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/ha_total_predict.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="91" column="8" selection-start-line="91" selection-start-column="8" selection-end-line="91" selection-end-column="8" />
-              <folding>
-                <element signature="e#43#61#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -219,20 +146,21 @@
         <option value="$PROJECT_DIR$/../UAIContest-master/UAIContest/DatasetGenerator.py" />
         <option value="$PROJECT_DIR$/extract_feature/data_set_gen.py" />
         <option value="$PROJECT_DIR$/extract_feature/gen_proportion.py" />
-        <option value="$PROJECT_DIR$/model/ha_pair_predict.py" />
         <option value="$PROJECT_DIR$/model/gbrt.py" />
-        <option value="$PROJECT_DIR$/model/gbrt_pair_predict.py" />
-        <option value="$PROJECT_DIR$/testCode/test.py" />
         <option value="$PROJECT_DIR$/model/xgboost_pair_predict.py" />
         <option value="$PROJECT_DIR$/../test35/test/read_H5.py" />
         <option value="$PROJECT_DIR$/extract_feature/cluster_poi_k-means.py" />
         <option value="$PROJECT_DIR$/dataPreprocess/driver_order_count.py" />
-        <option value="$PROJECT_DIR$/model/gbrt_total_predict.py" />
         <option value="$PROJECT_DIR$/extract_feature/weather_feature.py" />
         <option value="$PROJECT_DIR$/extract_feature/time_feature.py" />
-        <option value="$PROJECT_DIR$/model/ha_total_predict.py" />
-        <option value="$PROJECT_DIR$/dataPreprocess/total_normalized.py" />
         <option value="$PROJECT_DIR$/extract_feature/gen_data_set.py" />
+        <option value="$PROJECT_DIR$/model/gbrt_total_predict.py" />
+        <option value="$PROJECT_DIR$/model/ha_total_predict.py" />
+        <option value="$PROJECT_DIR$/model/ha_pair_predict.py" />
+        <option value="$PROJECT_DIR$/model/gbrt_pair_predict.py" />
+        <option value="$PROJECT_DIR$/testCode/test.py" />
+        <option value="$PROJECT_DIR$/model/ha_total_ha_prop.py" />
+        <option value="$PROJECT_DIR$/dataPreprocess/total_normalized.py" />
       </list>
     </option>
   </component>
@@ -477,43 +405,7 @@
       <recent name="D:\PythonProject\DiDiTaxi\testCode" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.gen_data_set">
-    <configuration default="false" name="total_normalized" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dataPreprocess" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="DiDiTaxi" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dataPreprocess/total_normalized.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="weather_feature" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/extract_feature" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="DiDiTaxi" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/extract_feature/weather_feature.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python.ha_total_ha_prop">
     <configuration default="false" name="ha_total_predict" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -532,38 +424,74 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="time_feature" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="gbrt_pair_predict" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/extract_feature" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/model" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="DiDiTaxi" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/extract_feature/time_feature.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model/gbrt_pair_predict.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="gen_data_set" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="ha_pair_predict" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/extract_feature" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/model" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="DiDiTaxi" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/extract_feature/gen_data_set.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model/ha_pair_predict.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="ha_total_ha_prop" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/model" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="DiDiTaxi" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/model/ha_total_ha_prop.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testCode" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="DiDiTaxi" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testCode/test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -777,19 +705,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.total_normalized" />
-      <item index="1" class="java.lang.String" itemvalue="Python.weather_feature" />
-      <item index="2" class="java.lang.String" itemvalue="Python.ha_total_predict" />
-      <item index="3" class="java.lang.String" itemvalue="Python.time_feature" />
-      <item index="4" class="java.lang.String" itemvalue="Python.gen_data_set" />
+      <item index="0" class="java.lang.String" itemvalue="Python.ha_total_predict" />
+      <item index="1" class="java.lang.String" itemvalue="Python.gbrt_pair_predict" />
+      <item index="2" class="java.lang.String" itemvalue="Python.ha_pair_predict" />
+      <item index="3" class="java.lang.String" itemvalue="Python.ha_total_ha_prop" />
+      <item index="4" class="java.lang.String" itemvalue="Python.test" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.gen_data_set" />
-        <item index="1" class="java.lang.String" itemvalue="Python.total_normalized" />
-        <item index="2" class="java.lang.String" itemvalue="Python.ha_total_predict" />
-        <item index="3" class="java.lang.String" itemvalue="Python.time_feature" />
-        <item index="4" class="java.lang.String" itemvalue="Python.weather_feature" />
+        <item index="0" class="java.lang.String" itemvalue="Python.ha_total_ha_prop" />
+        <item index="1" class="java.lang.String" itemvalue="Python.test" />
+        <item index="2" class="java.lang.String" itemvalue="Python.ha_pair_predict" />
+        <item index="3" class="java.lang.String" itemvalue="Python.ha_total_predict" />
+        <item index="4" class="java.lang.String" itemvalue="Python.gbrt_pair_predict" />
       </list>
     </recent_temporary>
   </component>
@@ -944,7 +872,14 @@
       <option name="project" value="LOCAL" />
       <updated>1544354303245</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="commit">
+      <created>1544536657412</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1544536657412</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1008,14 +943,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/extract_feature/test.py" />
-    <entry file="file://D:/python/Lib/site-packages/pandas/core/frame.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="6129" column="0" selection-start-line="6129" selection-start-column="0" selection-end-line="6129" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/python/Lib/site-packages/pandas/core/accessor.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -1189,26 +1116,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testCode/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-          <folding>
-            <element signature="e#1#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/ha_pair_predict.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-715">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#174#193#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/xgboost_pair_predict.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -1279,14 +1186,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../UAIContest-master/UAIContest/UAIContest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="56" column="25" selection-start-line="56" selection-start-column="25" selection-end-line="56" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../UAIContest-master/UAIContest/DatasetGenerator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -1321,16 +1220,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/extract_feature/weather_feature.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="79" column="66" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="66" />
-          <folding>
-            <element signature="e#45#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../test35/test/TaxiBJ.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1339,20 +1228,114 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/extract_feature/weather_feature.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="77" column="31" selection-start-line="77" selection-start-column="31" selection-end-line="77" selection-end-column="31" />
+          <folding>
+            <element signature="e#45#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../UAIContest-master/UAIContest/UAIContest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="56" column="25" selection-start-line="56" selection-start-column="25" selection-end-line="56" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/python/Lib/site-packages/sklearn/metrics/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="96" column="29" selection-start-line="96" selection-start-column="29" selection-end-line="96" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extract_feature/poi_level_first_count.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-401">
+          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extract_feature/time_feature.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1650">
+          <caret line="66" column="22" selection-start-line="66" selection-start-column="22" selection-end-line="66" selection-end-column="22" />
+          <folding>
+            <element signature="e#266#285#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testCode/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+          <folding>
+            <element signature="e#1#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extract_feature/gen_data_set.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="18" column="89" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="89" />
+          <folding>
+            <element signature="e#45#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/model/ha_total_predict.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="91" column="8" selection-start-line="91" selection-start-column="8" selection-end-line="91" selection-end-column="8" />
+        <state relative-caret-position="25">
+          <caret line="40" column="62" selection-start-line="40" selection-start-column="62" selection-end-line="40" selection-end-column="62" />
           <folding>
             <element signature="e#43#61#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/model/gbrt_total_predict.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="179" column="0" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+          <folding>
+            <element signature="e#54#72#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/ha_pair_predict.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="29" column="29" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+          <folding>
+            <element signature="e#174#193#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/ha_total_ha_prop.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+          <folding>
+            <element signature="e#96#151#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/extract_feature/gen_proportion.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        <state relative-caret-position="150">
+          <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
           <folding>
             <element signature="e#84#103#0" expanded="true" />
           </folding>
@@ -1361,8 +1344,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/model/gbrt_pair_predict.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="131" column="25" selection-start-line="131" selection-start-column="25" selection-end-line="131" selection-end-column="25" />
+        <state relative-caret-position="172">
+          <caret line="189" column="14" selection-start-line="189" selection-start-column="14" selection-end-line="189" selection-end-column="14" />
           <folding>
             <element signature="e#58#76#0" expanded="true" />
           </folding>
@@ -1371,48 +1354,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dataPreprocess/total_normalized.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
+        <state relative-caret-position="174">
+          <caret line="41" column="23" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
           <folding>
             <element signature="e#30#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extract_feature/time_feature.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
-          <caret line="66" column="22" selection-start-line="66" selection-start-column="22" selection-end-line="66" selection-end-column="22" />
-          <folding>
-            <element signature="e#266#285#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extract_feature/poi_level_first_count.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-92">
-          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
-          <folding>
-            <element signature="e#195#204#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/gbrt_total_predict.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="127" column="26" selection-start-line="127" selection-start-column="26" selection-end-line="127" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extract_feature/gen_data_set.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="233" column="0" selection-start-line="233" selection-start-column="0" selection-end-line="233" selection-end-column="0" />
-          <folding>
-            <element signature="e#45#63#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -7,7 +7,10 @@ import matplotlib.pyplot as plt
 from sklearn import ensemble
 from xgboost.sklearn import XGBRegressor
 from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import mean_squared_log_error
 from sklearn.metrics import r2_score
+import sklearn.preprocessing as preprocessing
 from sklearn.model_selection import GridSearchCV
 from datetime import datetime
 import pickle
@@ -63,7 +66,7 @@ def gen_model():
 
 
 def fit_model(n_estimators=500, learning_rate=0.26):
-    params = {'n_estimators': 300, 'max_depth': 200, 'min_samples_split': 400,
+    params = {'n_estimators': 100, 'max_depth': 20, 'min_samples_split': 200,
               'learning_rate': 0.1, 'verbose': 2, 'loss': 'ls', 'random_state': 0}
     # params = {'n_estimators': 500, 'max_depth': 10, 'min_samples_split': 2,
     #           'learning_rate': 0.01, 'verbose': 1, 'loss': 'ls', 'random_state': 0}
@@ -71,25 +74,52 @@ def fit_model(n_estimators=500, learning_rate=0.26):
     #           'learning_rate': 0.01, 'loss': 'ls'}
     # n_estimators: 500, 'max_depth': 5, 'min_samples_split': 6,
     # learning_rate: 0.26,
-    gbrt = ensemble.GradientBoostingRegressor(**params)
-    # gbrt = ensemble.GradientBoostingRegressor(verbose=2)
+    # gbrt = ensemble.GradientBoostingRegressor(**params)
+    gbrt = ensemble.GradientBoostingRegressor(verbose=2)
     # gbrt = XGBRegressor(**params)
 
     # gbrt = ensemble.GradientBoostingRegressor(loss='ls',n_estimators = 300,max_depth = 300, learning_rate = 0.1, verbose = 2, min_samples_leaf = 256, min_samples_split = 256)
     fileName = 'E:\\data\\DiDiData\\data_csv\\result\\gbrt_pair_result'
 
     global x_train, y_train
-    # gbrt.fit(x, y)
-    # gbrt.fit(x_test, y_test)
-    gbrt.fit(x_train, y_train)
-    save_model(fileName, gbrt)
-    model_result = gbrt.predict(x_test)
-    save_result(fileName, list(model_result))
-    mse = mean_squared_error(y_test, gbrt.predict(x_test))
+
+    # 进行归一化之后
+
+    x_scaler = preprocessing.MinMaxScaler()
+    y_scaler = preprocessing.MinMaxScaler()
+    x_train_minmax = x_scaler.fit_transform(x_train)
+    x_test_minmax = x_scaler.transform(x_test)
+    y_train_minmax = y_scaler.fit_transform(y_train.values.reshape(-1, 1))
+    gbrt.fit(x_train_minmax, y_train_minmax)
+    y_predict_minmax = gbrt.predict(x_test_minmax)
+    y_predict = y_scaler.inverse_transform(y_predict_minmax.reshape(-1, 1))
+
+    # save_result(fileName, y_predict)
+    mse = mean_squared_error(y_test, y_predict)
     print("MSE: %.4f" % mse)  # 输出均方误差
-    r2 = r2_score(y_test, model_result)
+    mae = mean_absolute_error(y_test, y_predict)
+    print("MAE: %.4f" % mae)  # 输出平均绝对误差
+    msle = mean_squared_log_error(y_test, y_predict)
+    print("MSLE: %.4f" % msle)  # 输出 mean_squared_log_error
+    r2 = r2_score(y_test, y_predict)
     print("r^2 on test data : %f" % r2)  # R^2 拟合优度=(预测值-均值)^2之和/(真实值-均值)^2之和,越接近1越好
-    # return mse
+
+
+    # 归一化之前
+
+    # # gbrt.fit(x, y)
+    # # gbrt.fit(x_test, y_test)
+    # gbrt.fit(x_train, y_train)
+    # save_model(fileName, gbrt)
+    # model_result = gbrt.predict(x_test)
+    # save_result(fileName, list(model_result))
+    # mse = mean_squared_error(y_test, gbrt.predict(x_test))
+    # print("MSE: %.4f" % mse)  # 输出均方误差
+    # mae = mean_absolute_error(y_test, model_result)
+    # print("MAE: %.4f" % mae)  # 输出平均绝对误差
+    # r2 = r2_score(y_test, model_result)
+    # print("r^2 on test data : %f" % r2)  # R^2 拟合优度=(预测值-均值)^2之和/(真实值-均值)^2之和,越接近1越好
+    # # return mse
 
     # Plot training deviance
 
@@ -134,19 +164,47 @@ if __name__ == '__main__':
     x_train, y_train = train.iloc[:, 0:-1], train.loc[:, 'count']
     x_test, y_test = test.iloc[:, 0:-1], test.loc[:, 'count']
 
-    # del x_train['pm2.5_change']
-    # del x_test['pm2.5_change']
-    # del x_train['pm2.5_mean_day']
-    # del x_test['pm2.5_mean_day']
+    for i in range(1, 26):
+        start_name = 'start_poi_'+str(i)+'_count'
+        dest_name = 'dest_poi_'+str(i)+'_count'
+        del x_train[start_name]
+        del x_train[dest_name]
+        del x_test[start_name]
+        del x_test[dest_name]
+
+    # del x_train['start_district_id']
+    # del x_train['dest_district_id']
+    # del x_test['start_district_id']
+    # del x_test['dest_district_id']
 
     gen_model()
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
+
+# 归一化之前
 # default para
 # MSE: 79.3915
 # r^2 on test data : 0.950966
 
+# 归一化之后 default para
+# MSE: 78.1567
+# MAE: 3.2887
+# r^2 on test data : 0.951729
 
+# 归一化之后，删除50个 POI 特征 default para
+# MSE: 77.1199
+# MAE: 3.2752
+# r^2 on test data : 0.952369
 
+# 归一化之后，删除50个 POI 特征，删除起止地 id default para
+# MSE: 76.9486
+# MAE: 3.2752
+# r^2 on test data : 0.952475
 
+# 归一化之后，删除50个 POI 特征
+# params = {'n_estimators': 100, 'max_depth': 20, 'min_samples_split': 200,
+#           'learning_rate': 0.1, 'verbose': 2, 'loss': 'ls', 'random_state': 0}
+# MSE: 82.4942
+# MAE: 3.3465
+# r^2 on test data : 0.949050
 
