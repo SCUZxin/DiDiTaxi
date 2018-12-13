@@ -5,6 +5,8 @@
 
 import pandas as pd
 from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import mean_squared_log_error
 from sklearn.metrics import r2_score
 from datetime import datetime
 
@@ -18,18 +20,33 @@ def get_mean_his():
 
     mse = mean_squared_error(df['mean_his_day'], df['count'])
     print("MSE: %.4f" % mse)  # 输出均方误差
+    mae = mean_absolute_error(df['mean_his_day'], df['count'])
+    print("MAE: %.4f" % mae)  # 输出平均绝对误差
+    msle = mean_squared_log_error(df['mean_his_day'], df['count'])
+    print("MSLE: %.4f" % msle)  # 输出 mean_squared_log_error
     r2 = r2_score(df['mean_his_day'], df['count'])
     print("r^2 on test data : %f" % r2)  # R^2 拟合优度=(预测值-均值)^2之和/(真实值-均值)^2之和,越接近1越好
 
     mse = mean_squared_error(df['mean_his_week'], df['count'])
     print("MSE: %.4f" % mse)  # 输出均方误差
+    mae = mean_absolute_error(df['mean_his_week'], df['count'])
+    print("MAE: %.4f" % mae)  # 输出平均绝对误差
+    msle = mean_squared_log_error(df['mean_his_week'], df['count'])
+    print("MSLE: %.4f" % msle)  # 输出 mean_squared_log_error
     r2 = r2_score(df['mean_his_week'], df['count'])
     print("r^2 on test data : %f" % r2)  # R^2 拟合优度=(预测值-均值)^2之和/(真实值-均值)^2之和,越接近1越好
 
-# MSE: 105.9696
-# r^2 on test data : 0.914414
-# MSE: 99.8124
-# r^2 on test data : 0.921749
+# mean_his_day
+# MSE: 111.8363
+# MAE: 3.7116
+# MSLE: 0.2877
+# r^2 on test data : 0.909675
+
+# mean_his_week
+# MSE: 105.2999
+# MAE: 3.8360
+# MSLE: 0.3573
+# r^2 on test data : 0.917447
 
 
 if __name__ == '__main__':

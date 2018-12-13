@@ -191,6 +191,11 @@ if __name__ == '__main__':
 # MAE: 3.2887
 # r^2 on test data : 0.951729
 
+# 归一化之后，删除 mean_his_day、mean_his_week、lagging_3、lagging_2、lagging_1， default para
+# MSE: 546.2623
+# MAE: 9.7120
+# r^2 on test data : 0.662616
+
 # 归一化之后，删除50个 POI 特征 default para
 # MSE: 77.1199
 # MAE: 3.2752

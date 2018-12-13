@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import mean_squared_error
 # MAE 平均绝对误差
 from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import mean_squared_log_error
 from sklearn.metrics import r2_score
 from datetime import datetime
 import pickle
@@ -40,6 +41,8 @@ def model_ha():
     print("MSE: %.4f" % mse)  # 输出均方误差
     MAE = mean_absolute_error(y_test, df_mean['mean_his_day'])
     print("MAE: %.4f" % MAE)  # 输出平均绝对误差
+    msle = mean_squared_log_error(y_test, df_mean['mean_his_day'])
+    print("MSLE: %.4f" % msle)  # 输出 mean_squared_log_error
     r2 = r2_score(y_test, df_mean['mean_his_day'])
     print("r^2 on test data : %f" % r2)  # R^2 拟合优度=(预测值-均值)^2之和/(真实值-均值)^2之和,越接近1越好
 
@@ -47,6 +50,8 @@ def model_ha():
     print("MSE: %.4f" % mse)  # 输出均方误差
     MAE = mean_absolute_error(y_test, df_mean['mean_his_week'])
     print("MAE: %.4f" % MAE)  # 输出平均绝对误差
+    msle = mean_squared_log_error(y_test, df_mean['mean_his_week'])
+    print("MSLE: %.4f" % msle)  # 输出 mean_squared_log_error
     r2 = r2_score(y_test, df_mean['mean_his_week'])
     print("r^2 on test data : %f" % r2)  # R^2 拟合优度=(预测值-均值)^2之和/(真实值-均值)^2之和,越接近1越好
 
@@ -94,11 +99,13 @@ if __name__ == '__main__':
 # 根据周末还是工作日
 # MSE: 2571937.7133
 # MAE: 1174.7786
+# MSLE: 0.0462
 # r^2 on test data : 0.878773
 
 # 每周的这一天
 # MSE: 2341561.2597
 # MAE: 1097.6146
+# MSLE: 0.0450
 # r^2 on test data : 0.889632
 
 
