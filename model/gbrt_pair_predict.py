@@ -164,13 +164,18 @@ if __name__ == '__main__':
     x_train, y_train = train.iloc[:, 0:-1], train.loc[:, 'count']
     x_test, y_test = test.iloc[:, 0:-1], test.loc[:, 'count']
 
-    for i in range(1, 26):
-        start_name = 'start_poi_'+str(i)+'_count'
-        dest_name = 'dest_poi_'+str(i)+'_count'
-        del x_train[start_name]
-        del x_train[dest_name]
-        del x_test[start_name]
-        del x_test[dest_name]
+    del x_train['lagging_3']
+    del x_train['lagging_2']
+    del x_test['lagging_3']
+    del x_test['lagging_2']
+
+    # for i in range(1, 26):
+    #     start_name = 'start_poi_'+str(i)+'_count'
+    #     dest_name = 'dest_poi_'+str(i)+'_count'
+    #     del x_train[start_name]
+    #     del x_train[dest_name]
+    #     del x_test[start_name]
+    #     del x_test[dest_name]
 
     # del x_train['start_district_id']
     # del x_train['dest_district_id']
@@ -190,6 +195,12 @@ if __name__ == '__main__':
 # MSE: 78.1567
 # MAE: 3.2887
 # r^2 on test data : 0.951729
+
+# 归一化之后，删除 lagging_3、lagging_2， default para
+# MSE: 77.3698
+# MAE: 3.2841
+# MSLE: 0.1542
+# r^2 on test data : 0.952215
 
 # 归一化之后，删除 mean_his_day、mean_his_week、lagging_3、lagging_2、lagging_1， default para
 # MSE: 546.2623
@@ -212,4 +223,5 @@ if __name__ == '__main__':
 # MSE: 82.4942
 # MAE: 3.3465
 # r^2 on test data : 0.949050
+
 
