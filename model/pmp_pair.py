@@ -34,6 +34,10 @@ def get_all_data():
     df = pd.concat([df_weather, df_time], axis=1)
     df['counter'] = range(1, 1153)
     flow_total = list(df['count'].values)
+
+    df_tatol_predict = pd.read_csv('E:\\data\\DiDiData\\data_csv\\result\\gbrt_toal_result.csv')
+    flow_total = list(df_tatol_predict['count'].values)
+
     proportion_list = gen_proportion.get_proportion()
     return df, flow_total, proportion_list, df_test
 
@@ -78,7 +82,7 @@ def predict_single(t=817, len_pre_t=3, period=False, rho_1=0.9, rho_2=0.9, alpha
         sum_prop_period = sum_prop_period + (w_period[i]*prop_period[i])
     prop_t = (sum_prop_closeness+sum_prop_period) / (np.sum(w_closeness)+np.sum(w_period))
     # 流量矩阵 = 总流量 * prop_t，得到59*59的数组
-    flow_pair_t = flow_total[t-1] * prop_t
+    flow_pair_t = flow_total[t-817] * prop_t
     return flow_pair_t
 
 
@@ -253,6 +257,9 @@ if __name__ == '__main__':
     # for alpha_2 in range(1, 5):
     #     predict_batch([i for i in range(817, 1153)], len_pre_t=3, period=True,
     #                   rho_1=0.9, rho_2=0.95, alpha1=4, alpha2=alpha_2)
+
+    predict_batch([i for i in range(817, 1153)], len_pre_t=3, period=True,
+                  rho_1=0.26, rho_2=0.95, alpha1=4, alpha2=10)
 
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 

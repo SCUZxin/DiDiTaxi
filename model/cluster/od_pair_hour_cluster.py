@@ -44,12 +44,13 @@ def get_hour_vector_of_every_OD():
 
 
 
-# 使用knn对是否是周末进行聚类
-def hour_cluster_knn():
+# 使用k-Means对是否是周末进行聚类
+def hour_cluster_kmeans():
     # 看看dict的values中有没有重复的？有重复的，只是值重复，地址不重复
     global od_vector_hour_dict
     keys = od_vector_hour_dict.keys()
     values = list(od_vector_hour_dict.values())     # 随机的顺序
+    print(values)
 
     from sklearn.cluster import KMeans
     from sklearn.metrics import silhouette_score
@@ -113,6 +114,6 @@ if __name__ == '__main__':
 
     print('start time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
     od_vector_hour_dict = get_hour_vector_of_every_OD()
-    hour_cluster_knn()
+    hour_cluster_kmeans()
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 

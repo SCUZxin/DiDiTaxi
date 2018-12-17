@@ -13,12 +13,14 @@ y = [x1, x2]
 print('xxxxxxxxxxx')
 from sklearn.metrics import mean_squared_error
 
-x = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 2, 1, 6, 5, 8, 3, 7, 4, 10, 8, 12, 11, 7, 10, 13, 10, 12, 14, 15, 9, 12, 3, 2, 6, 2, 2, 4, 1, 1, 2, 0, 3, 0, 1]
-sum = 0
-for i in x:
-    sum+=i
-print(sum)
-print(list(map(lambda i:i/sum, x)))
-# numerator = -6.77626357803e-21
+x = [1,2,3]
+y = [4,5,6]
+print(x+y)
+print(list(map(lambda i:i/2, x)))
+
+df_cluster = pd.read_csv('E:\\data\\DiDiData\\data_csv\\cluster_dataset\\time_seg_cluster_result_dict.csv')
+for i in range(len(df_cluster)):
+    print(df_cluster.loc[i, 'OD_key'], df_cluster.loc[i, 'cluster_num'])
+
 
 

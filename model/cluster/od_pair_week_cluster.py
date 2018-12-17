@@ -47,7 +47,7 @@ def get_week_vector_of_every_OD():
 
 
 # 使用knn对是否是周末进行聚类
-def is_weekend_cluster_knn():
+def is_weekend_cluster_kmeans():
     # 看看dict的values中有没有重复的？有重复的，只是值重复，地址不重复
     global od_vector_week_dict
     keys = od_vector_week_dict.keys()
@@ -117,6 +117,6 @@ if __name__ == '__main__':
 
     print('start time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
     od_vector_week_dict = get_week_vector_of_every_OD()
-    is_weekend_cluster_knn()
+    is_weekend_cluster_kmeans()
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
