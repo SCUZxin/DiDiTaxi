@@ -90,7 +90,6 @@ def get_Pti_his_t_dict():
 
             Pti_his_t_dict[str(i+1)] = Pti_his_ti_list
         pickle.dump(Pti_his_t_dict, open('E:\\data\\DiDiData\\data_csv\\result\\params\\Pti_his_t_dict.pkl', 'wb'))
-    print('XXXXXXXXXXXXXXXX')
     # return Pti_his_t_dict
 
 
@@ -106,11 +105,6 @@ def iteration(init_parameters, alpha=0.1, len_pre_t=3):
         start_list.extend(df_tmp['start_district_id'].values)
         dest_list.extend(df_tmp['dest_district_id'].values)
 
-
-    # print(Pti[0:10])
-    # Pti = list(map(lambda i: i * 1e19, Pti))    # 对Pti的每一个值都放大倍数，避免值太小而无法梯度下降
-    # print(Pti[0:10])
-
     with open('E:\\data\\DiDiData\\data_csv\\result\\rho_1_iterator.txt', 'a') as f:
         f.write('步长: ' + str(alpha) + '\n')
     i = 1
@@ -118,8 +112,10 @@ def iteration(init_parameters, alpha=0.1, len_pre_t=3):
     loss = 100
     last_rho_1 = init_parameters[0]
     new_rho_1 = 0
-    while i < 100:
-        if loss == last_loss and last_rho_1 == new_rho_1:
+    last_rho_2 = init_parameters[1]
+    new_rho_2 = 0
+    while i < 1000:
+        if loss == last_loss and last_rho_1 == new_rho_1 and last_rho_2 == new_rho_2:
             break
         print('iterator ', i)
         last_loss = loss
@@ -131,9 +127,12 @@ def iteration(init_parameters, alpha=0.1, len_pre_t=3):
                     + '       ' + str(init_parameters[2]) + '        ' + str(init_parameters[3])
                     + '       '+str(loss)+'\n')
         last_rho_1 = init_parameters[0]
-        iterator_rho_1()
-        new_rho_1 = init_parameters[0]
-        print('loss: ', loss, '  rho_1: ', init_parameters[0])
+        last_rho_2 = init_parameters[1]
+        new_rho_1 = iterator_rho_1()
+        new_rho_2 = iterator_rho_2()
+        init_parameters[0] = new_rho_1
+        init_parameters[1] = new_rho_2
+        print('loss: ', loss, '  rho_1: ', init_parameters[0], '  rho_2: ', init_parameters[1])
         i += 1
 
 
@@ -158,8 +157,28 @@ def iterator_rho_1():
     print('sum1/m', sum1/m)
     # rho_1=0.95,  sum1: 2.26953837628e-14      sum1/m: 1.37207671667e-19
     # rho_1=0.1,   sum1: 4.99027819526e-14      sum1/m: 3.01693269124e-19
-    rho_1 = last_rho_1 - alpha*sum1/m
-    init_parameters[0] = rho_1
+    new_rho_1 = last_rho_1 - alpha*sum1/m
+    return new_rho_1
+
+
+
+def iterator_rho_2():
+    global m, alpha, y_test, df_test, init_parameters, flow_total_m
+    error_m_list = get_error_list()
+    sum1 = 0
+    for i in range(1, m+1):
+        # sum1 += (h_theta_ti_list[i] - Pti[i]) * (y_test[i]**2)\
+        #         * derivative_h_theta_ti_to_rho_1(i, df_test.loc[i-1, 'counter'])
+        sum1 += error_m_list[i-1] * flow_total_m[i-1] * derivative_h_theta_ti_to_rho_2(i, df_test.loc[i-1, 'counter'])
+
+    # sum1 = sum1 * 1e14
+    last_rho_2 = init_parameters[1]
+    print('rho2  sum1', sum1)
+    print('rho2  sum1/m', sum1/m)
+    # rho_1=0.95,  sum1: 2.26953837628e-14      sum1/m: 1.37207671667e-19
+    # rho_1=0.1,   sum1: 4.99027819526e-14      sum1/m: 3.01693269124e-19
+    new_rho_2 = last_rho_2 - alpha*sum1/m
+    return new_rho_2
 
 
 # hθ(ti) 对 ρ1 求偏导, counter=t 时的求导
@@ -172,7 +191,7 @@ def derivative_h_theta_ti_to_rho_1(i, t):
     sum2 = 0
     sum3 = 0
     for j in range(len(weight_list)):
-        omega_to_rho_1 = derivative_omega_to_rho_1(weight_list[j], t)
+        omega_to_rho_1 = derivative_omega_to_rho(weight_list[j], t)[0]
         sum1 += omega_to_rho_1 * Pti_his_t_list[j]   #################################################################
         sum2 += omega_to_rho_1
         sum3 += weight_dict[str(weight_list[j])+'-'+str(t)] * Pti_his_t_list[j]
@@ -191,14 +210,43 @@ def derivative_h_theta_ti_to_rho_1(i, t):
     return numerator / denominator
 
 
-def derivative_omega_to_rho_1(t1, t):
+# hθ(ti) 对 ρ2 求偏导, counter=t 时的求导
+def derivative_h_theta_ti_to_rho_2(i, t):
+    global Pti, Pti_his_t_dict
+    Pti_his_t_list = Pti_his_t_dict[str(i)]
+    denominator = sum_of_weight_dict[str(t)]**2    # 分母
+    weight_list = weight_list_dict[str(t)]  # 对counter = t，需要哪些时间片进行加权
+    sum1 = 0
+    sum2 = 0
+    sum3 = 0
+    for j in range(len(weight_list)):
+        omega_to_rho_2 = derivative_omega_to_rho(weight_list[j], t)[1]
+        sum1 += omega_to_rho_2 * Pti_his_t_list[j]   #################################################################
+        sum2 += omega_to_rho_2
+        sum3 += weight_dict[str(weight_list[j])+'-'+str(t)] * Pti_his_t_list[j]
+    #     print('weight_list', weight_list)
+    #     print('omega_to_rho_1', omega_to_rho_1)
+    #     print('Pti_his_t_list[',j,']', Pti_his_t_list[j])
+    #     print('weight_dict[',str(weight_list[j])+'-'+str(t),']',weight_dict[str(weight_list[j])+'-'+str(t)])
+    #
+    # print('Pti_his_t_dict[',i,']', Pti_his_t_dict[str(i)])
+    # print('sum1 :', sum1)
+    # print('sum_of_weight_dict[str(t)] :', sum_of_weight_dict[str(t)])
+    # print('sum2 :', sum2)
+    # print('sum3 :', sum3)
+    numerator = (sum1 * sum_of_weight_dict[str(t)]) - (sum2 * sum3)   # 分子
+    # print('numerator :', numerator)
+    return numerator / denominator
+
+
+def derivative_omega_to_rho(t1, t):
     global df_feature, init_parameters
     rho_1 = init_parameters[0]
     rho_2 = init_parameters[1]
     lambda_wtr = lambda_weather(t1, t)
     one_t1_t2, period = lambda_is_voca_week(t1, t)
     if one_t1_t2 == 0:
-        return 0
+        return [0, 0]
     d_t1_t2 = abs(t1 - t) % 48
     delta_h = min(d_t1_t2, 48-d_t1_t2)
     # print(delta_h)
@@ -208,11 +256,9 @@ def derivative_omega_to_rho_1(t1, t):
     if period:
         delta_d = abs(df_feature.loc[t-1, 'day'] - df_feature.loc[t1-1, 'day'])
     omega_to_rho_1 = delta_h * pow(rho_1, delta_h-1) * pow(rho_2, delta_d) * lambda_wtr
-    return omega_to_rho_1
+    omega_to_rho_2 = pow(rho_1, delta_h) * delta_d * pow(rho_2, delta_d - 1) * lambda_wtr
+    return [omega_to_rho_1, omega_to_rho_2]
 
-
-def derivative_rho_2():
-    pass
 
 
 def derivative_alpha_1():
@@ -287,10 +333,10 @@ def predict_single(t=817, len_pre_t=3, period=False):
 
 # 批量预测，预测多个时间片的流量
 def predict_batch(list_t, len_pre_t=3, period=False, rho_1=0.9, rho_2=0.9, alpha1=4, alpha2=10):
-    with open('E:\\data\\DiDiData\\data_csv\\result\\pmp_pair_para_result.txt', 'a') as f:
-        f.write('predict_batch(['+str(min(list_t))+'……'+str(max(list_t))+'], len_pre_t='+str(len_pre_t)
-                +', period='+str(period)+', rho_1='+str(rho_1)+', rho_2='+str(rho_2)
-                +', alpha_1='+str(alpha1)+', alpha_2='+str(alpha2)+') :\n')
+    # with open('E:\\data\\DiDiData\\data_csv\\result\\pmp_pair_para_result.txt', 'a') as f:
+    #     f.write('predict_batch(['+str(min(list_t))+'……'+str(max(list_t))+'], len_pre_t='+str(len_pre_t)
+    #             +', period='+str(period)+', rho_1='+str(rho_1)+', rho_2='+str(rho_2)
+    #             +', alpha_1='+str(alpha1)+', alpha_2='+str(alpha2)+') :\n')
     global df_data, flow_pair_batch_list, sum_of_weight_dict, prop_t_list, h_theta_ti_list
     # 每一轮迭代就用不同的参数，所以要初始化重新更新
     flow_pair_batch_list = []   # 每一个元素是一个预测时间片的流量矩阵
@@ -453,15 +499,15 @@ if __name__ == '__main__':
     m = 165409  # 一共有这么多个OD对需要预测
     y_predict = []  # 每一轮迭代的预测值
     y_test = []
-    start_list, dest_list = [], [] # 按照顺序排序得到的起始地、目的地的list
+    start_list, dest_list = [], []  # 按照顺序排序得到的起始地、目的地的list
     Pti = []    # 每一个要预测的OD对的实际比例，一共有m个
     # 每一个预测OD对的参考历史的比例pi,顺序是weight_list_dict中key对应的list的顺序, key是要预测的OD对的顺序（1-m）
     Pti_his_t_dict = {}
     # 每一轮迭代的流量矩阵 、 权值（特征相似度）之和(key是counter=t)、 比例矩阵的list
     flow_pair_batch_list, sum_of_weight_dict, prop_t_list = [], {}, []
     h_theta_ti_list = []  # 所有OD对的预测比例的list
-    weight_list_dict = {} # 对每一个 counter = t 进行计算时需要加权的时间片list, key是counter=t
-    weight_dict ={} # 任意两个时间片（counter=t1,t2）的权值
+    weight_list_dict = {}   # 对每一个 counter = t 进行计算时需要加权的时间片list, key是counter=t
+    weight_dict = {}     # 任意两个时间片（counter=t1,t2）的权值
     # 初始化所有参数 rho_1, rho_2, alpha_1, alpha_2
     # init_parameters = [1, 1, 10, 10]
     init_parameters = [0.9, 0.95, 4, 10]
