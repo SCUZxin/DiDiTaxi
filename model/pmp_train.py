@@ -51,7 +51,47 @@ def get_all_data():
     for i in range(len(df_test)):
         flow_total_m.append(df_feature.loc[df_test.loc[i, 'counter']-1, 'count'])
     proportion_list = gen_proportion.get_proportion()
+
     return df_data, df_test, df_feature, flow_total, flow_total_m, proportion_list,
+
+
+# 每一个预测OD对的参考历史的比例pi,顺序是weight_list_dict中key对应的list的顺序,key是要预测的OD对的顺序（1-m）
+def get_Pti_his_t_dict():
+    global df_data, df_test, flow_total, weight_list_dict, Pti_his_t_dict
+    try:
+        Pti_his_t_dict = pickle.load(open('E:\\data\\DiDiData\\data_csv\\result\\params\\Pti_his_t_dict.pkl', 'rb'))
+    except FileNotFoundError:
+        print(len(df_test))
+        print('m:', m)  # 165409
+
+        for i in range(len(df_test)):
+            s = df_test.loc[i, 'start_district_id']
+            d = df_test.loc[i, 'dest_district_id']
+            t = df_test.loc[i, 'counter']       # 要预测的OD对的counter=t
+            weight_list_t = weight_list_dict[str(t)]    # 该counter=t需要参考的时间片list
+            Pti_his_ti_list = []
+            for ti in weight_list_t:  # 参考历史的counter = ti
+                # 获取该counter=ti的总流量total
+                flow_total_ti = flow_total[ti - 1]
+                # 获取参考 counter=ti 时的OD对的流量
+                count_df = df_data.loc[(df_data['start_district_id'] == s) & (df_data['dest_district_id'] == d)
+                                       & (df_data['counter'] == ti)].reset_index(drop=True)
+                if len(count_df) == 1:
+                    count_ti = count_df.loc[0, 'count']
+                else:
+                    count_ti = 0
+                Pti_his_ti_list.append(count_ti / flow_total_ti)
+                # print('count_ti', count_ti)
+                # print('weight_list_t', weight_list_t)
+                # print('ti', ti)
+                # print('count_ti', count_ti)
+                # print('flow_total_ti', flow_total_ti)
+                # print('Pti_his_ti_list', Pti_his_ti_list)
+
+            Pti_his_t_dict[str(i+1)] = Pti_his_ti_list
+        pickle.dump(Pti_his_t_dict, open('E:\\data\\DiDiData\\data_csv\\result\\params\\Pti_his_t_dict.pkl', 'wb'))
+    print('XXXXXXXXXXXXXXXX')
+    # return Pti_his_t_dict
 
 
 # 进行迭代求取最佳参数
@@ -66,13 +106,23 @@ def iteration(init_parameters, alpha=0.1, len_pre_t=3):
         start_list.extend(df_tmp['start_district_id'].values)
         dest_list.extend(df_tmp['dest_district_id'].values)
 
-    # with open('E:\\data\\DiDiData\\data_csv\\result\\rho_1_iterator.txt', 'a') as f:
-    #     f.write('rho_1' + '    rho_2' + '     alpha_1' + '   alpha_2' + '      loss' + '\n')
+
+    # print(Pti[0:10])
+    # Pti = list(map(lambda i: i * 1e19, Pti))    # 对Pti的每一个值都放大倍数，避免值太小而无法梯度下降
+    # print(Pti[0:10])
+
+    with open('E:\\data\\DiDiData\\data_csv\\result\\rho_1_iterator.txt', 'a') as f:
+        f.write('步长: ' + str(alpha) + '\n')
     i = 1
     last_loss = 0
     loss = 100
-    while i < 10 or (loss-last_loss) >= 10:
+    last_rho_1 = init_parameters[0]
+    new_rho_1 = 0
+    while i < 100:
+        if loss == last_loss and last_rho_1 == new_rho_1:
+            break
         print('iterator ', i)
+        last_loss = loss
         loss = predict_batch(list_t, len_pre_t=len_pre_t, period=True,
                              rho_1=init_parameters[0], rho_2=init_parameters[1],
                              alpha1=init_parameters[2], alpha2=init_parameters[3])
@@ -80,9 +130,10 @@ def iteration(init_parameters, alpha=0.1, len_pre_t=3):
             f.write(str(init_parameters[0]) + '      ' + str(init_parameters[1])
                     + '       ' + str(init_parameters[2]) + '        ' + str(init_parameters[3])
                     + '       '+str(loss)+'\n')
+        last_rho_1 = init_parameters[0]
         iterator_rho_1()
+        new_rho_1 = init_parameters[0]
         print('loss: ', loss, '  rho_1: ', init_parameters[0])
-        last_loss = loss
         i += 1
 
 
@@ -93,7 +144,7 @@ def get_error_list():
 
 
 def iterator_rho_1():
-    global m, alpha, y_test, Pti, df_test, init_parameters, flow_total_m
+    global m, alpha, y_test, df_test, init_parameters, flow_total_m
     error_m_list = get_error_list()
     sum1 = 0
     for i in range(1, m+1):
@@ -113,17 +164,24 @@ def iterator_rho_1():
 
 # hθ(ti) 对 ρ1 求偏导, counter=t 时的求导
 def derivative_h_theta_ti_to_rho_1(i, t):
+    global Pti, Pti_his_t_dict
+    Pti_his_t_list = Pti_his_t_dict[str(i)]
     denominator = sum_of_weight_dict[str(t)]**2    # 分母
     weight_list = weight_list_dict[str(t)]  # 对counter = t，需要哪些时间片进行加权
     sum1 = 0
     sum2 = 0
     sum3 = 0
-    for t1 in weight_list:
-        omega_to_rho_1 = derivative_omega_to_rho_1(t1, t)
-        sum1 += omega_to_rho_1 * Pti[i-1]
+    for j in range(len(weight_list)):
+        omega_to_rho_1 = derivative_omega_to_rho_1(weight_list[j], t)
+        sum1 += omega_to_rho_1 * Pti_his_t_list[j]   #################################################################
         sum2 += omega_to_rho_1
-        sum3 += weight_dict[str(t1)+'-'+str(t)] * Pti[i-1]
-
+        sum3 += weight_dict[str(weight_list[j])+'-'+str(t)] * Pti_his_t_list[j]
+    #     print('weight_list', weight_list)
+    #     print('omega_to_rho_1', omega_to_rho_1)
+    #     print('Pti_his_t_list[',j,']', Pti_his_t_list[j])
+    #     print('weight_dict[',str(weight_list[j])+'-'+str(t),']',weight_dict[str(weight_list[j])+'-'+str(t)])
+    #
+    # print('Pti_his_t_dict[',i,']', Pti_his_t_dict[str(i)])
     # print('sum1 :', sum1)
     # print('sum_of_weight_dict[str(t)] :', sum_of_weight_dict[str(t)])
     # print('sum2 :', sum2)
@@ -206,16 +264,24 @@ def predict_single(t=817, len_pre_t=3, period=False):
 
     # 加权平均
     # prop_t = sum_prop_closeness / sum_w_closeness
+    # print('w_closeness:', w_closeness)
+    # print('w_period:', w_period)
     for i in range(len(w_closeness)):
         sum_prop_closeness = sum_prop_closeness + (w_closeness[i]*prop_closeness[i])
     for i in range(len(w_period)):
         sum_prop_period = sum_prop_period + (w_period[i]*prop_period[i])
-    # 预测counter=t的流量矩阵需要几个时间片加权，key是counter=t
+
+    # 预测counter=t的流量矩阵需要哪几个时间片加权，key是counter=t
     weight_list_dict[str(t)] = period_time_list+closeness_time_list
     sum_of_weight = np.sum(w_closeness)+np.sum(w_period)
     prop_t = (sum_prop_closeness+sum_prop_period) / sum_of_weight
     # 流量矩阵 = 总流量 * prop_t，得到59*59的数组
     flow_pair_t = flow_total[t-1] * prop_t
+
+    # print('prop_t', prop_t[1][42])
+    # print('prop_t', prop_t[2][2])
+    # print('flow_pair_t', flow_pair_t[1][42])
+    # print('flow_pair_t', flow_pair_t[2][2])
     return flow_pair_t, sum_of_weight, prop_t
 
 
@@ -240,7 +306,11 @@ def predict_batch(list_t, len_pre_t=3, period=False, rho_1=0.9, rho_2=0.9, alpha
         # df_tmp = df_data.loc[df_data['counter'] == t].reset_index(drop=True)
         # for i in range(len(df)):
         #     h_theta_ti_list.append(prop_t[df_tmp.loc[i, 'start_district_id'][df_tmp.loc[i, 'dest_district_id']])
-
+    # print('xxxxxxxxxxxxxxx')
+    # print(flow_pair_batch_list[0][1][42])
+    # print(flow_pair_batch_list[0][2][2])
+    if len(Pti_his_t_dict) == 0:
+        get_Pti_his_t_dict()
     return metrics_self(flow_pair_batch_list, list_t)
 
 
@@ -254,7 +324,12 @@ def metrics_self(flow_pair_batch_list, list_t):
         for j in range(len(df_tmp)):
             s = df_tmp.loc[j, 'start_district_id']
             d = df_tmp.loc[j, 'dest_district_id']
+            # print(s)
+            # print(d)
+            # print(flow_pair_batch_list[i][s][d])
             y_predict.append(flow_pair_batch_list[i][s][d])
+
+    # print('y_predict', y_predict[0:100])
 
     # for i in range(len(y_predict)):
     #     y_predict[i] = round(y_predict[i])
@@ -267,6 +342,9 @@ def metrics_self(flow_pair_batch_list, list_t):
 
 def w_features(t1, t2):
     w_t1_t2 = lambda_time(t1, t2) * lambda_weather(t1, t2)
+    # print('t1',t1)
+    # print('t2',t2)
+    # print('lambda_time(t1, t2)',lambda_time(t1, t2))
     return w_t1_t2
 
 
@@ -327,6 +405,10 @@ def lambda_weather(t1, t2):
     lambda_3 = 1 - (abs(df_feature.loc[t1-1, 'temperature'] - df_feature.loc[t2-1, 'temperature']) / (max_temperature - min_temperature))
     lambda_4 = 1 - (abs(df_feature.loc[t1-1, 'pm2.5'] - df_feature.loc[t2-1, 'pm2.5']) / (max_pm25 - min_pm25))
 
+    # print('t1',t1)
+    # print('t2',t2)
+    # print('weather_t1_t2', lambda_2*lambda_3*lambda_4)
+
     return lambda_2*lambda_3*lambda_4
 
 
@@ -361,6 +443,7 @@ def lambda_weather_2d(t1, t2, alpha1=4, alpha2=10, sigma1=1, sigma2=1):
 if __name__ == '__main__':
 
     print('start time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+    # flow_total_m: 1-m 个预测OD对所在时间片上的城市总流量
     df_data, df_test, df_feature, flow_total, flow_total_m, proportion_list = get_all_data()
     max_temperature = df_data['temperature'].max()
     min_temperature = df_data['temperature'].min()
@@ -371,7 +454,9 @@ if __name__ == '__main__':
     y_predict = []  # 每一轮迭代的预测值
     y_test = []
     start_list, dest_list = [], [] # 按照顺序排序得到的起始地、目的地的list
-    Pti = []    # 每一个OD对的比例，一共有m个
+    Pti = []    # 每一个要预测的OD对的实际比例，一共有m个
+    # 每一个预测OD对的参考历史的比例pi,顺序是weight_list_dict中key对应的list的顺序, key是要预测的OD对的顺序（1-m）
+    Pti_his_t_dict = {}
     # 每一轮迭代的流量矩阵 、 权值（特征相似度）之和(key是counter=t)、 比例矩阵的list
     flow_pair_batch_list, sum_of_weight_dict, prop_t_list = [], {}, []
     h_theta_ti_list = []  # 所有OD对的预测比例的list
@@ -379,8 +464,8 @@ if __name__ == '__main__':
     weight_dict ={} # 任意两个时间片（counter=t1,t2）的权值
     # 初始化所有参数 rho_1, rho_2, alpha_1, alpha_2
     # init_parameters = [1, 1, 10, 10]
-    init_parameters = [0.1, 0.95, 4, 10]
-    alpha = -0.5*1e13
+    init_parameters = [0.9, 0.95, 4, 10]
+    alpha = 0.01
     len_pre_t = 3
     iteration(init_parameters, alpha, len_pre_t)
 

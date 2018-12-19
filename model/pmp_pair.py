@@ -259,7 +259,7 @@ if __name__ == '__main__':
     #                   rho_1=0.9, rho_2=0.95, alpha1=4, alpha2=alpha_2)
 
     predict_batch([i for i in range(817, 1153)], len_pre_t=3, period=True,
-                  rho_1=0.26, rho_2=0.95, alpha1=4, alpha2=10)
+                  rho_1=0.213523672613, rho_2=0.95, alpha1=4, alpha2=10)
 
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
