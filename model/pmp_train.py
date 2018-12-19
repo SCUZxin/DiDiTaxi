@@ -510,7 +510,7 @@ if __name__ == '__main__':
     weight_dict = {}     # 任意两个时间片（counter=t1,t2）的权值
     # 初始化所有参数 rho_1, rho_2, alpha_1, alpha_2
     # init_parameters = [1, 1, 10, 10]
-    init_parameters = [0.9, 0.95, 4, 10]
+    init_parameters = [0.5, 1, 4, 10]
     alpha = 0.01
     len_pre_t = 3
     iteration(init_parameters, alpha, len_pre_t)
