@@ -28,7 +28,25 @@ print(2*x)
 # for i in range(len(df_cluster)):
 #     print(df_cluster.loc[i, 'OD_key'], df_cluster.loc[i, 'cluster_num'])
 
-prop_list = [[0]*59]*59
-print(prop_list)
+x = [[1,2,3],[1,2,0]]
+y = np.array([[2,2,12],[3,4,0]])
+x = np.array(x)
+print(x[1][2])
+print(x.shape)
+print(y/x)
+
+
+sum1 = 0.000197655904962
+sum_of = 0.408851239415
+sum2 = 0.81770247883
+sum3 = 9.88279524812e-05
+print(sum1*sum_of - sum2*sum3)
+
+x = pd.DataFrame({'A':[1,2,3,4,5,6,7,8,9]})
+y = pd.DataFrame({'A':[1,5,9]})
+df = x.loc[0:3].append(x.loc[6:8])
+print(df)
+
+
 
 

@@ -1,4 +1,5 @@
 # 计算某一时刻，两天的比例矩阵的相似度，采用欧几里得距离
+# measure_difference_day 是2.29-3.06连续一周的每一天比例矩阵之和的欧氏距离相似度
 # 确定是时刻：17  （8:30-9:00）
 # 分别提取2.29-3.06连续一周的该时刻的比例矩阵
 
@@ -11,7 +12,6 @@ from datetime import datetime
 
 def measure_difference(t):
     global proportion_list
-    df_time = pd.read_csv('E:\\data\\DiDiData\\data_csv\\features\\time_feature.csv')
     time_list = [x for x in range(48*6+t, 48*13, 48)]
     prop_list = []
     for t in time_list:

@@ -11,7 +11,7 @@ import pickle
 # 获取订单量比例矩阵的 list 集合，并 return
 def get_proportion():
     try:
-        prop_list = pickle.load(open('E:\\data\\DiDiData\\data_csv\\dataset\\proportion_list.pkl', 'rb'))
+        prop_list = pickle.load(open('E:\\data\\DiDiData\\data_csv\\dataset\\proportion_list5858.pkl', 'rb'))
         # np_data = prop_list[51]
         # np.savetxt("E:\\data\\DiDiData\\data_csv\\dataset\\result.txt", np_data)
         return prop_list
@@ -25,7 +25,7 @@ def get_proportion():
         #     i = 51
             if i % 100 == 0:
                 print('iterator  ', i)
-            prop_array = np.zeros((59, 59))     # 方便以区域id作为下标index
+            prop_array = np.zeros((58, 58))     # 方便以区域id作为下标index
             date = df_total_data.loc[i, 'date']
             time = df_total_data.loc[i, 'half_hour']
             total_count = df_total_data.loc[i, 'count']
@@ -36,9 +36,9 @@ def get_proportion():
                 start_id = df_time_slice.loc[j, 'start_district_id']
                 dest_id = df_time_slice.loc[j, 'dest_district_id']
                 count = df_time_slice.loc[j, 'count']
-                prop_array[start_id][dest_id] = count/total_count
+                prop_array[start_id-1][dest_id-1] = count/total_count
             prop_list.append(prop_array)
-        pickle.dump(prop_list, open('E:\\data\\DiDiData\\data_csv\\dataset\\proportion_list.pkl', 'wb'))
+        pickle.dump(prop_list, open('E:\\data\\DiDiData\\data_csv\\dataset\\proportion_list5858.pkl', 'wb'))
         return prop_list
 
 
