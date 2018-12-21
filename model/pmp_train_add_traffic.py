@@ -189,7 +189,7 @@ def iterator_rho_2():
 # hθ(ti) 对 ρ1 求偏导, counter=t 时的求导
 def derivative_h_theta_ti_to_rho_1(i, t, s, d):
     global Pti, Pti_his_t_dict, weight_array_dict
-    print(s, " --- ",d)
+    # print(s, " --- ",d)
     Pti_his_t_list = Pti_his_t_dict[str(i)]
     ##########################################################################################################
     # 权重由值变成了矩阵，故获取权重之和也需要变化
@@ -204,23 +204,23 @@ def derivative_h_theta_ti_to_rho_1(i, t, s, d):
         sum2 += omega_to_rho_1
         sum3 += weight_array_dict[str(weight_list[j])+'-'+str(t)][s-1][d-1] * Pti_his_t_list[j]
     #     print('weight_list', weight_list)
-        print('omega_to_rho_1', omega_to_rho_1)
+    #     print('omega_to_rho_1', omega_to_rho_1)
         # print('Pti_his_t_list[',j,']', Pti_his_t_list[j])
     #     print('weight_dict[',str(weight_list[j])+'-'+str(t),']',weight_dict[str(weight_list[j])+'-'+str(t)])
     #
     # print('Pti_his_t_dict[',i,']', Pti_his_t_dict[str(i)])
-    print('sum1 :', sum1)
-    print('sum_of_weight_dict[str(t)] :', sum_of_weight_dict[str(t)][s-1][d-1])
-    print('sum2 :', sum2)
-    print('sum3 :', sum3)
+    # print('sum1 :', sum1)
+    # print('sum_of_weight_dict[str(t)] :', sum_of_weight_dict[str(t)][s-1][d-1])
+    # print('sum2 :', sum2)
+    # print('sum3 :', sum3)
     ################################################################################################
     # sum_of_weight_dict[str(t)]不能直接用了，需要每个参考的时间片的的特征相似度(算上traffic)之和
     numerator = (sum1 * sum_of_weight_dict[str(t)][s-1][d-1]) - (sum2 * sum3)   # 分子
-    print('xxxx', 0.000197655904962*0.408851239415 - 0.81770247883*9.88279524812e-05)
-    print('x1', (sum1 * sum_of_weight_dict[str(t)][s-1][d-1]))
-    print('x1', sum2 * sum3)
-    print('numerator :', numerator)
-    print('denominator :', denominator)
+    # print('xxxx', 0.000197655904962*0.408851239415 - 0.81770247883*9.88279524812e-05)
+    # print('x1', (sum1 * sum_of_weight_dict[str(t)][s-1][d-1]))
+    # print('x1', sum2 * sum3)
+    # print('numerator :', numerator)
+    # print('denominator :', denominator)
     return numerator / denominator
 
 
@@ -420,6 +420,8 @@ def w_features(t1, t2):
     traffic_similarity_array = np.zeros((58, 58))
     for i in range(1, 59):
         traffic_similarity_array[i-1] = traffic_similarity_dict[str(i)+':'+str(t1)+'-'+str(t2)]
+        traffic_similarity_array[np.isnan(traffic_similarity_array)] = 1
+        traffic_similarity_array[np.isinf(traffic_similarity_array)] = 1
 
     w_t1_t2 = lambda_time(t1, t2) * lambda_weather(t1, t2) * traffic_similarity_array
     # print('t1',t1)
@@ -547,7 +549,7 @@ if __name__ == '__main__':
     weight_array_dict = {}     # 任意两个时间片（counter=t1,t2）的权值
     # 初始化所有参数 rho_1, rho_2, alpha_1, alpha_2
     # init_parameters = [1, 1, 10, 10]
-    init_parameters = [0.5, 1, 4, 10]
+    init_parameters = [0.1, 0.95, 4, 10]
     alpha = 0.01
     len_pre_t = 3
     iteration(init_parameters, alpha, len_pre_t)

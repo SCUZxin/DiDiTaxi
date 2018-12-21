@@ -33,7 +33,11 @@ y = np.array([[2,2,12],[3,4,0]])
 x = np.array(x)
 print(x[1][2])
 print(x.shape)
-print(y/x)
+t = y/x
+print(t)
+t[np.isnan(t)] = 0
+t[np.isinf(t)] = 0
+print(t)
 
 
 sum1 = 0.000197655904962
@@ -42,10 +46,7 @@ sum2 = 0.81770247883
 sum3 = 9.88279524812e-05
 print(sum1*sum_of - sum2*sum3)
 
-x = pd.DataFrame({'A':[1,2,3,4,5,6,7,8,9]})
-y = pd.DataFrame({'A':[1,5,9]})
-df = x.loc[0:3].append(x.loc[6:8])
-print(df)
+
 
 
 
