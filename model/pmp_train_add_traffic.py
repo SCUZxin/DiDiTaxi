@@ -404,8 +404,7 @@ def metrics_self(flow_pair_batch_list, list_t):
 
     # print('y_predict', y_predict[0:100])
 
-    # for i in range(len(y_predict)):
-    #     y_predict[i] = round(y_predict[i])
+    y_predict = list(map(lambda x: round(x), y_predict))
 
     # 平方误差函数，最小二乘法构建损失函数
     loss = mean_squared_error(y_test, y_predict) / 2
@@ -549,9 +548,9 @@ if __name__ == '__main__':
     weight_array_dict = {}     # 任意两个时间片（counter=t1,t2）的权值
     # 初始化所有参数 rho_1, rho_2, alpha_1, alpha_2
     # init_parameters = [1, 1, 10, 10]
-    init_parameters = [0.1, 0.95, 4, 10]
+    init_parameters = [0.1, 0.1, 4, 10]
     alpha = 0.01
-    len_pre_t = 3
+    len_pre_t = 1
     iteration(init_parameters, alpha, len_pre_t)
 
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))

@@ -119,8 +119,7 @@ def metrics_self(flow_pair_batch_list, df_target, list_t):
             d = df_tmp.loc[j, 'dest_district_id']
             y_predict.append(flow_pair_batch_list[i][s][d])
 
-    # for i in range(len(y_predict)):
-    #     y_predict[i] = round(y_predict[i])
+    y_predict = list(map(lambda x: round(x), y_predict))
 
     mse = mean_squared_error(y_test, y_predict)
     print("MSE: %.4f" % mse)  # 输出均方误差

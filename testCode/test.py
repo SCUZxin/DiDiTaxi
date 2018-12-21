@@ -46,8 +46,11 @@ sum2 = 0.81770247883
 sum3 = 9.88279524812e-05
 print(sum1*sum_of - sum2*sum3)
 
+m = - abs(6-9) / 2**2
+print(m)
 
-
-
+x = [1.1,1.2,1.3,1.4,2.5,1.5,3.6,5.9321]
+x = list(map(lambda i: round(i), x))
+print(x)
 
 

@@ -19,6 +19,8 @@ def get_mean_his():
     # df = df.sort_values(by=['start_district_id', 'dest_district_id', 'date', 'time'], axis=0, ascending=True)
     # df.to_csv('E:\\data\\DiDiData\\data_csv\\result\\ha_pair.csv')
 
+    # y_predict = list(map(lambda x: round(x), y_predict))
+
     mse = mean_squared_error(df['mean_his_day'], df['count'])
     print("MSE: %.4f" % mse)  # 输出均方误差
     mae = mean_absolute_error(df['mean_his_day'], df['count'])
