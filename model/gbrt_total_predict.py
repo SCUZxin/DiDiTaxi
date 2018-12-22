@@ -8,6 +8,7 @@ from sklearn import ensemble
 from xgboost.sklearn import XGBRegressor
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import mean_squared_log_error
 from sklearn.metrics import r2_score
 import sklearn.preprocessing as preprocessing
 from sklearn.model_selection import GridSearchCV
@@ -20,9 +21,11 @@ def save_model(filename, m):
 
 
 def save_result(filename, yp):
+    global y_test
     result = pd.DataFrame()
     result['test_id'] = range(len(yp))
     result['count'] = yp
+    result['real_count'] = y_test.values
     result.to_csv(filename+'.csv', index=False)
 
 
@@ -36,8 +39,8 @@ def mae_average(y_pred, y_name):
 
 
 def gen_total_set():
-    df_weather = pd.read_csv('E:\\data\\DiDiData\\data_csv\\features\\weather_feature.csv')
-    df_time = pd.read_csv('E:\\data\\DiDiData\\data_csv\\features\\time_feature.csv')
+    df_weather = pd.read_csv('E:\\data\\DiDiData\\data_csv\\features\\before\\weather_feature.csv')
+    df_time = pd.read_csv('E:\\data\\DiDiData\\data_csv\\features\\before\\time_feature.csv')
     # df_time = df_time[['week_day', 'day', 'is_weekend', 'is_vocation', 'lagging_3', 'lagging_2', 'lagging_1', 'count']]
     del df_time['date']
     del df_time['time']
@@ -63,7 +66,7 @@ def gen_model():
 def fit_model(n_estimators=500, learning_rate=0.26):
     # MSE: 652009.6635                  default: MSE: 639654.8721
     # r ^ 2 on test data: 0.969268      default: r^2 on test data : 0.969850
-    params = {'n_estimators': 500, 'max_depth': 5, 'min_samples_split': 7,
+    params = {'n_estimators': 100, 'max_depth': 5, 'min_samples_split': 7,
               'learning_rate': 0.26, 'verbose': 0, 'loss': 'ls', 'random_state': 0}
     # params = {'n_estimators': 500, 'max_depth': 10, 'min_samples_split': 2,
     #           'learning_rate': 0.01, 'verbose': 1, 'loss': 'ls', 'random_state': 0}
@@ -71,8 +74,8 @@ def fit_model(n_estimators=500, learning_rate=0.26):
     #           'learning_rate': 0.01, 'loss': 'ls'}
     # n_estimators: 500, 'max_depth': 5, 'min_samples_split': 6,
     # learning_rate: 0.26,
-    gbrt = ensemble.GradientBoostingRegressor(**params)
-    # gbrt = ensemble.GradientBoostingRegressor(verbose=0)
+    # gbrt = ensemble.GradientBoostingRegressor(**params)
+    gbrt = ensemble.GradientBoostingRegressor(verbose=0)
     # gbrt = XGBRegressor(**params)
 
     # gbrt = ensemble.GradientBoostingRegressor(loss='ls',n_estimators = 300,max_depth = 300, learning_rate = 0.1, verbose = 2, min_samples_leaf = 256, min_samples_split = 256)
@@ -82,38 +85,45 @@ def fit_model(n_estimators=500, learning_rate=0.26):
 
     # 进行归一化之后的预测
 
-    x_scaler = preprocessing.MinMaxScaler()
-    y_scaler = preprocessing.MinMaxScaler()
-    x_train_minmax = x_scaler.fit_transform(x_train)
-    x_test_minmax = x_scaler.transform(x_test)
-    y_train_minmax = y_scaler.fit_transform(y_train.values.reshape(-1, 1))
-    gbrt.fit(x_train_minmax, y_train_minmax)
-    y_predict_minmax = gbrt.predict(x_test_minmax)
-    y_predict = y_scaler.inverse_transform(y_predict_minmax.reshape(-1, 1))
+    # x_scaler = preprocessing.MinMaxScaler()
+    # y_scaler = preprocessing.MinMaxScaler()
+    # x_train_minmax = x_scaler.fit_transform(x_train)
+    # x_test_minmax = x_scaler.transform(x_test)
+    # y_train_minmax = y_scaler.fit_transform(y_train.values.reshape(-1, 1))
+    # gbrt.fit(x_train_minmax, y_train_minmax)
+    # y_predict_minmax = gbrt.predict(x_test_minmax)
+    # y_predict = y_scaler.inverse_transform(y_predict_minmax.reshape(-1, 1))
+    #
+    # y_predict = list(map(lambda x: round(float(x)), y_predict))
+    #
+    # save_result(fileName, y_predict)
+    # mse = mean_squared_error(y_test, y_predict)
+    # print("MSE: %.4f" % mse)  # 输出均方误差
+    # mae = mean_absolute_error(y_test, y_predict)
+    # print("MAE: %.4f" % mae)  # 输出平均绝对误差
+    # msle = mean_squared_log_error(y_test, y_predict)
+    # print("MSLE: %.4f" % msle)  # 输出 mean_squared_log_error
+    # r2 = r2_score(y_test, y_predict)
+    # print("r^2 on test data : %f" % r2)  # R^2 拟合优度=(预测值-均值)^2之和/(真实值-均值)^2之和,越接近1越好
 
+
+    # 没有进行归一化之前的代码，也没有对weather, week_day进行one-hot
+
+    # gbrt.fit(x, y)
+    # gbrt.fit(x_test, y_test)
+    gbrt.fit(x_train, y_train)
+    # save_model(fileName, gbrt)
+    y_predict = gbrt.predict(x_test)
+    y_predict = list(map(lambda x: round(x), y_predict))
     save_result(fileName, y_predict)
     mse = mean_squared_error(y_test, y_predict)
     print("MSE: %.4f" % mse)  # 输出均方误差
     mae = mean_absolute_error(y_test, y_predict)
     print("MAE: %.4f" % mae)  # 输出平均绝对误差
+    msle = mean_squared_log_error(y_test, y_predict)
+    print("MSLE: %.4f" % msle)  # 输出 mean_squared_log_error
     r2 = r2_score(y_test, y_predict)
     print("r^2 on test data : %f" % r2)  # R^2 拟合优度=(预测值-均值)^2之和/(真实值-均值)^2之和,越接近1越好
-
-
-    # 没有进行归一化之前的代码，也没有对weather, week_day进行one-hot
-
-    # # gbrt.fit(x, y)
-    # # gbrt.fit(x_test, y_test)
-    # gbrt.fit(x_train, y_train)
-    # save_model(fileName, gbrt)
-    # model_result = gbrt.predict(x_test)
-    # save_result(fileName, list(model_result))
-    # mse = mean_squared_error(y_test, gbrt.predict(x_test))
-    # print("MSE: %.4f" % mse)  # 输出均方误差
-    # mae = mean_absolute_error(y_test, model_result)
-    # print("MAE: %.4f" % mae)  # 输出平均绝对误差
-    # r2 = r2_score(y_test, model_result)
-    # print("r^2 on test data : %f" % r2)  # R^2 拟合优度=(预测值-均值)^2之和/(真实值-均值)^2之和,越接近1越好
 
     # Plot training deviance
 
@@ -169,8 +179,17 @@ if __name__ == '__main__':
 # 归一化前
 #     params = {'n_estimators': 500, 'max_depth': 5, 'min_samples_split': 7,
 #               'learning_rate': 0.26, 'verbose': 0, 'loss': 'ls', 'random_state': 0}
-# MSE: 652009.6635                  default: MSE: 639654.8721
-# r ^ 2 on test data: 0.969268      default: r^2 on test data : 0.969850
+# MSE: 652009.6635
+# r ^ 2 on test data: 0.969268
+
+# 归一化前，default para
+# MSE: 635032.9643
+# MAE: 531.0893
+# MSLE: 0.0134
+# r^2 on test data : 0.970068
+
+
+
 
 # [0, 1] 归一化后,默认参数
 # MSE: 1006796.3809

@@ -11,32 +11,50 @@ from sklearn.metrics import r2_score
 from datetime import datetime
 
 
+def save_result(filename, yp, y_test):
+    global df
+    result = pd.DataFrame()
+    # result['test_id'] = range(len(yp))
+    result['date'] = df['date']
+    result['time'] = df['time']
+    result['start_district_id'] = df['start_district_id']
+    result['dest_district_id'] = df['dest_district_id']
+    result['predict_count'] = yp
+    result['real_count'] = y_test
+    result.to_csv(filename+'.csv', index=False)
+
+
 def get_mean_his():
+    global df
+    fileName = 'E:\\data\\DiDiData\\data_csv\\result\\ha_pair'
     column_read = ['start_district_id', 'dest_district_id', 'date', 'time', 'mean_his_day',
                    'mean_his_week', 'lagging_3', 'lagging_2', 'lagging_1', 'count']
     df = pd.read_csv('E:\\data\\DiDiData\\data_csv\\dataset\\Test.csv', usecols=column_read)
-    df.set_index(keys=['date', 'time', 'start_district_id', 'dest_district_id'], inplace=True)
+    # df.set_index(keys=['date', 'time', 'start_district_id', 'dest_district_id'], inplace=True)
     # df = df.sort_values(by=['start_district_id', 'dest_district_id', 'date', 'time'], axis=0, ascending=True)
     # df.to_csv('E:\\data\\DiDiData\\data_csv\\result\\ha_pair.csv')
 
-    # y_predict = list(map(lambda x: round(x), y_predict))
-
-    mse = mean_squared_error(df['mean_his_day'], df['count'])
+    y_predict = df['mean_his_day'].values
+    y_predict = list(map(lambda x: round(x), y_predict))
+    save_result(fileName, y_predict, list(df['count'].values))
+    mse = mean_squared_error(y_predict, df['count'])
     print("MSE: %.4f" % mse)  # 输出均方误差
-    mae = mean_absolute_error(df['mean_his_day'], df['count'])
+    mae = mean_absolute_error(y_predict, df['count'])
     print("MAE: %.4f" % mae)  # 输出平均绝对误差
-    msle = mean_squared_log_error(df['mean_his_day'], df['count'])
+    msle = mean_squared_log_error(y_predict, df['count'])
     print("MSLE: %.4f" % msle)  # 输出 mean_squared_log_error
-    r2 = r2_score(df['mean_his_day'], df['count'])
+    r2 = r2_score(y_predict, df['count'])
     print("r^2 on test data : %f" % r2)  # R^2 拟合优度=(预测值-均值)^2之和/(真实值-均值)^2之和,越接近1越好
 
-    mse = mean_squared_error(df['mean_his_week'], df['count'])
+    y_predict = df['mean_his_week'].values
+    y_predict = list(map(lambda x: round(x), y_predict))
+    mse = mean_squared_error(y_predict, df['count'])
     print("MSE: %.4f" % mse)  # 输出均方误差
-    mae = mean_absolute_error(df['mean_his_week'], df['count'])
+    mae = mean_absolute_error(y_predict, df['count'])
     print("MAE: %.4f" % mae)  # 输出平均绝对误差
-    msle = mean_squared_log_error(df['mean_his_week'], df['count'])
+    msle = mean_squared_log_error(y_predict, df['count'])
     print("MSLE: %.4f" % msle)  # 输出 mean_squared_log_error
-    r2 = r2_score(df['mean_his_week'], df['count'])
+    r2 = r2_score(y_predict, df['count'])
     print("r^2 on test data : %f" % r2)  # R^2 拟合优度=(预测值-均值)^2之和/(真实值-均值)^2之和,越接近1越好
 
     mse = mean_squared_error(df['lagging_3'], df['count'])
@@ -69,6 +87,7 @@ def get_mean_his():
 
 if __name__ == '__main__':
     print('start time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+    df = pd.DataFrame()
     get_mean_his()
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
@@ -102,3 +121,16 @@ if __name__ == '__main__':
 # MSLE: 0.4461
 # r^2 on test data : 0.924387
 
+
+# 历史平均取整后
+# mean_his_day
+# MSE: 111.9740
+# MAE: 3.7280
+# MSLE: 0.3459
+# r^2 on test data : 0.909613
+
+# mean_his_week
+# MSE: 105.4598
+# MAE: 3.8691
+# MSLE: 0.4145
+# r^2 on test data : 0.917368

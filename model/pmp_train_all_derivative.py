@@ -469,8 +469,8 @@ def predict_single(t=817, len_pre_t=3, period=False):
     # 此处 prop_t 的计算重新来
     prop_t = (sum_prop_closeness+sum_prop_period) / sum_of_weight
     # 流量矩阵 = 总流量 * prop_t，得到58*58的数组
-    prop_t[np.isnan(prop_t)] = 0
-    prop_t[np.isinf(prop_t)] = 0
+    prop_t[np.isnan(prop_t)] = 1
+    prop_t[np.isinf(prop_t)] = 1
     flow_pair_t = flow_total[t-1] * prop_t
     return flow_pair_t, sum_of_weight, prop_t
 

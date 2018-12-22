@@ -20,7 +20,7 @@ def save_model(filename, m):
     pickle.dump({'model': m}, open(filename+'.pkl', 'wb'))
 
 
-def save_result(filename, yp):
+def save_result(filename, yp, y_test):
     global x_test
     result = pd.DataFrame()
     # result['test_id'] = range(len(yp))
@@ -28,7 +28,8 @@ def save_result(filename, yp):
     result['time'] = x_test['time']
     result['start_district_id'] = x_test['start_district_id']
     result['dest_district_id'] = x_test['dest_district_id']
-    result['count'] = yp
+    result['predict_count'] = yp
+    result['real_count'] = y_test
     result.to_csv(filename+'.csv', index=False)
 
 
@@ -94,7 +95,11 @@ def fit_model(n_estimators=500, learning_rate=0.26):
     y_predict_minmax = gbrt.predict(x_test_minmax)
     y_predict = y_scaler.inverse_transform(y_predict_minmax.reshape(-1, 1))
 
-    # save_result(fileName, y_predict)
+    # for i in range(len(y_predict)):
+    #     y_predict[i] = round(y_predict[i])
+    y_predict = list(map(lambda x: round(float(x)), y_predict))
+
+    save_result(fileName, y_predict, y_test)
     mse = mean_squared_error(y_test, y_predict)
     print("MSE: %.4f" % mse)  # 输出均方误差
     mae = mean_absolute_error(y_test, y_predict)
@@ -164,10 +169,10 @@ if __name__ == '__main__':
     x_train, y_train = train.iloc[:, 0:-1], train.loc[:, 'count']
     x_test, y_test = test.iloc[:, 0:-1], test.loc[:, 'count']
 
-    del x_train['lagging_3']
-    del x_train['lagging_2']
-    del x_test['lagging_3']
-    del x_test['lagging_2']
+    # del x_train['lagging_3']
+    # del x_train['lagging_2']
+    # del x_test['lagging_3']
+    # del x_test['lagging_2']
 
     # for i in range(1, 26):
     #     start_name = 'start_poi_'+str(i)+'_count'
@@ -223,5 +228,15 @@ if __name__ == '__main__':
 # MSE: 82.4942
 # MAE: 3.3465
 # r^2 on test data : 0.949050
+
+
+# 归一化之后, 结果取整 default para
+# MSE: 78.6360
+# MAE: 3.2407
+# MSLE: 0.1657
+# r^2 on test data : 0.951433
+
+
+
 
 
