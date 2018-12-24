@@ -53,11 +53,51 @@ def peak_predict():
     print("r^2 on test data : %f" % r2)  # R^2 拟合优度=(预测值-均值)^2之和/(真实值-均值)^2之和,越接近1越好
 
 
+def early_late_peak_predict():
+    global od_three_cluster_dict
+    # df_pmp_result = pd.read_csv('E:\\data\\DiDiData\\data_csv\\result\\gbrt_pair_result.csv')
+    df_pmp_result = pd.read_csv('E:\\data\\DiDiData\\data_csv\\result\\pmp_pair_result.csv')
+
+    # 结果从 pmp_pair_predict_final.csv 的预测结果文件 pmp_pair_result.csv 获取
+    # 只取 OD 对在20%的那三类，且时间片符合要求的
+    early_peak = [15, 16, 17, 18]
+    late_peak = [33, 34, 35, 36, 37]
+    df_match = pd.DataFrame()
+    for i in range(len(df_pmp_result)):
+        if i % 10000 == 0:
+            print('iterator: ', i)
+        s = df_pmp_result.loc[i, 'start_district_id']
+        d = df_pmp_result.loc[i, 'dest_district_id']
+        time = df_pmp_result.loc[i, 'time']
+        key = str(s)+'-'+str(d)
+        # 只添加早高峰
+        if key in od_three_cluster_dict:
+            value = od_three_cluster_dict[key]
+            if (value == 1 or value == 3) and time in early_peak:
+                df_match = df_match.append(df_pmp_result.loc[i])
+            if (value == 2 or value == 3) and time in late_peak:
+                df_match = df_match.append(df_pmp_result.loc[i])
+
+    df_match = df_match.reset_index(drop=True)
+    df_match.to_csv('E:\\data\\DiDiData\\data_csv\\result\\pmp_peak_result.csv')
+    y_predict = list(df_match['predict_count'].values)
+    y_test = list(df_match['real_count'].values)
+    mse = mean_squared_error(y_predict, y_test)
+    print("MSE: %.4f" % mse)  # 输出均方误差
+    mae = mean_absolute_error(y_predict, y_test)
+    print("MAE: %.4f" % mae)  # 输出平均绝对误差
+    msle = mean_squared_log_error(y_predict, y_test)
+    print("MSLE: %.4f" % msle)  # 输出 mean_squared_log_error
+    r2 = r2_score(y_predict, y_test)
+    print("r^2 on test data : %f" % r2)  # R^2 拟合优度=(预测值-均值)^2之和/(真实值-均值)^2之和,越接近1越好
+
+
 if __name__ == '__main__':
     print('start time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
     od_three_cluster_dict = get_od_three_cluster_dict()
     # gbrt_pair_result.csv 需要改为 pmp_pair_result.csv
-    peak_predict()
+    # peak_predict()
+    early_late_peak_predict()
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 
@@ -79,3 +119,16 @@ if __name__ == '__main__':
 # MSLE: 0.2053
 # r^2 on test data : 0.944540
 
+
+# 早peak只取早peak和早晚peak的OD，晚peak只取晚peak和早晚peak的OD
+# 使用 gbrt_pair_result.csv 的结果:
+# MSE: 364.7901
+# MAE: 9.1817
+# MSLE: 0.1594
+# r^2 on test data : 0.939350
+
+# 使用 pmp_pair_result.csv 的结果:
+# MSE: 336.0178
+# MAE: 9.2079
+# MSLE: 0.1950
+# r^2 on test data : 0.945870

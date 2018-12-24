@@ -68,14 +68,31 @@ def plot_flow_proportion():
     # plt.legend(loc='best')
     # plt.show()
 
+    # 挪动坐标位置
+    ax = plt.gca()
+    # 去掉边框
+    ax.spines['top'].set_color('none')
+    ax.spines['right'].set_color('none')
+    # 移位置 设为原点相交
+    ax.xaxis.set_ticks_position('bottom')
+    ax.spines['bottom'].set_position(('data', 0))
+    ax.yaxis.set_ticks_position('left')
+    ax.spines['left'].set_position(('data', 0))
+
+
+
     # 局部放大
     # plt.title('起止对流量比例', fontproperties=font)
     plt.xlabel('订单量', fontproperties=font)
     plt.ylabel('起止对流量比例', fontproperties=font)
-    plt.plot(x[0:700], y[0:700], color='red', linestyle='--', linewidth=2, label='比例变化曲线')
-    plt.scatter(x[305], y[305], color='b', linewidths=5)
-    plt.text(x[305],  y[305], x[305], ha='center', va='bottom', fontsize=20)
+    plt.plot(x[0:700], y[0:700], color='blue', linestyle='-', linewidth=1, label='比例变化曲线')
+
+
+
+    plt.scatter(x[305], y[305], color='r', linewidths=3)
+    # plt.text(x[305],  y[305], x[305], ha='center', va='bottom', fontsize=20)
     plt.annotate("(%s,%.2f)" % (x[305], y[305]), xy=(x[305], y[305]), xytext=(10, 0), textcoords='offset points')
+    # plt.annotate("(%s,%s)" , xy=(x[305], y[305]), xytext=(-20, 10), textcoords='offset points')
     plt.legend(loc='upper left')
     plt.legend(loc='best')
     plt.show()

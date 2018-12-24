@@ -75,7 +75,7 @@ def fit_model(n_estimators=500, learning_rate=0.26):
     # n_estimators: 500, 'max_depth': 5, 'min_samples_split': 6,
     # learning_rate: 0.26,
     # gbrt = ensemble.GradientBoostingRegressor(**params)
-    gbrt = ensemble.GradientBoostingRegressor(verbose=0)
+    gbrt = ensemble.GradientBoostingRegressor(verbose=2)
     # gbrt = XGBRegressor(**params)
 
     # gbrt = ensemble.GradientBoostingRegressor(loss='ls',n_estimators = 300,max_depth = 300, learning_rate = 0.1, verbose = 2, min_samples_leaf = 256, min_samples_split = 256)

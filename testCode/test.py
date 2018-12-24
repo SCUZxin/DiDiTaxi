@@ -21,7 +21,7 @@ df_cluster = pd.read_csv('E:\\data\\DiDiData\\data_csv\\cluster_dataset\\time_se
 print(df_cluster['cluster_num'].value_counts())
 print(df_cluster['real_num'].value_counts())
 
-x = [np.array(1.1),np.array(3.6)]
+x = [np.array(1.1), np.array(3.6)]
 print(x)
 print(x[0])
 x = list(map(lambda i: round(float(i)), x))
