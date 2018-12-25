@@ -1,6 +1,7 @@
 
 import numpy as np
 import pandas as pd
+import math
 import pickle
 
 
@@ -26,3 +27,15 @@ print(x)
 print(x[0])
 x = list(map(lambda i: round(float(i)), x))
 print(x)
+
+from numpy.linalg import  *
+x2 = np.array([[2],[3]])
+x1 = np.ones((1,2))*2
+x1 = np.array([[7],[12]])
+print(np.linalg.norm(x1,ord=2))
+print(x1.shape)
+print(x2.shape)
+print(x2*x1)
+
+
+
