@@ -47,24 +47,119 @@ def get_matrix_S():
 
 def matrix_decomposition(S, k=6):
     nmf = NMF(n_components=k, random_state=0)
-    B = nmf.fit_transform(matrix_S)     # B:(58*58行, k列)
-    P = nmf.components_                 # P:(k行, 48*24列)
+    B = nmf.fit_transform(matrix_S)     # B:(58*58行, k列), (3364, 6)
+    P = nmf.components_                 # P:(k行, 48*24列), (6, 1152)
     return B, P
 
 
-def AR_predict_P(lamb=2):
-    pass
+def AR_predict_P_all(lamb=2):
+    global matrix_B, matrix_P
+    predictions = []
+    for i in range(matrix_P.shape[0]):
+    # for i in range(1):
+        matrix_Pi = list(matrix_P[i])   # 矩阵 P 的每一行，均有1152个元素
+        predict_Pi = AR_predict_P_each(matrix_Pi, lamb=lamb)
+        predictions.append(predict_Pi)
+    predictions = np.asarray(predictions)   # (6, 336) 的数组
+
+    # 订单量的计算
+    matrix_result_list = []
+    for i in range(predictions.shape[1]):
+        P_t = predictions[:, i]
+        matrix_result_list.append(list(matrix_B.dot(P_t)))
+    return matrix_result_list
+
+
+def AR_predict_P_each(matrix_Pi, lamb=2):
+    train, test = matrix_Pi[0:816], matrix_Pi[816:1152]
+
+    # train autoregression
+    model = AR(train)
+    # model_fit = model.fit(maxlag=2)
+    model_fit = model.fit(maxlag=lamb)
+    window = model_fit.k_ar
+    coef = model_fit.params
+    # walk forward over time steps in test
+    history = train[len(train) - window:]
+    history = [history[i] for i in range(len(history))]
+    prediction = list()
+    # print('test', test)
+    for t in range(len(test)):
+        length = len(history)
+        lag = [history[i] for i in range(length - window, length)]
+        yhat = coef[0]
+        # yhat = 0
+        for d in range(window):
+            yhat += coef[d + 1] * lag[window - d - 1]
+        obs = test[t]
+        prediction.append(yhat)
+        history.append(obs)
+        # print('predicted=%f, expected=%f' % (yhat, obs))
+    return prediction
+
+
+def predict():
+    global result_list
+    df_allset = pd.read_csv('E:\\data\\DiDiData\\data_csv\\dataset\\allset.csv')
+    df_test = df_allset.loc[pd.to_datetime(df_allset['date']) > datetime(2016, 3, 10)].reset_index(drop=True)
+    df_test['day'] = pd.to_datetime(df_test['date']).map(lambda x: (x - datetime(2016, 3, 11)).days)
+    y_test = list(df_test['count'].values)
+    y_predict = []
+    for i in range(len(df_test)):
+        if i % 10000 == 0:
+            print('iterator: ', i)
+        # 获取这一行的所有值 start_district_id, dest_district_id, date, time, count, day
+        value = list(df_test.loc[i].values)
+        matrix_St = result_list[value[5]*48+value[3]]
+        predict_value = matrix_St[(value[0] - 1) * 58 + (value[1] - 1)]
+        y_predict.append(predict_value)
+
+    y_predict = list(map(lambda x: round(x), y_predict))
+    # 如果遇到负数转为正数，免得计算MSLE出错
+    y_predict = list(map(lambda x: -x if x < 0 else x, y_predict))
+    df_test['predict_cout'] = y_predict
+    df_test.to_csv('E:\\data\\DiDiData\\data_csv\\result\\NMF-AR\\NMF_AR_result.csv')
+
+    mse = mean_squared_error(y_test, y_predict)
+    print("MSE: %.4f" % mse)  # 输出均方误差
+    mae = mean_absolute_error(y_test, y_predict)
+    print("MAE: %.4f" % mae)  # 输出平均绝对误差
+    msle = mean_squared_log_error(y_test, y_predict)
+    print("MSLE: %.4f" % msle)  # 输出 mean_squared_log_error
+    r2 = r2_score(y_test, y_predict)
+    print("r^2 on test data : %f" % r2)  # R^2 拟合优度=(预测值-均值)^2之和/(真实值-均值)^2之和,越接近1越好
+
+    with open('E:\\data\\DiDiData\\data_csv\\result\\NMF-AR\\NMF_AR_para.txt', 'a') as f:
+        f.write('%.4f' % mse+'      %.4f' % mae+'       %.4f' % msle+'      %f' % r2+'\n')
+
+    #
+    # # plot
+    # plt.plot(test)
+    # plt.plot(predictions, color='red')
+    # plt.show()
 
 
 if __name__ == '__main__':
     print('start time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
     matrix_S = get_matrix_S()
-    matrix_B, matrix_P = matrix_decomposition(matrix_S, k=6)
-    AR_predict_P(lamb=2)
+    # matrix_B, matrix_P = matrix_decomposition(matrix_S, k=6)
+    # result_list = AR_predict_P_all(lamb=2)
+    # predict()
+    for k in range(2, 21):
+        for lamb in range(1, 21):
+            with open('E:\\data\\DiDiData\\data_csv\\result\\NMF-AR\\NMF_AR_para.txt', 'a') as f:
+                f.write('k='+ str(k) + '  lambda=' + str(lamb) + ' :\n')
+            matrix_B, matrix_P = matrix_decomposition(matrix_S, k=k)
+            result_list = AR_predict_P_all(lamb=lamb)
+            predict()
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 
-
+# k=6, lambda=2
+# MSE: 98.5348
+# MAE: 3.8616
+# MSLE: 0.3295
+# r^2 on test data : 0.939143
 
 
 
