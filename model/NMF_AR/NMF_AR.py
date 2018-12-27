@@ -117,7 +117,7 @@ def predict():
     y_predict = list(map(lambda x: round(x), y_predict))
     # 如果遇到负数转为正数，免得计算MSLE出错
     y_predict = list(map(lambda x: -x if x < 0 else x, y_predict))
-    df_test['predict_cout'] = y_predict
+    df_test['predict_count'] = y_predict
     df_test.to_csv('E:\\data\\DiDiData\\data_csv\\result\\NMF-AR\\NMF_AR_result.csv')
 
     mse = mean_squared_error(y_test, y_predict)
@@ -155,11 +155,35 @@ if __name__ == '__main__':
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 
+# 直接用分解后的矩阵B（不是预测的）得到的结果，NMF 分解有误差，可能还不小，原因未知
+# MSE: 43.5306
+# MAE: 3.0109
+# MSLE: 0.2907
+# r^2 on test data : 0.973115
+
+
 # k=6, lambda=2
 # MSE: 98.5348
 # MAE: 3.8616
 # MSLE: 0.3295
 # r^2 on test data : 0.939143
 
+# k=5  lambda=20 :
+# 89.9530      3.7145       0.3299      0.944443
+
+# k=6  lambda=20 :
+# 87.6683      3.6781       0.3242      0.945854
+
+# k=8  lambda=20 :
+# 86.2063      3.6510       0.3229      0.946757
+
+# k=9  lambda=20 :
+# 84.9684      3.6368       0.3201      0.947522
+
+# k=10  lambda=20 :
+# 83.4495      3.6166       0.3192      0.948460
+
+# k=20  lambda=20 :
+# 86.8412      3.6099       0.3129      0.946365
 
 

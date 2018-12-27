@@ -1,6 +1,7 @@
 
 import numpy as np
 import pandas as pd
+from sklearn.decomposition import NMF
 import math
 import pickle
 
@@ -28,14 +29,16 @@ print(x[0])
 x = list(map(lambda i: round(float(i)), x))
 print(x)
 
-from numpy.linalg import  *
-x2 = np.array([[2],[3]])
-x1 = np.ones((1,2))*2
-x1 = np.array([[7],[12]])
-print(np.linalg.norm(x1,ord=2))
-print(x1.shape)
-print(x2.shape)
-print(x2*x1)
 
+from numpy.linalg import *
 
+x = np.asarray([3,5])
+y = np.asarray([6,1])
+dist = norm(x - y)
+print(dist)
+x = [14,9,6,10,15]
+print(x[-1])
+y = sorted(x)
+for i in x:
+    print(y.index(i))
 
