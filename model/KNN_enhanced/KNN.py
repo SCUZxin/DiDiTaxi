@@ -157,23 +157,29 @@ def predict_single(start=9, dest=3, tar_pos=816):
 if __name__ == '__main__':
     print('start time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
     od_sequence_dict = get_od_sequence_dict()
-    K = 10
+    K = 3
     lag = 6
-    for K in range(2, 10):
-        for lag in range(2, 10):
-            with open('E:\\data\\DiDiData\\data_csv\\result\\KNN\\KNN_para.txt', 'a') as f:
-                f.write('K='+ str(K) + '  lag=' + str(lag) + ' :\n')
-            predict_batch()
+    predict_batch()
+    # for K in range(2, 10):
+    #     for lag in range(2, 10):
+    #         with open('E:\\data\\DiDiData\\data_csv\\result\\KNN\\KNN_para.txt', 'a') as f:
+    #             f.write('K='+ str(K) + '  lag=' + str(lag) + ' :\n')
+    #         predict_batch()
 
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 
-# K=10, lagging=6
+# K=10, lag=6
 # MSE: 64.4384
 # MAE: 3.2571
 # MSLE: 0.3377
 # r^2 on test data : 0.960201
 
+# K=3， lag=6
+# MSE: 68.9234
+# MAE: 3.4995
+# MSLE: 0.3890
+# r^2 on test data : 0.957431
 
 
 
