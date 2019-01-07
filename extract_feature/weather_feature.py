@@ -1,4 +1,5 @@
 # 读取每一天的天气数据文件，进行特征提取，得到weather_feature.csv
+# 当天7:00-23:00（14-45时间片，共32个时间片）的所有天气情况取众数
 
 import pandas as pd
 import numpy as np

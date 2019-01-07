@@ -96,7 +96,7 @@ def time_seg_cluster_kmeans():
         time_seg_cluster_result_list = kmeans_model.labels_
         df_cluster = pd.DataFrame({'OD_key': key_list,
                                    'cluster_num': time_seg_cluster_result_list})
-        df_cluster.to_csv('E:\\data\\DiDiData\\data_csv\\cluster_dataset\\time_seg_cluster_result_dict.csv')
+        # df_cluster.to_csv('E:\\data\\DiDiData\\data_csv\\cluster_dataset\\time_seg_cluster_result_dict.csv')
 
         print(pred)
         print(kmeans_model.cluster_centers_)  # 聚类的中心
@@ -110,7 +110,7 @@ def time_seg_cluster_kmeans():
         y_silhouette_score = []
         inertia_score = []
         calinskiharabaz_score = []
-        for k in range(2, 20):
+        for k in range(2, 11):
             print(k)
             kmeans_model = KMeans(n_clusters=k, random_state=1, init='k-means++')
             pred = kmeans_model.fit_predict(value_list)
@@ -133,9 +133,10 @@ def time_seg_cluster_kmeans():
         # dict_calinskiharabaz_score = dict(zip( i, calinskiharabaz_score))
 
         plt.figure()
-        plt.plot(i, y_silhouette_score)
-        plt.xlabel("kmeans-k")
-        plt.ylabel("silhouette_score")
+        plt.plot(i, y_silhouette_score, color='b', marker='o', linestyle='-', linewidth=2)
+        plt.xlabel("K")
+        # plt.ylabel("silhouette_score")
+        plt.ylabel("Silhouette Coefficient")
         plt.title("matrix")
 
         plt.figure()
