@@ -119,6 +119,8 @@ def plot_total_flow_change():
 if __name__ == '__main__':
 
     print('start time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+    # plot_total_flow_change()
+    # plot_total_flow_change_3_9()
     plot_total_flow_change_a_week()
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
