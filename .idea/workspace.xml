@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fdeaa80c-ec29-4c2d-ae7e-eee8d3d4ca9f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plot/feature/total_PM25_cg_day_of_time.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plot/feature/total_temp_cg_day_of_time.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plot/feature/total_weather_cg_day_of_time.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plot/total_flow/plot_total_flow_avg_weekday.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plot/total_flow/plot_total_flow_tuesday.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plot/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plot/proportion/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/plot/proportion/diff_prop_time.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plot/total_flow/plot_total_flow_change_with_time.py" afterPath="$PROJECT_DIR$/plot/total_flow/plot_total_flow_change_with_time.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/extract_feature/gen_proportion.py" afterPath="$PROJECT_DIR$/extract_feature/gen_proportion.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plot/feature/traffic_cg_day.py" afterPath="$PROJECT_DIR$/plot/feature/traffic_cg_day.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plot/pair_flow/plot_od_flow_change_with_day.py" afterPath="$PROJECT_DIR$/plot/pair_flow/plot_od_flow_change_with_day.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../python_demo/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../python_demo/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/plot/total_flow/plot_difference_two_prop.py" afterPath="$PROJECT_DIR$/plot/proportion/difference_two_prop_day.py" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,7 +23,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/DiDiTaxi$time_feature.coverage" NAME="time_feature Coverage Results" MODIFIED="1544530339120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/extract_feature" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$read_mat.coverage" NAME="read_mat Coverage Results" MODIFIED="1544687185969" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../test35/test" />
-    <SUITE FILE_PATH="coverage/DiDiTaxi$traffic_cg_day.coverage" NAME="traffic_cg_day Coverage Results" MODIFIED="1546863422365" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot/feature" />
+    <SUITE FILE_PATH="coverage/DiDiTaxi$traffic_cg_day.coverage" NAME="traffic_cg_day Coverage Results" MODIFIED="1547036241963" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot/feature" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$pmp_predict_peak_20.coverage" NAME="pmp_predict_peak_20 Coverage Results" MODIFIED="1545539570340" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$read_H5.coverage" NAME="read_H5 Coverage Results" MODIFIED="1544501877514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../test35/test" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$group_predict.coverage" NAME="group_predict Coverage Results" MODIFIED="1545482724327" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
@@ -35,8 +36,8 @@
     <SUITE FILE_PATH="coverage/DiDiTaxi$line_demo_dash_control.coverage" NAME="line_demo_dash_control Coverage Results" MODIFIED="1545654865652" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../python_demo/matplotlib_learn" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$pmp_pair.coverage" NAME="pmp_pair Coverage Results" MODIFIED="1545453083760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$UAIContest.coverage" NAME="UAIContest Coverage Results" MODIFIED="1543310618014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../UAIContest-master/UAIContest" />
-    <SUITE FILE_PATH="coverage/DiDiTaxi$plot_difference_two_prop.coverage" NAME="plot_difference_two_prop Coverage Results" MODIFIED="1545278981772" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot/total_flow" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$pmp_pair_no_traffic.coverage" NAME="pmp_pair_no_traffic Coverage Results" MODIFIED="1545466989201" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
+    <SUITE FILE_PATH="coverage/DiDiTaxi$plot_difference_two_prop.coverage" NAME="plot_difference_two_prop Coverage Results" MODIFIED="1547018752949" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot/total_flow" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$KNN.coverage" NAME="KNN Coverage Results" MODIFIED="1545973846461" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/KNN_enhanced" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$order_count.coverage" NAME="order_count Coverage Results" MODIFIED="1543054270815" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$datetime2time_timeSlice.coverage" NAME="datetime2time_timeSlice Coverage Results" MODIFIED="1543065225186" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess" />
@@ -65,7 +66,7 @@
     <SUITE FILE_PATH="coverage/DiDiTaxi$data_set_gen.coverage" NAME="data_set_gen Coverage Results" MODIFIED="1544338515927" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/extract_feature" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$od_pair_week_cluster.coverage" NAME="od_pair_week_cluster Coverage Results" MODIFIED="1544967764841" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/cluster" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$traffic_similarity.coverage" NAME="traffic_similarity Coverage Results" MODIFIED="1545356664843" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/extract_feature" />
-    <SUITE FILE_PATH="coverage/DiDiTaxi$plot_od_flow_change_with_day.coverage" NAME="plot_od_flow_change_with_day Coverage Results" MODIFIED="1546860579053" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot/pair_flow" />
+    <SUITE FILE_PATH="coverage/DiDiTaxi$plot_od_flow_change_with_day.coverage" NAME="plot_od_flow_change_with_day Coverage Results" MODIFIED="1547035735325" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot/pair_flow" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$cluster_poi_k_means.coverage" NAME="cluster_poi_k-means Coverage Results" MODIFIED="1544428604354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/extract_feature" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$sin_cos.coverage" NAME="sin_cos Coverage Results" MODIFIED="1545636462591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../python_demo/matplotlib_learn" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$district_hash_count.coverage" NAME="district_hash_count Coverage Results" MODIFIED="1543468305725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess/data_processing" />
@@ -79,6 +80,7 @@
     <SUITE FILE_PATH="coverage/DiDiTaxi$ha_pair_predict.coverage" NAME="ha_pair_predict Coverage Results" MODIFIED="1545481546502" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$ha_total_predict.coverage" NAME="ha_total_predict Coverage Results" MODIFIED="1545543370300" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$weather_analysis.coverage" NAME="weather_analysis Coverage Results" MODIFIED="1543543647119" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/extract_feature" />
+    <SUITE FILE_PATH="coverage/DiDiTaxi$diff_prop_time.coverage" NAME="diff_prop_time Coverage Results" MODIFIED="1547021880770" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot/proportion" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1543294984508" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../UAIContest-master/UAIContest" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$meanPrice.coverage" NAME="meanPrice Coverage Results" MODIFIED="1542720146963" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$plot_od_number_ranking.coverage" NAME="plot_od_number_ranking Coverage Results" MODIFIED="1546591951657" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/modern_computer" />
@@ -95,6 +97,7 @@
     <SUITE FILE_PATH="coverage/DiDiTaxi$plot_determine_pre_len.coverage" NAME="plot_determine_pre_len Coverage Results" MODIFIED="1545280790740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot/total_flow" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$cluster_result_analysis.coverage" NAME="cluster_result_analysis Coverage Results" MODIFIED="1546825600588" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/cluster" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$timaband2date_hour_id2hash_.coverage" NAME="timaband2date&amp;hour_id2hash_ Coverage Results" MODIFIED="1543488437748" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dataPreprocess/data_processing" />
+    <SUITE FILE_PATH="coverage/DiDiTaxi$diff_prop_time__1_.coverage" NAME="diff_prop_time (1) Coverage Results" MODIFIED="1547021324707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/plot/proportion" />
     <SUITE FILE_PATH="coverage/DiDiTaxi$gen_data_set.coverage" NAME="gen_data_set Coverage Results" MODIFIED="1545038656854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/extract_feature" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -121,8 +124,8 @@
       <file leaf-file-name="gbrt_pair_predict.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/gbrt_pair_predict.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="83">
-              <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+            <state relative-caret-position="175">
+              <caret line="94" column="50" selection-start-line="94" selection-start-column="50" selection-end-line="94" selection-end-column="50" />
               <folding>
                 <element signature="e#58#76#0" expanded="true" />
               </folding>
@@ -130,43 +133,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plot_total_flow_avg_weekday.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plot/total_flow/plot_total_flow_avg_weekday.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="37" column="60" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="60" />
-              <folding>
-                <element signature="e#29#60#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="total_PM25_cg_day_of_time.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plot/feature/total_PM25_cg_day_of_time.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="total_temp_cg_day_of_time.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/plot/feature/total_temp_cg_day_of_time.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="traffic_cg_day.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plot/feature/traffic_cg_day.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="60" selection-end-column="50" />
+            <state relative-caret-position="135">
+              <caret line="126" column="33" selection-start-line="126" selection-start-column="33" selection-end-line="126" selection-end-column="33" />
               <folding>
                 <element signature="e#31#62#0" expanded="true" />
               </folding>
@@ -174,25 +145,45 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NMF_AR.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/NMF_AR/NMF_AR.py">
+      <file leaf-file-name="gen_proportion.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/extract_feature/gen_proportion.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1840">
-              <caret line="134" column="5" selection-start-line="134" selection-start-column="5" selection-end-line="134" selection-end-column="5" />
+            <state relative-caret-position="200">
+              <caret line="33" column="44" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="plot_od_flow_change_with_day.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/plot/pair_flow/plot_od_flow_change_with_day.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="124">
+              <caret line="58" column="21" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="difference_two_prop_day.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/plot/proportion/difference_two_prop_day.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="58" column="28" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
               <folding>
-                <element signature="e#17#38#0" expanded="true" />
+                <element signature="e#142#185#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KNN.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/KNN_enhanced/KNN.py">
+      <file leaf-file-name="diff_prop_time.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/plot/proportion/diff_prop_time.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="162" column="28" selection-start-line="162" selection-start-column="28" selection-end-line="162" selection-end-column="28" />
+            <state relative-caret-position="174">
+              <caret line="63" column="24" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
               <folding>
-                <element signature="e#229#250#0" expanded="true" />
+                <element signature="e#42#73#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -225,12 +216,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/visualization/pair_flow/od_number_ranking.py" />
-        <option value="$PROJECT_DIR$/model/cluster/od_pair_hour_cluster.py" />
         <option value="$PROJECT_DIR$/extract_feature/gen_data_set.py" />
         <option value="$PROJECT_DIR$/plot/total_flow/plot_difference_two_prop.py" />
         <option value="$PROJECT_DIR$/plot/total_flow/plot_determine_pre_len.py" />
-        <option value="$PROJECT_DIR$/extract_feature/gen_proportion.py" />
         <option value="$PROJECT_DIR$/extract_feature/traffic_similarity.py" />
         <option value="$PROJECT_DIR$/model/pmp_train.py" />
         <option value="$PROJECT_DIR$/model/pmp_train_add_traffic.py" />
@@ -241,7 +229,6 @@
         <option value="$PROJECT_DIR$/model/ha_pair_predict.py" />
         <option value="$PROJECT_DIR$/model/group_predict.py" />
         <option value="$PROJECT_DIR$/model/group_pair_predict.py" />
-        <option value="$PROJECT_DIR$/plot/pair_flow/plot_od_flow_change_with_time.py" />
         <option value="$PROJECT_DIR$/model/pmp_predict_peak_20.py" />
         <option value="$PROJECT_DIR$/modern_computer.py" />
         <option value="$PROJECT_DIR$/model/gbrt_total_predict.py" />
@@ -267,8 +254,6 @@
         <option value="$PROJECT_DIR$/model/cluster/cluster_result_analysis.py" />
         <option value="$PROJECT_DIR$/plot/total_flow/plot_total_flow_change_with_day.py" />
         <option value="$PROJECT_DIR$/plot/feature.py" />
-        <option value="$PROJECT_DIR$/plot/pair_flow/plot_od_flow_change_with_day.py" />
-        <option value="$PROJECT_DIR$/plot/feature/traffic_cg_day.py" />
         <option value="$PROJECT_DIR$/plot/total_flow/plot_total_flow_change_with_time.py" />
         <option value="$PROJECT_DIR$/plot/total_flow/plot_total_flow_avg_weekday.py" />
         <option value="$PROJECT_DIR$/plot/feature/weather_cg_day_of_time.py" />
@@ -276,6 +261,12 @@
         <option value="$PROJECT_DIR$/plot/feature/total_PM25_cg_day_of_time.py" />
         <option value="$PROJECT_DIR$/plot/feature/total_weather_cg_day_of_time.py" />
         <option value="$PROJECT_DIR$/plot/feature/total_temp_cg_day_of_time.py" />
+        <option value="$PROJECT_DIR$/plot/proporation/diff_prop_time.py" />
+        <option value="$PROJECT_DIR$/plot/proportion/diff_prop_time.py" />
+        <option value="$PROJECT_DIR$/plot/pair_flow/plot_od_flow_change_with_time.py" />
+        <option value="$PROJECT_DIR$/plot/pair_flow/plot_od_flow_change_with_day.py" />
+        <option value="$PROJECT_DIR$/plot/feature/traffic_cg_day.py" />
+        <option value="$PROJECT_DIR$/extract_feature/gen_proportion.py" />
       </list>
     </option>
   </component>
@@ -424,8 +415,40 @@
               <option name="myItemId" value="plot" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DiDiTaxi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DiDiTaxi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="total_flow" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DiDiTaxi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DiDiTaxi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proportion" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -574,11 +597,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\PythonProject\DiDiTaxi\plot\proporation" />
       <recent name="D:\PythonProject\DiDiTaxi\model\NMF_AR" />
       <recent name="D:\PythonProject\test35\test" />
       <recent name="D:\PythonProject\DiDiTaxi\extract_feature" />
       <recent name="D:\PythonProject\DiDiTaxi\visualization\total_flow" />
-      <recent name="D:\PythonProject\DiDiTaxi\dataPreprocess\data_processing" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\PythonProject\DiDiTaxi\plot\pair_flow" />
@@ -588,44 +611,26 @@
       <recent name="D:\PythonProject\DiDiTaxi\model" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.total_temp_cg_day_of_time">
-    <configuration default="false" name="plot_total_flow_avg_weekday" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.traffic_cg_day">
+    <configuration default="false" name="diff_prop_time" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plot/total_flow" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plot/proportion" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="DiDiTaxi" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/total_flow/plot_total_flow_avg_weekday.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/proportion/diff_prop_time.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="plot_total_flow_tuesday" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plot/total_flow" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="DiDiTaxi" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/total_flow/plot_total_flow_tuesday.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="total_weather_cg_day_of_time" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="traffic_cg_day" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -638,43 +643,25 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="DiDiTaxi" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/feature/total_weather_cg_day_of_time.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/feature/traffic_cg_day.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="total_PM25_cg_day_of_time" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="plot_od_flow_change_with_day" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plot/feature" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plot/pair_flow" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="DiDiTaxi" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/feature/total_PM25_cg_day_of_time.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="total_temp_cg_day_of_time" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/plot/feature" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="DiDiTaxi" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/feature/total_temp_cg_day_of_time.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/plot/pair_flow/plot_od_flow_change_with_day.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -887,20 +874,16 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.plot_total_flow_avg_weekday" />
-      <item index="1" class="java.lang.String" itemvalue="Python.plot_total_flow_tuesday" />
-      <item index="2" class="java.lang.String" itemvalue="Python.total_weather_cg_day_of_time" />
-      <item index="3" class="java.lang.String" itemvalue="Python.total_PM25_cg_day_of_time" />
-      <item index="4" class="java.lang.String" itemvalue="Python.total_temp_cg_day_of_time" />
+    <list size="3">
+      <item index="0" class="java.lang.String" itemvalue="Python.diff_prop_time" />
+      <item index="1" class="java.lang.String" itemvalue="Python.traffic_cg_day" />
+      <item index="2" class="java.lang.String" itemvalue="Python.plot_od_flow_change_with_day" />
     </list>
     <recent_temporary>
-      <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.total_temp_cg_day_of_time" />
-        <item index="1" class="java.lang.String" itemvalue="Python.total_PM25_cg_day_of_time" />
-        <item index="2" class="java.lang.String" itemvalue="Python.total_weather_cg_day_of_time" />
-        <item index="3" class="java.lang.String" itemvalue="Python.plot_total_flow_tuesday" />
-        <item index="4" class="java.lang.String" itemvalue="Python.plot_total_flow_avg_weekday" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Python.traffic_cg_day" />
+        <item index="1" class="java.lang.String" itemvalue="Python.plot_od_flow_change_with_day" />
+        <item index="2" class="java.lang.String" itemvalue="Python.diff_prop_time" />
       </list>
     </recent_temporary>
   </component>
@@ -1184,7 +1167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1546869728037</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="commit">
+      <created>1546957446799</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1546957446799</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1243,25 +1233,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="10" />
+      <option name="time" value="11" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/modern_computer/gbrt_pair.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="99" column="21" selection-start-line="99" selection-start-column="21" selection-end-line="99" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/python/Lib/site-packages/statsmodels/tsa/ar_model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="195" column="0" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../python_demo/Time_Series/AR_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
@@ -1372,7 +1348,7 @@
         <state relative-caret-position="1840">
           <caret line="134" column="5" selection-start-line="134" selection-start-column="5" selection-end-line="134" selection-end-column="5" />
           <folding>
-            <element signature="e#17#38#0" expanded="true" />
+            <element signature="e#17#38#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1421,14 +1397,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/extract_feature/gen_proportion.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/cluster/od_pair_hour_cluster.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
@@ -1468,7 +1436,7 @@
         <state relative-caret-position="185">
           <caret line="162" column="28" selection-start-line="162" selection-start-column="28" selection-end-line="162" selection-end-column="28" />
           <folding>
-            <element signature="e#229#250#0" expanded="true" />
+            <element signature="e#229#250#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1477,14 +1445,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plot/pair_flow/plot_od_flow_change_with_time.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1557,16 +1517,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plot/pair_flow/plot_od_flow_change_with_day.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="35" column="48" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="48" />
-          <folding>
-            <element signature="e#19#50#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/plot/pair_flow/od_number_ranking.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
@@ -1580,16 +1530,6 @@
         <state relative-caret-position="150">
           <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/gbrt_pair_predict.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-          <folding>
-            <element signature="e#58#76#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1611,41 +1551,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plot/total_flow/plot_total_flow_change_with_time.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
-          <folding>
-            <element signature="e#44#75#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/plot/total_flow/plot_total_flow_tuesday.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="20" selection-end-column="78" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plot/feature/traffic_cg_day.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="60" selection-end-column="50" />
-          <folding>
-            <element signature="e#31#62#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plot/total_flow/plot_total_flow_avg_weekday.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="37" column="60" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="60" />
-          <folding>
-            <element signature="e#29#60#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1657,6 +1567,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/plot/total_flow/plot_total_flow_avg_weekday.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+          <folding>
+            <element signature="e#29#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/plot/feature/total_PM25_cg_day_of_time.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="50">
@@ -1665,10 +1585,84 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/model/gbrt_pair_predict.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="94" column="50" selection-start-line="94" selection-start-column="50" selection-end-line="94" selection-end-column="50" />
+          <folding>
+            <element signature="e#58#76#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plot/proportion/diff_prop_time.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="63" column="24" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
+          <folding>
+            <element signature="e#42#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plot/total_flow/plot_total_flow_change_with_time.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1100">
+          <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
+          <folding>
+            <element signature="e#44#75#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/plot/feature/total_temp_cg_day_of_time.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plot/pair_flow/plot_od_flow_change_with_time.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plot/proportion/difference_two_prop_day.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="58" column="28" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
+          <folding>
+            <element signature="e#142#185#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plot/pair_flow/plot_od_flow_change_with_day.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="58" column="21" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plot/feature/traffic_cg_day.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="126" column="33" selection-start-line="126" selection-start-column="33" selection-end-line="126" selection-end-column="33" />
+          <folding>
+            <element signature="e#31#62#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extract_feature/gen_proportion.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
-          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+          <caret line="33" column="44" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="44" />
           <folding />
         </state>
       </provider>

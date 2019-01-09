@@ -9,10 +9,12 @@ import numpy as np
 import pandas as pd
 from datetime import datetime
 
+
 # 从城市的角度，交通拥堵信息在这24天的变化
 def plot_total_traffic_change_with_day():
     df = pd.read_csv('E:\\data\\DiDiData\\data_csv\\features\\traffic_feature.csv')
     del df['time']
+    df['date'] = pd.to_datetime(df['date'])
     df = df.groupby('date').sum()
     # df = df.groupby(['district_id', 'date']).sum()
 
@@ -58,6 +60,7 @@ def plot_total_traffic_change_with_day():
 def plot_region_traffic_change_with_day():
     df = pd.read_csv('E:\\data\\DiDiData\\data_csv\\features\\traffic_feature.csv')
     del df['time']
+    df['date'] = pd.to_datetime(df['date'])
     df = df.groupby(['district_id', 'date']).sum()
 
     regions = [1, 10, 37, 54]
@@ -99,10 +102,59 @@ def plot_region_traffic_change_with_day():
     plt.show()
 
 
+
+# 从区域的角度，交通拥堵信息在时间片t(t=35)的变化，取区域 8
+def plot_region_traffic_change_with_day_of_time_t(t):
+    df = pd.read_csv('E:\\data\\DiDiData\\data_csv\\features\\traffic_feature.csv')
+    df = df.loc[df['time'] == 35]
+    df['date'] = pd.to_datetime(df['date'])
+    del df['time']
+    df = df.groupby(['district_id', 'date']).sum()
+    print(df)
+
+    regions = [8]
+
+    fig, axs = plt.subplots(2, 1, sharex=True)
+    # fig, axs = plt.subplots(4, 1, figsize=(12, 6), sharex=True)
+    # Remove horizontal space between axes
+    fig.subplots_adjust(hspace=0)
+    plt.xlabel('天')
+    plt.ylabel('区域总订单量（x$10^{2}$）')
+
+    axs[0].set_xlim(0, 25)
+    axs[0].set_ylabel('tc_level_3')
+    # axs[1].set_xlim(0, 25)
+    axs[1].set_ylabel('tc_level_4')
+
+    for i in range(len(regions)):
+        x = range(1, 25)
+        y3 = [x for x in list(df.xs((regions[i]))['tj_level_3'].values)]
+        y4 = [x for x in list(df.xs((regions[i]))['tj_level_4'].values)]
+
+        # Plot each graph, and manually set the y tick values
+        # plt.plot(x, y, color='blue', marker='o', linestyle='-', linewidth=2)
+        # axs[0].set_ylim(1.5, 4)
+        # axs[1].set_ylim(0.8, 2.2)
+
+        axs[0].plot(x, y3, marker='o', linestyle='-', linewidth=2)
+        axs[1].plot(x, y4, marker='o', linestyle='-', linewidth=2)
+        axs[0].scatter(x[3], y3[3], color='', marker='o', linestyle='--', linewidth=2, edgecolors='r', s=200)  # 把 corlor 设置为空，通过edgecolors来控制颜色
+        axs[0].scatter(x[10], y3[10], color='', marker='o', linestyle='--', linewidth=2, edgecolors='r', s=200)  # 把 corlor 设置为空，通过edgecolors来控制颜色
+        axs[0].scatter(x[17], y3[17], color='', marker='o', linestyle='-', linewidth=2, edgecolors='r', s=200)  # 把 corlor 设置为空，通过edgecolors来控制颜色
+        axs[1].scatter(x[3], y4[3], color='', marker='o', linestyle='--', linewidth=2, edgecolors='r', s=200)  # 把 corlor 设置为空，通过edgecolors来控制颜色
+        axs[1].scatter(x[10], y4[10], color='', marker='o', linestyle='--', linewidth=2, edgecolors='r', s=200)  # 把 corlor 设置为空，通过edgecolors来控制颜色
+        axs[1].scatter(x[17], y4[17], color='', marker='o', linestyle='-', linewidth=2, edgecolors='r', s=200)  # 把 corlor 设置为空，通过edgecolors来控制颜色
+
+    plt.legend(loc='upper left')
+    plt.legend(loc='best')
+    plt.show()
+
+
 if __name__ == '__main__':
 
     print('start time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
     # plot_total_traffic_change_with_day()
-    plot_region_traffic_change_with_day()
+    # plot_region_traffic_change_with_day()
+    plot_region_traffic_change_with_day_of_time_t(35)
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 

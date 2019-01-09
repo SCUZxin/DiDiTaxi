@@ -47,3 +47,4 @@ if __name__ == '__main__':
     proportion_list = get_proportion()
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
+
