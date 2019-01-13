@@ -1,9 +1,13 @@
 # 取不同的pre_len，这几个时间片的比例矩阵与当前时间片的比例矩阵的平均欧氏距离，
 # 看看变化图，x轴是取len，y轴是平均欧式距离
 
+
 import extract_feature.gen_proportion as gp
 import numpy as np
 import matplotlib.pyplot as plt
+
+plt.rcParams['font.sans-serif'] = ['SimHei'] #用来正常显示中文标签
+plt.rcParams['axes.unicode_minus'] = False #用来正常显示负号
 
 from datetime import datetime
 

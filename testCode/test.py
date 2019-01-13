@@ -36,9 +36,22 @@ x = np.asarray([3,5])
 y = np.asarray([6,1])
 dist = norm(x - y)
 print(dist)
-x = [14,9,6,10,15]
-print(x[-1])
-y = sorted(x)
-for i in x:
-    print(y.index(i))
+y1 = [14,9,6,10,15]
+y2 = [1,2,25,4,5]
+x = list(map(lambda x1,x2:abs(x1-x2), y1,y2))
+print(x)
+print(max(x))
+
+
+def mean_absolute_perc_error(y_predict, y_real):
+    sum1 = 0
+    for i in range(len(y_predict)):
+        sum1 += abs(y_real[i]-y_predict[i]) / y_real[i]
+    return sum1/len(y_predict)
+
+y_real = [5,5,5,5,5,5]
+y_predict = [1,2,3,4,5,6]
+
+mape = mean_absolute_perc_error(y_predict, y_real)
+print("MAPE: %.4f" % mape)  # 输出平均百分比绝对误差
 

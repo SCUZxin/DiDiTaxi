@@ -11,6 +11,13 @@ from sklearn.metrics import r2_score
 from datetime import datetime
 
 
+def mean_absolute_perc_error(y_predict, y_real):
+    sum1 = 0
+    for i in range(len(y_predict)):
+        sum1 += abs(y_real[i]-y_predict[i]) / y_real[i]
+    return sum1/len(y_predict)
+
+
 def save_result(filename, yp, y_test):
     global df
     result = pd.DataFrame()
@@ -41,6 +48,10 @@ def get_mean_his():
     print("MSE: %.4f" % mse)  # 输出均方误差
     mae = mean_absolute_error(y_predict, df['count'])
     print("MAE: %.4f" % mae)  # 输出平均绝对误差
+    mape = mean_absolute_perc_error(y_predict, df['count'])
+    print("MAPE: %.4f" % mape)  # 输出平均百分比绝对误差
+    me = max(list(map(lambda x1,x2:abs(x1-x2), y_predict,df['count'])))
+    print("ME: %.4f" % me)  # 输出最大误差
     msle = mean_squared_log_error(y_predict, df['count'])
     print("MSLE: %.4f" % msle)  # 输出 mean_squared_log_error
     r2 = r2_score(y_predict, df['count'])
@@ -52,6 +63,10 @@ def get_mean_his():
     print("MSE: %.4f" % mse)  # 输出均方误差
     mae = mean_absolute_error(y_predict, df['count'])
     print("MAE: %.4f" % mae)  # 输出平均绝对误差
+    mape = mean_absolute_perc_error(y_predict, df['count'])
+    print("MAPE: %.4f" % mape)  # 输出平均百分比绝对误差
+    me = max(list(map(lambda x1,x2:abs(x1-x2), y_predict,df['count'])))
+    print("ME: %.4f" % me)  # 输出最大误差
     msle = mean_squared_log_error(y_predict, df['count'])
     print("MSLE: %.4f" % msle)  # 输出 mean_squared_log_error
     r2 = r2_score(y_predict, df['count'])
@@ -123,14 +138,16 @@ if __name__ == '__main__':
 
 
 # 历史平均取整后
-# mean_his_day
 # MSE: 111.9740
 # MAE: 3.7280
+# MAPE: 0.5607
+# ME: 476.0000
 # MSLE: 0.3459
 # r^2 on test data : 0.909613
 
-# mean_his_week
 # MSE: 105.4598
 # MAE: 3.8691
+# MAPE: 0.6277
+# ME: 538.0000
 # MSLE: 0.4145
 # r^2 on test data : 0.917368

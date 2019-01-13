@@ -124,6 +124,12 @@ def predict_batch(list_t, len_pre_t=3):
     metrics_self(flow_pair_batch_list, df_target, list_t)
 
 
+def mean_absolute_perc_error(y_predict, y_real):
+    sum1 = 0
+    for i in range(len(y_predict)):
+        sum1 += abs(y_real[i]-y_predict[i]) / y_real[i]
+    return sum1/len(y_predict)
+
 # flow_pair_batch_list：按照时间 list_t 装多个list，每个list是对应时间片的订单量的数组 59*59
 def metrics_self(flow_pair_batch_list, df_target, list_t):
     y_test = []
@@ -138,11 +144,16 @@ def metrics_self(flow_pair_batch_list, df_target, list_t):
 
     y_predict = list(map(lambda x: round(x), y_predict))
     save_result(y_predict, y_test)
-
+    # 如果遇到负数转为正数，免得计算MSLE出错
+    y_predict = list(map(lambda x: -x if x < 0 else x, y_predict))
     mse = mean_squared_error(y_test, y_predict)
     print("MSE: %.4f" % mse)  # 输出均方误差
     mae = mean_absolute_error(y_test, y_predict)
     print("MAE: %.4f" % mae)  # 输出平均绝对误差
+    mape = mean_absolute_perc_error(y_predict, y_test)
+    print("MAPE: %.4f" % mape)  # 输出平均百分比绝对误差
+    me = max(list(map(lambda x1,x2:abs(x1-x2), y_predict,y_test)))
+    print("ME: %.4f" % me)  # 输出最大误差
     msle = mean_squared_log_error(y_test, y_predict)
     print("MSLE: %.4f" % msle)  # 输出 mean_squared_log_error
     r2 = r2_score(y_test, y_predict)
@@ -323,6 +334,12 @@ if __name__ == '__main__':
 # 8. 用户增长因子如何确定？
 
 
-# 63.1292      3.3743       0.3534      0.961010
+# [0.5565, 0.8916, 4.5038, 3.990159]  pre_len=1
+# MSE: 63.1680
+# MAE: 3.3750
+# MAPE: 0.6207
+# ME: 301.0000
+# MSLE: 0.3534
+# r^2 on test data : 0.960986
 
 

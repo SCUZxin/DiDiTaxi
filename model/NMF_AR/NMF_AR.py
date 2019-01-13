@@ -25,6 +25,13 @@ from datetime import datetime
 import pickle
 
 
+def mean_absolute_perc_error(y_predict, y_real):
+    sum1 = 0
+    for i in range(len(y_predict)):
+        sum1 += abs(y_real[i]-y_predict[i]) / y_real[i]
+    return sum1/len(y_predict)
+
+
 # 获取数据并生成矩阵array S（58*58=3364行（0-57是起始地id是1的，依次类推），48*24=1152列）
 def get_matrix_S():
     try:
@@ -124,6 +131,10 @@ def predict():
     print("MSE: %.4f" % mse)  # 输出均方误差
     mae = mean_absolute_error(y_test, y_predict)
     print("MAE: %.4f" % mae)  # 输出平均绝对误差
+    mape = mean_absolute_perc_error(y_predict, y_test)
+    print("MAPE: %.4f" % mape)  # 输出平均百分比绝对误差
+    me = max(list(map(lambda x1,x2:abs(x1-x2), y_predict, y_test)))
+    print("ME: %.4f" % me)  # 输出最大误差
     msle = mean_squared_log_error(y_test, y_predict)
     print("MSLE: %.4f" % msle)  # 输出 mean_squared_log_error
     r2 = r2_score(y_test, y_predict)

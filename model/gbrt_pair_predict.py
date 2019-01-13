@@ -16,18 +16,27 @@ from datetime import datetime
 import pickle
 
 
+def mean_absolute_perc_error(y_predict, y_real):
+    sum1 = 0
+    for i in range(len(y_predict)):
+        sum1 += abs(y_real[i]-y_predict[i]) / y_real[i]
+    return sum1/len(y_predict)
+
+
 def save_model(filename, m):
     pickle.dump({'model': m}, open(filename+'.pkl', 'wb'))
 
 
 def save_result(filename, yp, y_test):
-    global x_test
+    global x_test, start, dest
     result = pd.DataFrame()
     # result['test_id'] = range(len(yp))
     result['date'] = date
     result['time'] = x_test['time']
-    result['start_district_id'] = x_test['start_district_id']
-    result['dest_district_id'] = x_test['dest_district_id']
+    result['start_district_id'] = start
+    result['dest_district_id'] = dest
+    # result['start_district_id'] = x_test['start_district_id']
+    # result['dest_district_id'] = x_test['dest_district_id']
     result['predict_count'] = yp
     result['real_count'] = y_test
     result.to_csv(filename+'.csv', index=False)
@@ -98,12 +107,18 @@ def fit_model(n_estimators=500, learning_rate=0.26):
     # for i in range(len(y_predict)):
     #     y_predict[i] = round(y_predict[i])
     y_predict = list(map(lambda x: round(float(x)), y_predict))
+    # 如果遇到负数转为正数，免得计算MSLE出错
+    y_predict = list(map(lambda x: -x if x < 0 else x, y_predict))
 
     save_result(fileName, y_predict, y_test)
     mse = mean_squared_error(y_test, y_predict)
     print("MSE: %.4f" % mse)  # 输出均方误差
     mae = mean_absolute_error(y_test, y_predict)
     print("MAE: %.4f" % mae)  # 输出平均绝对误差
+    mape = mean_absolute_perc_error(y_predict, y_test)
+    print("MAPE: %.4f" % mape)  # 输出平均百分比绝对误差
+    me = max(list(map(lambda x1,x2:abs(x1-x2), y_predict,y_test)))
+    print("ME: %.4f" % me)  # 输出最大误差
     msle = mean_squared_log_error(y_test, y_predict)
     print("MSLE: %.4f" % msle)  # 输出 mean_squared_log_error
     r2 = r2_score(y_test, y_predict)
@@ -145,6 +160,7 @@ def fit_model(n_estimators=500, learning_rate=0.26):
     plt.xlabel('Boosting Iterations')
     plt.ylabel('Deviance')
 
+
     # Plot feature importance
     feature_importance = gbrt.feature_importances_
     # make importances relative to max importance
@@ -168,24 +184,27 @@ if __name__ == '__main__':
     train, test = gen_data_set()
     x_train, y_train = train.iloc[:, 0:-1], train.loc[:, 'count']
     x_test, y_test = test.iloc[:, 0:-1], test.loc[:, 'count']
+    start = x_test['start_district_id']
+    dest = x_test['dest_district_id']
 
     # del x_train['lagging_3']
     # del x_train['lagging_2']
     # del x_test['lagging_3']
     # del x_test['lagging_2']
 
-    # for i in range(1, 26):
-    #     start_name = 'start_poi_'+str(i)+'_count'
-    #     dest_name = 'dest_poi_'+str(i)+'_count'
-    #     del x_train[start_name]
-    #     del x_train[dest_name]
-    #     del x_test[start_name]
-    #     del x_test[dest_name]
 
-    # del x_train['start_district_id']
-    # del x_train['dest_district_id']
-    # del x_test['start_district_id']
-    # del x_test['dest_district_id']
+    for i in range(1, 26):
+        start_name = 'start_poi_'+str(i)+'_count'
+        dest_name = 'dest_poi_'+str(i)+'_count'
+        del x_train[start_name]
+        del x_train[dest_name]
+        del x_test[start_name]
+        del x_test[dest_name]
+
+    del x_train['start_district_id']
+    del x_train['dest_district_id']
+    del x_test['start_district_id']
+    del x_test['dest_district_id']
 
     gen_model()
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
@@ -230,11 +249,13 @@ if __name__ == '__main__':
 # r^2 on test data : 0.949050
 
 
-# 归一化之后, 结果取整 default para
-# MSE: 78.6360
-# MAE: 3.2407
-# MSLE: 0.1657
-# r^2 on test data : 0.951433
+# 归一化之后, 结果取整，删除50个 POI 特征 default para
+# MSE: 77.1328
+# MAE: 3.2197
+# MAPE: 0.4150
+# ME: 383.0000
+# MSLE: 0.1642
+# r^2 on test data : 0.952361
 
 
 
