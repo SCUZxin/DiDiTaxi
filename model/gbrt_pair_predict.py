@@ -76,7 +76,9 @@ def gen_model():
 
 
 def fit_model(n_estimators=500, learning_rate=0.26):
-    params = {'n_estimators': 100, 'max_depth': 20, 'min_samples_split': 200,
+    # params = {'n_estimators': 100, 'max_depth': 20, 'min_samples_split': 200,
+    #           'learning_rate': 0.1, 'verbose': 2, 'loss': 'ls', 'random_state': 0}
+    params = {'n_estimators': 100, 'max_depth': 1, 'min_samples_split': 10,
               'learning_rate': 0.1, 'verbose': 2, 'loss': 'ls', 'random_state': 0}
     # params = {'n_estimators': 500, 'max_depth': 10, 'min_samples_split': 2,
     #           'learning_rate': 0.01, 'verbose': 1, 'loss': 'ls', 'random_state': 0}
@@ -187,10 +189,16 @@ if __name__ == '__main__':
     start = x_test['start_district_id']
     dest = x_test['dest_district_id']
 
-    # del x_train['lagging_3']
+    del x_train['lagging_3']
     # del x_train['lagging_2']
-    # del x_test['lagging_3']
+    del x_train['lagging_1']
+    del x_test['lagging_3']
     # del x_test['lagging_2']
+    del x_test['lagging_1']
+    del x_train['mean_his_day']
+    del x_train['mean_his_week']
+    del x_test['mean_his_day']
+    del x_test['mean_his_week']
 
 
     for i in range(1, 26):

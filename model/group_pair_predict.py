@@ -8,6 +8,12 @@ from sklearn.metrics import r2_score
 import pickle
 from datetime import datetime
 
+def mean_absolute_perc_error(y_predict, y_real):
+    sum1 = 0
+    for i in range(len(y_predict)):
+        sum1 += abs(y_real[i]-y_predict[i]) / y_real[i]
+    return sum1/len(y_predict)
+
 
 # 获取20% 和 80%的 OD对并 return
 # od_20_dict：key(52-58), value: 属于哪个类（1-4）
@@ -29,7 +35,7 @@ def get_20_od_dict():
 def group_predict():
     df_ha_result = pd.read_csv('E:\\data\\DiDiData\\data_csv\\result\\ha_pair_result.csv')
     # df_pmp_result = pd.read_csv('E:\\data\\DiDiData\\data_csv\\result\\gbrt_pair_result.csv')
-    df_pmp_result = pd.read_csv('E:\\data\\DiDiData\\data_csv\\result\\pmp_pair_result.csv')
+    df_pmp_result = pd.read_csv('E:\\data\\DiDiData\\data_csv\\result\\pmwa_pair_result.csv')
 
     # 80%的结果从 ha_pair_predict.csv 的预测结果文件 ha_pair.csv 获取, 没有出现过的OD对的流量都置为0
     # 20%的结果从 pmp_pair_predict_final.csv 的预测结果文件 pmp_pair_result.csv 获取，然后组合
@@ -53,6 +59,10 @@ def group_predict():
     print("MSE: %.4f" % mse)  # 输出均方误差
     mae = mean_absolute_error(y_predict, y_test)
     print("MAE: %.4f" % mae)  # 输出平均绝对误差
+    mape = mean_absolute_perc_error(y_predict, y_test)
+    print("MAPE: %.4f" % mape)  # 输出平均百分比绝对误差
+    me = max(list(map(lambda x1,x2:abs(x1-x2), y_predict,y_test)))
+    print("ME: %.4f" % me)  # 输出最大误差
     msle = mean_squared_log_error(y_predict, y_test)
     print("MSLE: %.4f" % msle)  # 输出 mean_squared_log_error
     r2 = r2_score(y_predict, y_test)
@@ -66,12 +76,6 @@ if __name__ == '__main__':
     group_predict()
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
-
-# gbrt_pair_result.csv + HA 的結果:
-# MSE: 79.3474
-# MAE: 3.4326
-# MSLE: 0.2978
-# r^2 on test data : 0.942694
 
 # pmp_pair_result.csv + HA 的結果:
 # MSE: 63.1823

@@ -112,6 +112,7 @@ def predict_batch():
     # 如果遇到负数转为正数，免得计算MSLE出错
     y_predict = list(map(lambda x: -x if x < 0 else x, y_predict))
     df_test['predict_count'] = y_predict
+    df_test = df_test.rename(columns={'count': 'real_count'})
     df_test.to_csv('E:\\data\\DiDiData\\data_csv\\result\\KNN\\KNN_result.csv')
 
     mse = mean_squared_error(y_test, y_predict)
@@ -186,11 +187,21 @@ if __name__ == '__main__':
 # MSLE: 0.3377
 # r^2 on test data : 0.960201
 
-# K=3， lag=6
-# MSE: 68.9234
-# MAE: 3.4995
+# K=4， lag=9
+# MSE: 68.9217
+# MAE: 3.4994
+# MAPE: 0.6146
+# ME: 273.0000
 # MSLE: 0.3890
-# r^2 on test data : 0.957431
+# r^2 on test data : 0.957432
+
+# K=3， lag=6
+# MSE: 67.0596
+# MAE: 3.4139
+# MAPE: 0.5995
+# ME: 283.0000
+# MSLE: 0.3746
+# r^2 on test data : 0.958583
 
 
 

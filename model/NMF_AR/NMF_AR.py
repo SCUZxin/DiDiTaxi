@@ -125,6 +125,7 @@ def predict():
     # 如果遇到负数转为正数，免得计算MSLE出错
     y_predict = list(map(lambda x: -x if x < 0 else x, y_predict))
     df_test['predict_count'] = y_predict
+    df_test = df_test.rename(columns={'count': 'real_count'})
     df_test.to_csv('E:\\data\\DiDiData\\data_csv\\result\\NMF-AR\\NMF_AR_result.csv')
 
     mse = mean_squared_error(y_test, y_predict)
@@ -153,16 +154,17 @@ def predict():
 if __name__ == '__main__':
     print('start time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
     matrix_S = get_matrix_S()
-    # matrix_B, matrix_P = matrix_decomposition(matrix_S, k=6)
-    # result_list = AR_predict_P_all(lamb=2)
-    # predict()
-    for k in range(2, 21):
-        for lamb in range(1, 21):
-            with open('E:\\data\\DiDiData\\data_csv\\result\\NMF-AR\\NMF_AR_para.txt', 'a') as f:
-                f.write('k='+ str(k) + '  lambda=' + str(lamb) + ' :\n')
-            matrix_B, matrix_P = matrix_decomposition(matrix_S, k=k)
-            result_list = AR_predict_P_all(lamb=lamb)
-            predict()
+    matrix_B, matrix_P = matrix_decomposition(matrix_S, k=20)   # 参考文献是6
+    result_list = AR_predict_P_all(lamb=20)     # 参考文献是 2
+    predict()
+
+    # for k in range(2, 21):
+    #     for lamb in range(1, 21):
+    #         with open('E:\\data\\DiDiData\\data_csv\\result\\NMF-AR\\NMF_AR_para.txt', 'a') as f:
+    #             f.write('k='+ str(k) + '  lambda=' + str(lamb) + ' :\n')
+    #         matrix_B, matrix_P = matrix_decomposition(matrix_S, k=k)
+    #         result_list = AR_predict_P_all(lamb=lamb)
+    #         predict()
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 
@@ -197,4 +199,18 @@ if __name__ == '__main__':
 # k=20  lambda=20 :
 # 86.8412      3.6099       0.3129      0.946365
 
+# K=4, lambda=20
+# MSE: 99.8621
+# MAE: 3.8179
+# MAPE: 0.6067
+# ME: 429.0000
+# MSLE: 0.3368
+# r^2 on test data : 0.938323
 
+# K=20, lambda=20
+# MSE: 86.8412
+# MAE: 3.6099
+# MAPE: 0.6104
+# ME: 386.0000
+# MSLE: 0.3129
+# r^2 on test data : 0.946365

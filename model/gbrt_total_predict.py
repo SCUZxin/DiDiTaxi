@@ -3,6 +3,8 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+plt.rcParams['font.sans-serif'] = ['SimHei'] #用来正常显示中文标签
+plt.rcParams['axes.unicode_minus'] = False #用来正常显示负号
 
 from sklearn import ensemble
 from xgboost.sklearn import XGBRegressor
@@ -151,11 +153,14 @@ def fit_model(n_estimators=500, learning_rate=0.26):
     sorted_idx = np.argsort(feature_importance)
     pos = np.arange(sorted_idx.shape[0]) + .5
     plt.subplot(1, 2, 2)
+    # plt.figure(figsize=(8,6))
     plt.barh(pos, feature_importance[sorted_idx], align='center')
     columns = x_train.columns
     plt.yticks(pos, columns[sorted_idx])
     # plt.yticks(pos, boston.feature_names[sorted_idx])
     plt.xlabel('Relative Importance')
+    # plt.xlabel('特征相对重要性')
+    # plt.ylabel('特征')
     plt.title('Variable Importance')
     plt.show()
 
@@ -171,16 +176,32 @@ if __name__ == '__main__':
     # del x_test['pm2.5_change']
     # del x_train['pm2.5_mean_day']
     # del x_test['pm2.5_mean_day']
+    # del x_train['temp_mean_day']
+    # del x_test['temp_mean_day']
+    # del x_train['is_rain_time_slice']
+    # del x_test['is_rain_time_slice']
+    # del x_train['is_rain_day']
+    # del x_test['is_rain_day']
+    # del x_train['is_weekend']
+    # del x_test['is_weekend']
+    # del x_train['weather_of_day']
+    # del x_test['weather_of_day']
+    # del x_train['weather_pre2']
+    # del x_test['weather_pre2']
+    # del x_train['weather_pre1']
+    # del x_test['weather_pre1']
     gen_model()
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 
 
 # 归一化前
-#     params = {'n_estimators': 500, 'max_depth': 5, 'min_samples_split': 7,
-#               'learning_rate': 0.26, 'verbose': 0, 'loss': 'ls', 'random_state': 0}
-# MSE: 652009.6635
-# r ^ 2 on test data: 0.969268
+# params = {'n_estimators': 100, 'max_depth': 5, 'min_samples_split': 7,
+#           'learning_rate': 0.26, 'verbose': 0, 'loss': 'ls', 'random_state': 0}
+# MSE: 617649.3690
+# MAE: 507.8214
+# MSLE: 0.0120
+# r^2 on test data : 0.970887
 
 # 归一化前，default para
 # MSE: 635032.9643

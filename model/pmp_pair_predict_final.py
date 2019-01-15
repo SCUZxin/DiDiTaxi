@@ -34,7 +34,7 @@ def get_all_data():
     del df_time['time']
     df = pd.concat([df_weather, df_time], axis=1)
     df['counter'] = range(1, 1153)
-    # flow_total = list(df['count'].values)
+    # flow_total = list(df['count'].values)[816:]
 
     df_tatol_predict = pd.read_csv('E:\\data\\DiDiData\\data_csv\\result\\gbrt_toal_result.csv')
     flow_total = list(df_tatol_predict['count'].values)
@@ -161,7 +161,7 @@ def metrics_self(flow_pair_batch_list, df_target, list_t):
 
     with open('E:\\data\\DiDiData\\data_csv\\result\\pmp_pair_para_result.txt', 'a') as f:
         # f.write('  MSE          MAE         MLSE            r^2\n')
-        f.write('%.4f' % mse+'      %.4f' % mae+'       %.4f' % msle+'      %f' % r2+'\n')
+        f.write('%.4f' % mse+'      %.4f' % mae+'      %.4f' % mape+'      %.4f' % me+'       %.4f' % msle+'      %f' % r2+'\n')
 
 
 def w_features(t1, t2):
@@ -286,15 +286,22 @@ if __name__ == '__main__':
     period = True
     df_target = pd.DataFrame()
     # init_parameters = [0.182428388207, 0.880798249348, 4.71840657989, 1.52477764084]
-    init_parameters = [0.5565, 0.8916, 4.5038, 3.990159]
-    # init_parameters = [0.34, 1.1, 6, 4]
+    # init_parameters = [0.5565, 0.8916, 4.5038, 3.990159]
+    init_parameters = [0.136987076149, 0.866897936769, 4.91467560349, 2.37776163467]
+    init_parameters = [0.15, 0.92, 4.9, 2.6]
+    predict_batch([i for i in range(817, 1153)], len_pre_t=1)
+    init_parameters = [0.3, 0.9, 4, 10]
+    predict_batch([i for i in range(817, 1153)], len_pre_t=1)
+    init_parameters = [0.5, 0.95, 9, 3]
+    predict_batch([i for i in range(817, 1153)], len_pre_t=1)
+    init_parameters = [0.8, 0.9, 4, 10]
     predict_batch([i for i in range(817, 1153)], len_pre_t=1)
 
 
     # # rho_1:0.8-0.99 间隔0.01
     # with open('E:\\data\\DiDiData\\data_csv\\result\\pmp_pair_para_result.txt', 'a') as f:
     #     f.write('rho_1:\n')
-    # for rho_1 in range(30, 50):
+    # for rho_1 in range(10, 50):
     #     init_parameters = [rho_1/100, 0.95, 4, 10]
     #     predict_batch([i for i in range(817, 1153)], len_pre_t=1)
     # with open('E:\\data\\DiDiData\\data_csv\\result\\pmp_pair_para_result.txt', 'a') as f:
@@ -342,4 +349,16 @@ if __name__ == '__main__':
 # MSLE: 0.3534
 # r^2 on test data : 0.960986
 
+# [0.136987076149, 0.866897936769, 4.91467560349, 2.37776163467]
+# MSE: 58.1031
+# MAE: 3.2427
+# MAPE: 0.5961
+# ME: 245.0000
+# MSLE: 0.3341
+# r^2 on test data : 0.964114
+
+# 0.25/0.26, 0.95, 4, 10
+# rho_2 < 1，越大越好
+# alpha_1 越大越好，从9开始？
+# alpha_2 越小越好
 

@@ -43,7 +43,7 @@ def get_mean_his():
 
     y_predict = df['mean_his_day'].values
     y_predict = list(map(lambda x: round(x), y_predict))
-    save_result(fileName, y_predict, list(df['count'].values))
+    # save_result(fileName, y_predict, list(df['count'].values))
     mse = mean_squared_error(y_predict, df['count'])
     print("MSE: %.4f" % mse)  # 输出均方误差
     mae = mean_absolute_error(y_predict, df['count'])
@@ -59,6 +59,7 @@ def get_mean_his():
 
     y_predict = df['mean_his_week'].values
     y_predict = list(map(lambda x: round(x), y_predict))
+    save_result(fileName, y_predict, list(df['count'].values))
     mse = mean_squared_error(y_predict, df['count'])
     print("MSE: %.4f" % mse)  # 输出均方误差
     mae = mean_absolute_error(y_predict, df['count'])
