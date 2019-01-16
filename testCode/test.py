@@ -42,7 +42,12 @@ x = list(map(lambda x1,x2:abs(x1-x2), y1,y2))
 print(x)
 print(max(x))
 
-y2.sort()
-print(type(y2))
-print(y2)
+import pandas as pd
+from sklearn.metrics import r2_score
+
+print(('%.4f')%(58.6072**0.5))
+
+
+
+
 

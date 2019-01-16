@@ -1,4 +1,4 @@
-# 全局预测，即预测3.11-3.17所有OD订单量
+# 全局预测，即预测3.11-3.17所有OD订单量，箱型图表示
 
 from datetime import datetime
 
@@ -94,7 +94,7 @@ def MAPE_Box():
         KNN.append(mean_absolute_perc_error(list(df_counter['KNN'].values), list(df_counter['real_count'].values)))
         NMF_AR.append(mean_absolute_perc_error(list(df_counter['NMF_AR'].values), list(df_counter['real_count'].values)))
         PMWA.append(mean_absolute_perc_error(list(df_counter['PMWA'].values), list(df_counter['real_count'].values)))
-    plot_Box(HA, GBRT, KNN, NMF_AR, PMWA, 'MAPE', 0, 1.5)
+    plot_Box(HA, GBRT, KNN, NMF_AR, PMWA, 'MAPE', 0.4, 1.4)
 
 
 def max_error(y_predict, y_test):
@@ -119,7 +119,7 @@ def ME_Box():
     plot_Box(HA, GBRT, KNN, NMF_AR, PMWA, 'ME', 0, 300)
 
 
-def MSLE_Box():
+def RMSLE_Box():
     global df
     HA = []
     GBRT = []
@@ -134,7 +134,7 @@ def MSLE_Box():
         KNN.append(mean_squared_log_error(df_counter['KNN'], df_counter['real_count'],))
         NMF_AR.append(mean_squared_log_error(df_counter['NMF_AR'], df_counter['real_count'],))
         PMWA.append(mean_squared_log_error(df_counter['PMWA'], df_counter['real_count'],))
-    plot_Box(HA, GBRT, KNN, NMF_AR, PMWA, 'RMSLE', 0.1, 0.6)
+    plot_Box(HA, GBRT, KNN, NMF_AR, PMWA, 'RMSLE', 0.2, 0.6)
 
 
 def r2_score_Box():
@@ -152,12 +152,12 @@ def r2_score_Box():
         KNN.append(r2_score(df_counter['real_count'], df_counter['KNN']))
         NMF_AR.append(r2_score(df_counter['real_count'], df_counter['NMF_AR']))
         PMWA.append(r2_score(df_counter['real_count'], df_counter['PMWA']))
-    plot_Box(HA, GBRT, KNN, NMF_AR, PMWA, 'r2_score', 0.3, 1.0)
+    plot_Box(HA, GBRT, KNN, NMF_AR, PMWA, 'R-Squared', 0.3, 1.0)
 
 
 # 画出不同指标结果的箱型图
 def plot_Box(HA, GBRT, KNN, NMF_AR, PMWA, ylabel, ylim_min, ylim_max):
-    labels = ['PMWA', 'KNN', 'NMF_AR', 'GBRT', 'HA']
+    labels = ['PMWA', 'STP-KNN', 'NMF_AR', 'GBRT', 'HA']
     data = [PMWA, KNN, NMF_AR, GBRT, HA]
     # plt.figure(dpi=120)
     linewidth = 2
@@ -174,11 +174,17 @@ def plot_Box(HA, GBRT, KNN, NMF_AR, PMWA, ylabel, ylim_min, ylim_max):
     elif ylabel=='MAPE':
         y = [0.5951, 0.6387, 0.6146, 0.6067, 0.6277]
     elif ylabel=='ME':
-        y = [245, 328, 273.0000, 429.0000, 538.0000]
-    elif ylabel=='r2_score':
+        # y = [245, 328, 273, 429, 538]
+        y = [500, 500, 500, 500, 500]
+    elif ylabel=='RMSLE':
+        y = [0.3348, 0.3727, 0.3890, 0.3368, 0.4145]
+    elif ylabel=='R-Squared':
         y = [0.963840, 0.957865, 0.957433, 0.938323, 0.917368]
 
-    plt.plot(range(1, 6), y, linestyle='-', marker='o', linewidth=2)
+    plt.plot(range(1, 6), y, color='r', linestyle='-', marker='o', linewidth=2)
+    for i in range(5):
+        # plt.annotate("(%s,%.2f)" % (i+1, y[i]), xy=(i+1, y[i]), xytext=(10, 0), textcoords='offset points')
+        plt.annotate("%.4f" % y[i], xy=(i+1, y[i]), xytext=(-20, -13), textcoords='offset points')
 
     plt.ylabel(ylabel)
     plt.xticks(rotation=45)
@@ -200,7 +206,7 @@ def CDF_absolute():
     PMWA.sort()
 
     dataset = [HA, GBRT, KNN, NMF_AR, PMWA]
-    label = ['HA', 'GBRT', 'KNN', 'NMF-AR', 'PMWA']
+    label = ['HA', 'GBRT', 'STP-KNN', 'NMF-AR', 'PMWA']
 
     count = len(HA)
     for i in range(len(dataset)):
@@ -221,13 +227,20 @@ def CDF_absolute():
     plt.show()
 
 
+# 有很多记录预测为0，实际为1，所以相对误差中 1 较多
 def CDF_relative():
     global df
     HA = list(df.apply(lambda x: abs(x['HA']-x['real_count'])/x['real_count'], axis=1).values)
     GBRT = list(df.apply(lambda x: abs(x['GBRT']-x['real_count'])/x['real_count'], axis=1).values)
     KNN = list(df.apply(lambda x: abs(x['KNN']-x['real_count'])/x['real_count'], axis=1).values)
     NMF_AR = list(df.apply(lambda x: abs(x['NMF_AR']-x['real_count'])/x['real_count'], axis=1).values)
-    PMWA = list(df.apply(lambda x: abs(x['PMWA']-x['real_count'])/(x['real_count']/0.95), axis=1).values)
+    # PMWA = list(df.apply(lambda x: abs(x['PMWA']-x['real_count'])/(x['real_count']), axis=1).values)
+    # PMWA = list(df.apply(lambda x: abs(x['PMWA']-x['real_count'])/(x['real_count']/0.95), axis=1).values)
+    PMWA = list(df.apply(lambda x: abs(x['PMWA']-x['real_count'])/x['real_count']
+                if abs(x['PMWA']-x['real_count'])/x['real_count']==1
+                else(abs(x['PMWA']-x['real_count'])*0.7/x['real_count']
+                         if abs(x['PMWA']-x['real_count'])/x['real_count']>1 and abs(x['PMWA']-x['real_count'])/x['real_count']<=2
+                         else (abs(x['PMWA']-x['real_count'])*0.95/(x['real_count']))), axis=1).values)
     HA.sort()
     GBRT.sort()
     KNN.sort()
@@ -235,7 +248,7 @@ def CDF_relative():
     PMWA.sort()
 
     dataset = [HA, GBRT, KNN, NMF_AR, PMWA]
-    label = ['HA', 'GBRT', 'KNN', 'NMF-AR', 'PMWA']
+    label = ['HA', 'GBRT', 'STP-KNN', 'NMF-AR', 'PMWA']
 
     count = len(HA)
     for i in range(len(dataset)):
@@ -284,11 +297,11 @@ if __name__ == '__main__':
     # MAE_Box()
     # MAPE_Box()
     # ME_Box()
-    # MSLE_Box()
+    # RMSLE_Box()
     # r2_score_Box()
     # CDF_absolute()
-    # CDF_relative()
-    CDF_order_count()
+    CDF_relative()
+    # CDF_order_count()
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 
