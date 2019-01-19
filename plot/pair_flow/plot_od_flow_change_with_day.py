@@ -74,7 +74,7 @@ def plot_od_change_with_day_in_time_t(t):
 if __name__ == '__main__':
 
     print('start time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-    # plot_od_change_with_day()
+    plot_od_change_with_day()
     plot_od_change_with_day_in_time_t(35)
     print('end time:', datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
